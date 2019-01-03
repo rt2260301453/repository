@@ -123,6 +123,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
 		<!--begin jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -219,17 +227,22 @@
 						<artifactId>mapper-generator</artifactId>
 						<version>1.0.0</version>
 					</dependency>
-<!--
-					<dependency>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-starter-tomcat</artifactId>
-						<scope>provided</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.tomcat.embed</groupId>
-						<artifactId>tomcat-embed-jasper</artifactId>
-						<scope>provided</scope>
-					</dependency>-->
+
+
+
+
+
+					<!--
+                                        <dependency>
+                                            <groupId>org.springframework.boot</groupId>
+                                            <artifactId>spring-boot-starter-tomcat</artifactId>
+                                            <scope>provided</scope>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.tomcat.embed</groupId>
+                                            <artifactId>tomcat-embed-jasper</artifactId>
+                                            <scope>provided</scope>
+                                        </dependency>-->
 				</dependencies>
 			</plugin>
 			<plugin>

@@ -13,13 +13,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header" style="">
     <h1>
-        è§’è‰²ç®¡ç†
-        <small>ç”¨æˆ·çš„è§’è‰²ç®¡ç†é¡µé¢</small>
+        ½ÇÉ«¹ÜÀí
+        <small>ÓÃ»§µÄ½ÇÉ«¹ÜÀíÒ³Ãæ</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> ä¸»é¡µ</a></li>
-        <li><a href="#">ç”¨æˆ·ç®¡ç†</a></li>
-        <li class="active">è§’è‰²ç®¡ç†</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Ö÷Ò³</a></li>
+        <li><a href="#">ÓÃ»§¹ÜÀí</a></li>
+        <li class="active">½ÇÉ«¹ÜÀí</li>
     </ol>
 </section>
 
@@ -32,38 +32,38 @@
                     <div id="toolbar">
                         <form class="form-inline" id="searchForm">
                             <div class="form-group">
-                                <label for="searchRole">è§’è‰²åç§°</label>
-                                <input type="text" class="form-control input-sm" name="role" id="searchRole" placeholder="è¯·è¾“å…¥è§’è‰²åç§°">
-                                <label for="searchDescription">è§’è‰²æè¿°</label>
-                                <input type="text" class="form-control input-sm" name="description" id="searchDescription" placeholder="è¯·è¾“å…¥è§’è‰²æè¿°">
+                                <label for="searchRole">½ÇÉ«Ãû³Æ</label>
+                                <input type="text" class="form-control input-sm" name="role" id="searchRole" placeholder="ÇëÊäÈë½ÇÉ«Ãû³Æ">
+                                <label for="searchDescription">½ÇÉ«ÃèÊö</label>
+                                <input type="text" class="form-control input-sm" name="description" id="searchDescription" placeholder="ÇëÊäÈë½ÇÉ«ÃèÊö">
                             </div>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default btn-sm" onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
                                     <i class="glyphicon glyphicon-search"></i>
-                                    æŸ¥è¯¢
+                                    ²éÑ¯
                                 </button>
                                 <button type="reset" class="btn btn-default btn-sm">
                                     <i class="glyphicon glyphicon-trash"></i>
-                                    æ¸…ç©º
+                                    Çå¿Õ
                                 </button>
                             </div>
                         </form>
                         <div class="btn-group btn-group-sm">
                             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                             <button shiro:hasPermission="role:create" type="button" id="addBtn" class="btn btn-default" data-toggle="modal"
-                                    data-target="#addModal" data-action="{before:'addBefore'}"><i class="glyphicon glyphicon glyphicon-plus"></i> æ–°å¢
+                                    data-target="#addModal" data-action="{before:'addBefore'}"><i class="glyphicon glyphicon glyphicon-plus"></i> ĞÂÔö
                             </button>
                             <!-- Indicates caution should be taken with this action -->
                             <button shiro:hasPermission="role:update" type="button" id="editBtn" class="btn btn-default" data-toggle="modal"
                                     data-target="#editModal"
                                     data-action="{type:'editable',form:'#editForm',table:'#table',after:'editAfter'}"
-                                    disabled><i class="glyphicon glyphicon glyphicon-edit"></i> ä¿®æ”¹
+                                    disabled><i class="glyphicon glyphicon glyphicon-edit"></i> ĞŞ¸Ä
                             </button>
                             <!-- Indicates a dangerous or potentially negative action -->
                             <button shiro:hasPermission="role:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
                                     data-target="#deleteModal"
                                     data-action="{type:'delete',form:'#deleteForm',idField:'id',table:'#table'}" disabled><i
-                                    class="glyphicon glyphicon-remove"></i> åˆ é™¤
+                                    class="glyphicon glyphicon-remove"></i> É¾³ı
                             </button>
                         </div>
                     </div>
@@ -87,22 +87,22 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="addModalLabel">æ·»åŠ è§’è‰²</h4>
+                <h4 class="modal-title" id="addModalLabel">Ìí¼Ó½ÇÉ«</h4>
             </div>
             <div class="modal-body">
                 <form id="addForm">
                     <div class="form-group">
-                        <label class="control-label" for="role"><span class="asterisk">*</span>è§’è‰²å:</label>
-                        <input id="role" type="text" class="form-control" name="role" placeholder="è¾“å…¥è§’è‰²å" minlength="2" required>
+                        <label class="control-label" for="role"><span class="asterisk">*</span>½ÇÉ«Ãû:</label>
+                        <input id="role" type="text" class="form-control" name="role" placeholder="ÊäÈë½ÇÉ«Ãû" minlength="2" required>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="description">è§’è‰²æè¿°:</label>
-                        <input id="description" type="text" class="form-control" name="description" placeholder="è¾“å…¥è§’è‰²æè¿°">
+                        <label class="control-label" for="description">½ÇÉ«ÃèÊö:</label>
+                        <input id="description" type="text" class="form-control" name="description" placeholder="ÊäÈë½ÇÉ«ÃèÊö">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="resourceIds"><span class="asterisk">*</span>æ‹¥æœ‰çš„èµ„æºåˆ—è¡¨:</label>
+                        <label class="control-label" for="resourceIds"><span class="asterisk">*</span>ÓµÓĞµÄ×ÊÔ´ÁĞ±í:</label>
                         <input type="hidden" id="resourceIds" name="resourceIds" required>
                         <input type="text" class="form-control" id="resourceName" name="resourceNames" readonly required>
                         <div class="help-block with-errors"></div>
@@ -110,10 +110,10 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">å…³é—­</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">¹Ø±Õ</button>
                 <button type="submit" form="addForm" class="btn btn-primary"
                         data-action="{type:'submit',form:'#addForm',url:'@{/role/create}',after:'$.myAction.refreshTable'}">
-                    ç¡®å®š
+                    È·¶¨
                 </button>
             </div>
         </div>
@@ -126,23 +126,23 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="editModalLabel">ä¿®æ”¹è§’è‰²</h4>
+                <h4 class="modal-title" id="editModalLabel">ĞŞ¸Ä½ÇÉ«</h4>
             </div>
             <div class="modal-body">
                 <form id="editForm">
                     <input type="hidden" name="id"/>
                     <div class="form-group">
-                        <label class="control-label" for="role"><span class="asterisk">*</span>è§’è‰²å:</label>
-                        <input id="editRole" type="text" class="form-control" name="role" placeholder="è¾“å…¥è§’è‰²å" minlength="2" required>
+                        <label class="control-label" for="role"><span class="asterisk">*</span>½ÇÉ«Ãû:</label>
+                        <input id="editRole" type="text" class="form-control" name="role" placeholder="ÊäÈë½ÇÉ«Ãû" minlength="2" required>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="description">è§’è‰²æè¿°:</label>
-                        <input id="editDescription" type="text" class="form-control" name="description" placeholder="è¾“å…¥è§’è‰²æè¿°">
+                        <label class="control-label" for="description">½ÇÉ«ÃèÊö:</label>
+                        <input id="editDescription" type="text" class="form-control" name="description" placeholder="ÊäÈë½ÇÉ«ÃèÊö">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="resourceIds"><span class="asterisk">*</span>æ‹¥æœ‰çš„èµ„æºåˆ—è¡¨:</label>
+                        <label class="control-label" for="resourceIds"><span class="asterisk">*</span>ÓµÓĞµÄ×ÊÔ´ÁĞ±í:</label>
                         <input type="hidden" id="editResourceIds" name="resourceIds" required>
                         <input type="text" class="form-control" id="editResourceName" name="resourceNames" readonly required>
                         <div class="help-block with-errors"></div>
@@ -150,10 +150,10 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">å…³é—­</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">¹Ø±Õ</button>
                 <button type="submit" form="editForm" class="btn btn-primary"
                         data-action="{type:'submit',form:'#editForm',url:'@{/role/update}',after:'$.myAction.refreshTable'}">
-                    ç¡®å®š
+                    È·¶¨
                 </button>
             </div>
         </div>
@@ -165,26 +165,26 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="deleteSmallModalLabel">åˆ é™¤è§’è‰²</h4>
+                <h4 class="modal-title" id="deleteSmallModalLabel">É¾³ı½ÇÉ«</h4>
             </div>
             <div class="modal-body">
                 <form id="deleteForm"></form>
-                ç¡®å®šè¦åˆ é™¤é€‰ä¸­çš„ <span class="records"></span> æ¡è®°å½•?
+                È·¶¨ÒªÉ¾³ıÑ¡ÖĞµÄ <span class="records"></span> Ìõ¼ÇÂ¼?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">å…³é—­</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">¹Ø±Õ</button>
                 <button type="button" form="deleteForm" class="btn btn-primary"
                         data-action="{type:'submit',form:'#deleteForm',url:'@{/role/delete}',after:'$.myAction.refreshTable'}">
-                    ç¡®å®š
+                    È·¶¨
                 </button>
             </div>
         </div>
     </div>
 </div>
 <div id="actionButtons" class="admin-hide">
-    <a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>ã€€
-    <a shiro:hasPermission="role:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="ç¼–è¾‘"><i class="glyphicon glyphicon-edit"></i></a>ã€€
-    <a shiro:hasPermission="role:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="åˆ é™¤"><i class="glyphicon glyphicon-remove"></i></a>ã€€
+    <a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>¡¡
+    <a shiro:hasPermission="role:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="±à¼­"><i class="glyphicon glyphicon-edit"></i></a>¡¡
+    <a shiro:hasPermission="role:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="É¾³ı"><i class="glyphicon glyphicon-remove"></i></a>¡¡
 </div>
 <!-- zTree -->
 <div id="menuContent" class="menuContent" style="display:none;z-index:1989101600;position: absolute;">
@@ -195,7 +195,7 @@
     var $table = $('#table');
 
     $(function () {
-        // bootstrap tableåˆå§‹åŒ–
+        // bootstrap table³õÊ¼»¯
         // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
         $table.bootstrapTable({
             url: CONTEXT_PATH + '/role/list',
@@ -203,13 +203,13 @@
             searchOnEnterKey: false,
             columns: [
                 {field: 'state', checkbox: true},
-                {field: 'id', title: 'ç¼–å·', sortable: true, halign: 'left'},
-                {field: 'role', title: 'è§’è‰²åç§°', sortable: true, halign: 'left'},
-                {field: 'description', title: 'è§’è‰²æè¿°', sortable: true, halign: 'left'},
-                {field: 'resourceNames', title: 'æ‹¥æœ‰çš„èµ„æº', sortable: true, halign: 'left'},
+                {field: 'id', title: '±àºÅ', sortable: true, halign: 'left'},
+                {field: 'role', title: '½ÇÉ«Ãû³Æ', sortable: true, halign: 'left'},
+                {field: 'description', title: '½ÇÉ«ÃèÊö', sortable: true, halign: 'left'},
+                {field: 'resourceNames', title: 'ÓµÓĞµÄ×ÊÔ´', sortable: true, halign: 'left'},
                 {
                     field: 'action',
-                    title: 'æ“ä½œ',
+                    title: '²Ù×÷',
                     halign: 'center',
                     align: 'center',
                     formatter: 'actionFormatter',
@@ -220,7 +220,7 @@
         });
     });
 
-    // æ•°æ®è¡¨æ ¼å±•å¼€å†…å®¹
+    // Êı¾İ±í¸ñÕ¹¿ªÄÚÈİ
     function detailFormatter(index, row) {
         var html = [];
         $.each(row, function (key, value) {
