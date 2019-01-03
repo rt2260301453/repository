@@ -34,8 +34,8 @@ public class EhCacheConfig {
      * EhCache的配置
      */
     @Bean
-    public EhCacheCacheManager springCacheManager(CacheManager cacheManager) {
-        return new EhCacheCacheManager(cacheManager);
+    public EhCacheCacheManager springCacheManager(EhCacheManagerFactoryBean ehcacheManager) {
+        return new EhCacheCacheManager(ehcacheManager.getObject());
     }
 
     /**
