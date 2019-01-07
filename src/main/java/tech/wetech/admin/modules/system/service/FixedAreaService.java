@@ -30,7 +30,7 @@ public interface FixedAreaService {
      * @param fixedArea
      * @return
      */
-    FixedArea selectOne(FixedArea fixedArea);
+    int selectOne(FixedArea fixedArea);
 
     /**
      * 修改
@@ -40,7 +40,7 @@ public interface FixedAreaService {
 
     /**
      * 删除
-     * @param fixedArea
+     * @param id
      */
-    void deleteOne(FixedArea fixedArea);
+    void deleteOne(Long id);
 }

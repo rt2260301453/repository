@@ -42,8 +42,8 @@ public class FixedAreaServiceImpl implements FixedAreaService {
         if (!StringUtils.isEmpty(fixedAreaQuery.getFixedareaname())) {
             criteria.andLike(FixedArea::getFixedareaname, "%" + fixedAreaQuery.getFixedareaname() + "%");
         }
-        if(fixedAreaQuery.getFixedareamanager() != null) {
-            criteria.andEqualTo(FixedArea::getFixedareamanager,fixedAreaQuery.getFixedareamanager());
+        if(!StringUtils.isEmpty(fixedAreaQuery.getFixedareamanager())) {
+            criteria.andLike(FixedArea::getFixedareamanager, "%" + fixedAreaQuery.getFixedareamanager() + "%");
         }
 
         List<FixedAreaDto> dtoList = new ArrayList<>();
@@ -67,8 +67,8 @@ public class FixedAreaServiceImpl implements FixedAreaService {
     }
 
     @Override
-    public FixedArea selectOne(FixedArea fixedArea) {
-        return fixedAreaMapper.selectOne(fixedArea);
+    public int selectOne(FixedArea fixedArea) {
+        return fixedAreaMapper.selectByNo(fixedArea);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class FixedAreaServiceImpl implements FixedAreaService {
     }
 
     @Override
-    public void deleteOne(FixedArea fixedArea) {
-        fixedAreaMapper.delete(fixedArea);
+    public void deleteOne(Long id) {
+        fixedAreaMapper.deleteByPrimaryKey(id);
     }
 }
