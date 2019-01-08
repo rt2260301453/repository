@@ -79,6 +79,14 @@ public class StaffController{
         Arrays.asList(ids).forEach(id -> staffService.deleteStaff(id));
         return Result.success();
     }
+
+    @RequestMapping("/getwo")
+    public void checktrue(@Valid Staff staff, HttpServletResponse response) {
+
+            response.setStatus(200);
+
+    }
+
     //@ResponseBody
     @RequestMapping("/check")
     public void check(@Valid Staff staff, HttpServletResponse response) {

@@ -69,7 +69,14 @@
             &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
         </table>-->
 
-        <table schema="wetech_admin" tableName="staff" domainObjectName="Staff">
+        <!--<table schema="wetech_admin" tableName="staff" domainObjectName="Staff">-->
+            <!--&lt;!&ndash;mysql 配置&ndash;&gt;-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+            <!--&lt;!&ndash;oracle 配置&ndash;&gt;-->
+            <!--&lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;-->
+        <!--</table>-->
+
+        <table schema="wetech_admin" tableName="replay" domainObjectName="Replay">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--oracle 配置-->
