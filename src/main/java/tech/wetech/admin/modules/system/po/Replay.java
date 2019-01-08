@@ -11,7 +11,7 @@ public class Replay {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
 
     private String replayid;
 

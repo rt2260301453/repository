@@ -25,8 +25,8 @@
                     <div id="toolbar">
                         <form class="form-inline" id="searchForm">
                             <div class="form-group">
-                                <label for="searchstaid"> 替工号</label>
-                                <input type="text" class="form-control input-sm" name="staid" id="searchstaid" placeholder="请输入员工编号">
+                                <label for="searchreplayid"> 替工号</label>
+                                <input type="text" class="form-control input-sm" name="replayid" id="searchreplayid" placeholder="请输入员工编号">
                             </div>
                             <div class="form-group">
                                 <label for="searchname"> 员工姓名</label>
@@ -298,15 +298,14 @@
             idField: 'id',
             columns: [
                 {field: 'state', checkbox: true},
-                {field: 'staid', title: '员工编号', sortable: true, halign: 'left'},
+                {field: 'replayid', title: '替工号', sortable: true, halign: 'left'},
                 {field: 'name', title: '员工姓名', sortable: true, halign: 'left'},
-                {field: 'telephone', title: '电话', sortable: true, halign: 'left'},
-                {field: 'haspad', title: '移动设备', sortable: true, halign: 'left'},
+                {field: 'starttime', title: '开始时间', sortable: true, halign: 'left'},
+                {field: 'endtime', title: '结束时间', sortable: true, halign: 'left'},
                 {field: 'deltag', title: '作废标记', sortable: true, halign: 'left'},
                 {field: 'station', title: '单位', sortable: true, halign: 'left'},
-                {field: 'shuttleid', title: '班车', sortable: true, halign: 'left'},
-                {field: 'standardid', title: '收取标准', sortable: true, halign: 'left'},
-                {field: 'basisid', title: '取派员类型', sortable: true, halign: 'left'},
+                {field: 'upusername', title: '修改人', sortable: true, halign: 'left'},
+                {field: 'uptime', title: '修改时间', sortable: true, halign: 'left'},
                 {
                     field: 'action',
                     title: '操作',
