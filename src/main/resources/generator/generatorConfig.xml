@@ -70,6 +70,9 @@
         </table>-->
 
 <<<<<<< HEAD
+        <table schema="wetech_admin" tableName="xzqyinfo" domainObjectName="QuYu">
+=======
+<<<<<<< HEAD
         <!--<table schema="wetech_admin" tableName="customer" domainObjectName="Customer">-->
             <!--&lt;!&ndash;mysql 配置&ndash;&gt;-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
@@ -79,6 +82,7 @@
         <table schema="wetech_admin" tableName="basic" domainObjectName="Basic">
 =======
         <table schema="wetech_admin" tableName="associatedaddress" domainObjectName="AssociatedAddress">
+>>>>>>> aa040a5ec557aea2f3c7922da248e9dc127df37d
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--oracle 配置-->
