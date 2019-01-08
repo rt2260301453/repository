@@ -462,7 +462,7 @@
         });
     });
 
-    //出错提示
+   /* //出错提示
     $(document).ajaxError(function (event, request, settings) {
         debugger;
         var responseJSON = JSON.parse(request.responseText), msg;
@@ -473,7 +473,7 @@
             msg = request.status + '  (' + request.statusText + ')';
         }
         $.myNotify.danger(msg);
-    });
+    });*/
     // To make Pace works on Ajax calls
     $(document).ajaxStart(function () {
         Pace.restart()
