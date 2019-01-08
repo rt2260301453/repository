@@ -14,20 +14,20 @@ import tech.wetech.admin.modules.system.service.ReplayService;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/staff")
+@RequestMapping("/replay")
 public class ReplayController {
     @Resource
     private ReplayService replayService;
 
     @GetMapping
-    @RequiresPermissions("staff:view")
+    @RequiresPermissions("replay:view")
     public String page(Model model) {
         return "system/sendandget/querystafflist";
     }
 
     @ResponseBody
     @RequestMapping("/list")
-    @RequiresPermissions("staff:view")
+    @RequiresPermissions("replay:view")
     public PageResultSet<ReplayDto> list(ReplayQuery replayQuery) {
         System.out.println(replayQuery.getReplayid());
         return replayService.findByPage(replayQuery);

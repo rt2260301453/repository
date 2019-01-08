@@ -69,46 +69,37 @@
             &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
         </table>-->
 
-        <!--<table schema="wetech_admin" tableName="staff" domainObjectName="Staff">-->
-
-        <!--<table schema="wetech_admin" tableName="xzqyinfo" domainObjectName="QuYu">
-        &lt;!&ndash;<table schema="wetech_admin" tableName="customer" domainObjectName="Customer">&ndash;&gt;
-            &lt;!&ndash;&lt;!&ndash;mysql 配置&ndash;&gt;&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;
-            &lt;!&ndash;&lt;!&ndash;oracle 配置&ndash;&gt;&ndash;&gt;
-            &lt;!&ndash;&lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;&ndash;&gt;
-        &lt;!&ndash;</table>&ndash;&gt;
-
-        <table schema="wetech_admin" tableName="replay" domainObjectName="Replay">
-        <table schema="wetech_admin" tableName="basic" domainObjectName="Basic">
         <table schema="wetech_admin" tableName="associatedaddress" domainObjectName="AssociatedAddress">
-            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
 
         <table schema="wetech_admin" tableName="associatedwidgets" domainObjectName="AssociatedWidgets">
-            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
 
         <table schema="wetech_admin" tableName="fixedarea" domainObjectName="FixedArea">
-            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <!--mysql 配置-->
             <generatedKey column="basicno" sqlStatement="Mysql" identity="true"/>
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
         <table schema="wetech_admin" tableName="subbasic" domainObjectName="SubBasic">
-            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <!--mysql 配置-->
             <generatedKey column="subbasicno" sqlStatement="Mysql" identity="true"/>
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
-        </table>-->
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
         <table schema="wetech_admin" tableName="subarea" domainObjectName="Subarea">
+            <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
     </context>
 </generatorConfiguration>
