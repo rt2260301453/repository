@@ -15,27 +15,27 @@ import javax.validation.constraints.NotNull;
 public class Group {
 
     /**
-     * ç¼–å·
+     * ±àºÅ
      */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
-     * ç»„åç§°
+     * ×éÃû³Æ
      */
-    @NotBlank(message = "ç»„åç§°ä¸èƒ½ä¸ºç©º")
+    @NotBlank(message = "×éÃû³Æ²»ÄÜÎª¿Õ")
     private String name;
 
     /**
-     * ç»„ç±»å‹
+     * ×éÀàĞÍ
      */
-    @NotNull(message = "ç»„ç±»å‹ä¸èƒ½ä¸ºç©º")
+    @NotNull(message = "×éÀàĞÍ²»ÄÜÎª¿Õ")
     @ColumnType(jdbcType = JdbcType.VARCHAR)
     private GroupType type;
 
     /**
-     * æè¿°
+     * ÃèÊö
      */
     private String description;
 

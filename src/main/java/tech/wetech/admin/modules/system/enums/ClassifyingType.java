@@ -1,11 +1,11 @@
 package tech.wetech.admin.modules.system.enums;
 
-public enum ResourceType {
-    MENU("≤Àµ•"), BUTTON("∞¥≈•");
+public enum ClassifyingType {
+    wq("Âê¶"), qw("ÊòØ");
 
     private final String info;
 
-    private ResourceType(String info) {
+    private ClassifyingType(String info) {
         this.info = info;
     }
 
