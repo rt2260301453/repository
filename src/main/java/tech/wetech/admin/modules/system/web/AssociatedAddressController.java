@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package tech.wetech.admin.modules.system.web;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -26,6 +27,36 @@ import java.util.Arrays;
 //@Controller
 //@RequestMapping("/associatedAddress")
 public class AssociatedAddressController {
+=======
+//package tech.wetech.admin.modules.system.web;
+//
+//import org.apache.shiro.authz.annotation.RequiresPermissions;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.ResponseBody;
+//import tech.wetech.admin.core.annotation.SystemLog;
+//import tech.wetech.admin.core.utils.PageResultSet;
+//import tech.wetech.admin.core.utils.Result;
+//import tech.wetech.admin.modules.system.dto.FixedAreaDto;
+//import tech.wetech.admin.modules.system.po.FixedArea;
+//import tech.wetech.admin.modules.system.query.FixedAreaQuery;
+//import tech.wetech.admin.modules.system.service.FixedAreaService;
+//
+//import javax.servlet.http.HttpServletResponse;
+//import javax.validation.Valid;
+//import java.util.Arrays;
+//
+///**
+// * @author rt
+// */
+//@Controller
+//@RequestMapping("/associatedAddress")
+//public class AssociatedAddressController {
+>>>>>>> 9320f168ee4236616d541127070bacea9db63df7
 //    @Autowired
 //    private FixedAreaService fixedAreaService;
 //
@@ -88,4 +119,8 @@ public class AssociatedAddressController {
 //        model.addAttribute("roleList", roleService.findAll());
 //        model.addAttribute("groupList",groupService.findAll());
 //    }
+<<<<<<< HEAD
 }
+=======
+//}
+>>>>>>> 9320f168ee4236616d541127070bacea9db63df7
