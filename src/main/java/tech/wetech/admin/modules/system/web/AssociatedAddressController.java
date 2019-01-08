@@ -1,5 +1,6 @@
 
-package tech.wetech.admin.modules.system.web;
+
+//package tech.wetech.admin.modules.system.web;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,3 +119,4 @@ import java.util.Arrays;
 //        model.addAttribute("groupList",groupService.findAll());
 //    }
 //}
+

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>tech.wetech</groupId>
@@ -26,7 +26,10 @@
 	</properties>
 
 	<dependencies>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -60,7 +63,17 @@
 			</exclusions>
 		</dependency>
 
+<<<<<<< HEAD
 
+=======
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
+>>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
 		<!-- shiro-quartz依赖 commons-collections 否则java.lang.NoClassDefFoundError: org/apache/commons/collections/SetUtils org.quartz.JobDetail.<init>(JobDetail.java:85) -->
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -125,14 +138,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.4</version>
-			<scope>provided</scope>
 		</dependency>
 		<!--begin jackson -->
 		<dependency>
@@ -204,7 +209,6 @@
 
 
 
-
 	</dependencies>
 
 	<build>
@@ -233,11 +237,6 @@
 						<artifactId>mapper-generator</artifactId>
 						<version>1.0.0</version>
 					</dependency>
-
-
-
-
-
 					<!--
                                         <dependency>
                                             <groupId>org.springframework.boot</groupId>
