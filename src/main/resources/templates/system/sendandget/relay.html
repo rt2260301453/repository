@@ -4,15 +4,17 @@
 <!-- Content Header (Page header) -->
 <section class="content-header" style="">
     <h1>
-        用户管理
-        <small>系统用户管理页面</small>
+        取派管理
+        <small>取派员管理页面</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-        <li><a href="#">用户管理</a></li>
-        <li class="active">系统用户管理</li>
+        <li><a href="#">替班管理</a></li>
+        <li class="active">替班管理</li>
     </ol>
 </section>
+
+<!--<script th:src="@{/static/js/bootstrapValidator.min.js}"></script>-->
 
 <section class="content">
     <div class="row">
@@ -23,9 +25,14 @@
                     <div id="toolbar">
                         <form class="form-inline" id="searchForm">
                             <div class="form-group">
-                                <label for="searchName"> 用户名</label>
-                                <input type="text" class="form-control input-sm" name="username" id="searchName" placeholder="请输入用户名">
+                                <label for="searchstaid"> 替工号</label>
+                                <input type="text" class="form-control input-sm" name="staid" id="searchstaid" placeholder="请输入员工编号">
                             </div>
+                            <div class="form-group">
+                                <label for="searchname"> 员工姓名</label>
+                                <input type="text" class="form-control input-sm" name="name" id="searchname" placeholder="请输入员工姓名">
+                            </div>
+
                             <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-default" onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -36,22 +43,23 @@
                                     清空
                                 </button>
                             </div>
+
                         </form>
                         <div class="btn-group btn-group-sm">
                             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                            <button shiro:hasPermission="user:create" type="button" id="addBtn" class="btn btn-default"
+                            <button shiro:hasPermission="staff:create" type="button" id="addBtn" class="btn btn-default"
                                     data-toggle="modal"
                                     data-target="#addModal"><i class="glyphicon glyphicon-plus"></i> 新增
                             </button>
                             <!-- Indicates caution should be taken with this action -->
-                            <button shiro:hasPermission="user:update" type="button" id="editBtn" class="btn btn-default"
-                                    data-toggle="modal"
-                                    data-target="#editModal"
-                                    data-action="{type:'editable',form:'#editForm',table:'#table',after:'editAfter'}"
-                                    disabled><i class="glyphicon glyphicon-edit"></i> 修改
-                            </button>
+                            <!-- <button shiro:hasPermission="staff:update" type="button" id="editBtn" class="btn btn-default"
+                                     data-toggle="modal"
+                                     data-target="#editModal"
+                                     data-action="{type:'editable',form:'#editForm',table:'#table',after:'editAfter'}"
+                                     disabled><i class="glyphicon glyphicon-edit"></i> 修改
+                             </button>-->
                             <!-- Indicates a dangerous or potentially negative action -->
-                            <button shiro:hasPermission="user:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
+                            <button shiro:hasPermission="staff:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
                                     data-target="#deleteModal"
                                     data-action="{type:'delete',form:'#deleteForm',idField:'id',table:'#table'}"
                                     disabled><i class="glyphicon glyphicon-remove"></i> 删除
@@ -78,53 +86,157 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="addModalLabel">添加用户</h4>
+                <h4 class="modal-title" id="addModalLabel">添加行</h4>
             </div>
             <div class="modal-body">
-                <form id="addForm">
+                <form id="addForm" role="form" data-toggle="validator">
                     <div class="form-group">
-                        <label class="control-label" for="username"><span class="asterisk">*</span>用户名:</label>
-                        <input id="username" type="text" class="form-control" name="username" placeholder="输入用户名"
-                               minlength="3">
+                        <label class="control-label" for="staid"><span class="asterisk">*</span>替工号:</label>
+                        <input id="staid" type="text" class="form-control" name="staid" placeholder="输入员工编号" pattern="^[A-Za-z0-9]+$"
+                               minlength="6" maxlength="15" data-match-error="员工编号只能是长度6到15的数字，下划线"
+                               data-remote="staff/check"   data-remote-error="该员工编号已存在！"
+                               required >
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="password"><span class="asterisk">*</span>密码:</label>
-                        <input type="password" id="password" class="form-control" minlength="6"
-                               name="password" placeholder="输入密码" required>
+                        <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
+                        <input type="text" id="name" class="form-control" pattern=" ^[\u4E00-\u9FA5]$" data-match-error="员工姓名只能是长度为2到5的中文字符"
+                               name="name" placeholder="输入员工姓名"  required>
                         <div class="help-block with-errors"></div>
                     </div>
+
+
+
+
                     <div class="form-group">
-                        <label class="control-label" for="inputPasswordConfirm"><span
-                                class="asterisk">*</span>确认密码:</label>
-                        <input type="password" class="form-control" id="inputPasswordConfirm" minlength="6"
-                               data-match="#password" data-match-error="密码输入不一致。" name="chkpassowrd" placeholder="确认密码"
-                               required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="organizationName"><span class="asterisk">*</span>所属组织:</label>
-                        <input type="text" class="form-control" id="organizationName" name="organizationName" readonly
-                               required>
-                        <input type="hidden" id="organizationId" name="organizationId" readonly required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="roleIds"><span class="asterisk">*</span>角色列表:</label>
-                        <select name="roleIds" id="roleIds" multiple class="form-control select2"
+                        <label class="control-label" for="deltag"><span class="asterisk">*</span>作废标记:</label>
+                        <select name="deltag" id="deltag" multiple class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:each="role : ${roleList}" th:value="${role.id}" th:text="${role.description}">
-                                角色不存在
+                            <option th:value="是">
+                                是
+                            </option>
+                            <option th:value="否">
+                                否
+                            </option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="station"><span class="asterisk">*</span>所属单位:</label>
+                        <input type="text" class="form-control" id="station" name="station" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" form="addForm" class="btn btn-primary" id="saveBtn"
+                        data-action="{type:'submit',form:'#addForm',url:'@{/staff/create}',after:'$.myAction.refreshTable'}">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editModalLabel">修改取派员</h4>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="form-group">
+                        <label class="control-label" for="staid"><span class="asterisk">*</span>员工编号:</label>
+                        <input id="editstaid" type="text" class="form-control" name="staid" placeholder="输入员工编号" pattern="^[A-Za-z0-9]+$"
+                               minlength="6" maxlength="15" data-match-error="员工编号只能是长度6到15的字母，数字，下划线"
+
+                               required >
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
+                        <input type="text" id="editname" class="form-control" pattern=" ^[\u4E00-\u9FA5]$" data-match-error="员工姓名只能是长度为2到5的中文字符"
+                               name="name" placeholder="输入员工姓名"  required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="telephone"><span class="asterisk">*</span>电话:</label>
+                        <input type="text" class="form-control" id="edittelephone" name="telephone"
+                               pattern="^1[34578]\d{9}$" data-match-error="电话号码必须为13位有效数字"required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="haspad"><span class="asterisk">*</span>移动设备:</label>
+                        <select name="haspad" id="edithaspad" multiple class="form-control select2"
+                                data-placeholder="请从列表选择一项" required>
+                            <option th:value="PDA">
+                                PDA
+                            </option>
+                            <option th:value="其他">
+                                其他
+                            </option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="deltag"><span class="asterisk">*</span>作废标记:</label>
+                        <select name="deltag" id="editdeltag" multiple class="form-control select2"
+                                data-placeholder="请从列表选择一项" required>
+                            <option th:value="是">
+                                是
+                            </option>
+                            <option th:value="否">
+                                否
+                            </option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="station"><span class="asterisk">*</span>所属单位:</label>
+                        <input type="text" class="form-control" id="editstation" name="station" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="shuttleid"><span class="asterisk">*</span>班车:</label>
+                        <select name="shuttleid" id="editshuttleid" multiple class="form-control select2"
+                                data-placeholder="请从列表选择一项" required>
+                            <option th:value="苏A.SBAE86">
+                                苏A.SBAE86
                             </option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="groupIds"><span class="asterisk">*</span>组列表:</label>
-                        <select name="groupIds" id="groupIds" multiple class="form-control select2"
+                        <label class="control-label" for="standardid"><span class="asterisk">*</span>收取标准:</label>
+                        <select name="standardid" id="editstandardid" multiple class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:each="group : ${groupList}" th:value="${group.id}" th:text="${group.name}">
-                                用户组不存在
+                            <option th:value="0-30公斤">
+                                0-30公斤
+                            </option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="basisid"><span class="asterisk">*</span>取派员类型:</label>
+                        <select name="basisid" id="editbasisid" multiple class="form-control select2"
+                                data-placeholder="请从列表选择一项" required>
+                            <option th:value="小件员">
+                                小件员
                             </option>
                         </select>
                         <div class="help-block with-errors"></div>
@@ -134,62 +246,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="submit" form="addForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#addForm',url:'@{/user/create}',after:'$.myAction.refreshTable'}">
-                    确定
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="editModalLabel">修改用户</h4>
-            </div>
-            <div class="modal-body">
-                <form id="editForm">
-                    <input type="hidden" name="id"/>
-                    <div class="form-group">
-                        <label class="control-label" for="username"><span class="asterisk">*</span>用户名:</label>
-                        <input id="editUsername" type="text" class="form-control" name="username" placeholder="输入用户名"
-                               minlength="3" readonly required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="organizationName"><span class="asterisk">*</span>所属组织:</label>
-                        <input type="text" class="form-control" id="editOrganizationName" name="organizationName"
-                               readonly required>
-                        <input type="hidden" id="editOrganizationId" name="organizationId" required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="editRoleIds"><span class="asterisk">*</span>角色列表:</label>
-                        <select name="roleIds" id="editRoleIds" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:each="role: ${roleList}" th:value="${role.id}" th:text="${role.description}">角色不存在</option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="editGroupIds"><span class="asterisk">*</span>组列表:</label>
-                        <select name="groupIds" id="editGroupIds" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:each="group : ${groupList}" th:value="${group.id}" th:text="${group.name}">
-                                用户组不存在
-                            </option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" form="editForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#editForm',url:'@{/user/update}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#editForm',url:'@{/staff/update}',after:'$.myAction.refreshTable'}"
+                >
                     确定
                 </button>
             </div>
@@ -211,7 +269,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" form="deleteForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#deleteForm',url:'@{/user/delete}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#deleteForm',url:'@{/staff/delete}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -220,8 +278,8 @@
 </div>
 <div id="actionButtons" class="admin-hide">
     <a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>　
-    <a shiro:hasPermission="user:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>　
-    <a shiro:hasPermission="user:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i class="glyphicon glyphicon-remove"></i></a>　
+    <a shiro:hasPermission="staff:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>　
+    <a shiro:hasPermission="staff:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i class="glyphicon glyphicon-remove"></i></a>　
 </div>
 <!-- zTree -->
 <div id="menuContent" class="menuContent"
@@ -236,15 +294,19 @@
         // bootstrap table初始化
         // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
         $table.bootstrapTable({
-            url: CONTEXT_PATH + '/user/list',
+            url: CONTEXT_PATH + '/staff/list',
             idField: 'id',
             columns: [
                 {field: 'state', checkbox: true},
-                {field: 'id', title: '编号', sortable: true, halign: 'left'},
-                {field: 'username', title: '用户名', sortable: true, halign: 'left'},
-                {field: 'organizationName', title: '所属组织', sortable: true, halign: 'left'},
-                {field: 'roleNames', title: '角色列表', sortable: true, halign: 'left'},
-                {field: 'groupNames', title: '组列表', sortable: true, halign: 'left'},
+                {field: 'staid', title: '员工编号', sortable: true, halign: 'left'},
+                {field: 'name', title: '员工姓名', sortable: true, halign: 'left'},
+                {field: 'telephone', title: '电话', sortable: true, halign: 'left'},
+                {field: 'haspad', title: '移动设备', sortable: true, halign: 'left'},
+                {field: 'deltag', title: '作废标记', sortable: true, halign: 'left'},
+                {field: 'station', title: '单位', sortable: true, halign: 'left'},
+                {field: 'shuttleid', title: '班车', sortable: true, halign: 'left'},
+                {field: 'standardid', title: '收取标准', sortable: true, halign: 'left'},
+                {field: 'basisid', title: '取派员类型', sortable: true, halign: 'left'},
                 {
                     field: 'action',
                     title: '操作',
@@ -257,6 +319,9 @@
             ]
         });
     });
+
+
+
 
     // 数据表格展开内容
     function detailFormatter(index, row) {
@@ -283,7 +348,7 @@
     function actionFormatter(value, row, index) {
         return $('#actionButtons').html();
     }
-
+    var staidno;
     window.actionEvents = {
         'click .like': function (e, value, row, index) {
             alert('You click like icon, row: ' + JSON.stringify(row));
@@ -292,6 +357,7 @@
         'click .edit': function (e, value, row, index) {
             $('#editModal').modal('show')
             $('#editForm').fillForm(row);
+            staidno = $('#editstaid').val();
             editAfter('', row);
             console.log(value, row, index);
         },
@@ -306,6 +372,17 @@
         }
     };
 
+    $('#editstaid').blur(function(){
+        console.log(staidno)
+        console.log($('#editstaid').val())
+        if($('#editstaid').val()!=staidno){
+            $(this).attr("data-remote","staff/check");
+            $(this).attr("data-remote-error","该员工编号已存在！");
+        }if($('#editstaid').val()==staidno){
+            $(this).attr("data-remote","staff/getwo");
+            $(this).attr("data-remote-error","");
+        }
+    })
     var setting = {
         view: {
             dblClickExpand: false
@@ -325,7 +402,7 @@
         zNodes.push({id: orgList[i].id, pId: orgList[i].parentId, name: orgList[i].name});
     }
 
-   function onClick(e, treeId, treeNode) {
+    function onClick(e, treeId, treeNode) {
         var zTree = $.fn.zTree.getZTreeObj("tree"),
             nodes = zTree.getSelectedNodes(),
             id = "",
@@ -345,6 +422,7 @@
         $("#editOrganizationName").val(name);
         hideMenu();
     }
+
     function showMenu() {
         var cityObj = $("#organizationName");
         var cityOffset = $("#organizationName").offset();
@@ -378,8 +456,30 @@
         }
     }
 
-  /*  $.fn.zTree.init($("#tree"), setting, zNodes);
+    $.fn.zTree.init($("#tree"), setting, zNodes);
     $("#organizationName").click(showMenu);
-    $("#editOrganizationName").click(showMenuOfEdit);*/
+    $("#editOrganizationName").click(showMenuOfEdit);
 </script>
+
+
+<!-- 提示信息模态框 -->
+
+<!--<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="alertdiv">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>-->
 </html>
