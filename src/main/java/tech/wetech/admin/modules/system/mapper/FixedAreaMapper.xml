@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.wetech.admin.modules.system.mapper.FixedAreaMapper" >
+  <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.system.po.FixedArea" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fixedareano" property="fixedareano" jdbcType="VARCHAR" />
+    <result column="fixedareaname" property="fixedareaname" jdbcType="VARCHAR" />
+    <result column="fixedareamanager" property="fixedareamanager" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="institute" property="institute" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

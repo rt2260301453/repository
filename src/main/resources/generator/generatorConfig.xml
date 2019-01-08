@@ -69,6 +69,7 @@
             &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
         </table>-->
 
+<<<<<<< HEAD
         <!--<table schema="wetech_admin" tableName="customer" domainObjectName="Customer">-->
             <!--&lt;!&ndash;mysql 配置&ndash;&gt;-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
@@ -76,6 +77,23 @@
             <!--&lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;-->
         <!--</table>-->
         <table schema="wetech_admin" tableName="basic" domainObjectName="Basic">
+=======
+        <table schema="wetech_admin" tableName="associatedaddress" domainObjectName="AssociatedAddress">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
+
+        <table schema="wetech_admin" tableName="associatedwidgets" domainObjectName="AssociatedWidgets">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
+
+        <table schema="wetech_admin" tableName="fixedarea" domainObjectName="FixedArea">
+>>>>>>> c31652c0a2c4f8dbb8032d599e4b6565bf620eb8
             <!--mysql 配置-->
             <generatedKey column="basicno" sqlStatement="Mysql" identity="true"/>
             <!--oracle 配置-->
