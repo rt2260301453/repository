@@ -21,8 +21,6 @@ import java.util.List;
 public class FixedAreaServiceImpl implements FixedAreaService {
     @Autowired
     FixedAreaMapper fixedAreaMapper;
-    @Autowired
-    private PasswordHelper passwordHelper;
 
     @Override
     public void insertOne(FixedArea fixedArea) {

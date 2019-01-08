@@ -48,14 +48,14 @@
                                     data-target="#addModal"><i class="glyphicon glyphicon-plus"></i> 新增
                             </button>
                             <!-- Indicates caution should be taken with this action -->
-                            <button shiro:hasPermission="user:update" type="button" id="editBtn" class="btn btn-default"
+                            <button shiro:hasPermission="fixedarea:update" type="button" id="editBtn" class="btn btn-default"
                                     data-toggle="modal"
                                     data-target="#editModal"
                                     data-action="{type:'editable',form:'#editForm',table:'#table'}"
                                     disabled><i class="glyphicon glyphicon-edit"></i> 修改
                             </button>
                             <!-- Indicates a dangerous or potentially negative action -->
-                            <button shiro:hasPermission="user:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
+                            <button shiro:hasPermission="fixedarea:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
                                     data-target="#deleteModal"
                                     data-action="{type:'delete',form:'#deleteForm',idField:'id',table:'#table'}"
                                     disabled><i class="glyphicon glyphicon-remove"></i> 删除
@@ -250,18 +250,10 @@
     }
     var oldNo;
     $("#editBtn").click(function(){
-        oldNo = $("#editFixedareano").val();
-    })
-
-    $("#editFixedareano").blur(function(){
-        var No = document.getElementById("editFixedareano");
-        if($(this).val() != oldNo){
-            No.setAttribute("data-remote","fixedArea/checkNo");
-            No.setAttribute("data-remote-error", "该编号已存在");
-        }else{
-            $(this).removeAttr("data-remote")
-            $(this).removeAttr("data-remote-error")
-        }
+        var data = $table.bootstrapTable('getSelections');
+        oldNo = data[0].fixedareano;
+        console.log("data="+data[0])
+        console.log("oldNo="+oldNo)
     })
 
     function actionFormatter(value, row, index) {
@@ -276,6 +268,8 @@
         'click .edit': function (e, value, row, index) {
             $('#editModal').modal('show')
             $('#editForm').fillForm(row);
+            oldNo = $('#editFixedareano').val();
+            console.log("oldNo="+oldNo)
             console.log(value, row, index);
         },
         'click .remove': function (e, value, row, index) {
@@ -288,6 +282,21 @@
             $('#deleteForm').html(html);
         }
     };
+    $("#editFixedareano").blur(function(){
+        var No = document.getElementById("editFixedareano");
+        console.log("oldNo="+oldNo)
+        if($(this).val() != oldNo){
+            console.log("No1="+No)
+            console.log($(this).val() != oldNo)
+            No.setAttribute("data-remote-trigger","blur");
+            No.setAttribute("data-remote","fixedArea/checkNo");
+            No.setAttribute("data-remote-error", "该编号已存在");
+        }else{
+            console.log("No2="+No)
+            console.log($(this).val() != oldNo)
+            No.setAttribute("data-remote","fixedArea/checkTrue")
+        }
+    })
 
     var setting = {
         view: {

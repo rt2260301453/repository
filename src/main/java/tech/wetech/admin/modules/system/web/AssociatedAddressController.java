@@ -3,6 +3,7 @@ package tech.wetech.admin.modules.system.web;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,22 +19,21 @@ import tech.wetech.admin.modules.system.service.FixedAreaService;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author rt
  */
 @Controller
-@RequestMapping("/fixedArea")
-public class FixedAreaController {
+@RequestMapping("/associatedAddress")
+public class AssociatedAddressController {
     @Autowired
     private FixedAreaService fixedAreaService;
 
     @GetMapping
     @RequiresPermissions("fixedarea:view")
     public String page() {
-        return "system/fixedarea/fixedarealist";
+        setCommonData(model);
+        return "system/fixedarea/associatedaddresslist";
     }
 
     @ResponseBody
@@ -74,8 +74,6 @@ public class FixedAreaController {
 
     @RequestMapping("/checkNo")
     public void checkNo(@Valid FixedArea fixedArea, HttpServletResponse response){
-        System.out.println("********************************************************");
-        System.out.println("fixedNo="+fixedArea.getFixedareano());
         int count = fixedAreaService.selectOne(fixedArea);
         System.out.println("fixedNo="+fixedArea.getFixedareano());
         if(count == 1){
@@ -85,8 +83,9 @@ public class FixedAreaController {
         }
     }
 
-    @RequestMapping("/checkTrue")
-    public void checkTrue(@Valid FixedArea fixedArea, HttpServletResponse response){
-        response.setStatus(200);
+    private void setCommonData(Model model) {
+        model.addAttribute("organizationList", organizationService.findAll());
+        model.addAttribute("roleList", roleService.findAll());
+        model.addAttribute("groupList",groupService.findAll());
     }
 }
