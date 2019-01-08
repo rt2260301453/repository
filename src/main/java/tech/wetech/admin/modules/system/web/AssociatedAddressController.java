@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package tech.wetech.admin.modules.system.web;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -26,8 +26,7 @@ import java.util.Arrays;
  */
 //@Controller
 //@RequestMapping("/associatedAddress")
-public class AssociatedAddressController {
-=======
+//public class AssociatedAddressController {
 //package tech.wetech.admin.modules.system.web;
 //
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -56,7 +55,6 @@ public class AssociatedAddressController {
 //@Controller
 //@RequestMapping("/associatedAddress")
 //public class AssociatedAddressController {
->>>>>>> 9320f168ee4236616d541127070bacea9db63df7
 //    @Autowired
 //    private FixedAreaService fixedAreaService;
 //
@@ -119,8 +117,4 @@ public class AssociatedAddressController {
 //        model.addAttribute("roleList", roleService.findAll());
 //        model.addAttribute("groupList",groupService.findAll());
 //    }
-<<<<<<< HEAD
-}
-=======
 //}
->>>>>>> 9320f168ee4236616d541127070bacea9db63df7
