@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.wetech.admin.modules.system.mapper.SubareaMapper" >
+  <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.system.po.Subarea" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="fixedarea_id" property="fixedareaId" jdbcType="VARCHAR" />
+    <result column="pro" property="pro" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="attribute" property="attribute" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="auxiliarykeywords" property="auxiliarykeywords" jdbcType="VARCHAR" />
+    <result column="starnum" property="starnum" jdbcType="INTEGER" />
+    <result column="endnum" property="endnum" jdbcType="INTEGER" />
+    <result column="single" property="single" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>
