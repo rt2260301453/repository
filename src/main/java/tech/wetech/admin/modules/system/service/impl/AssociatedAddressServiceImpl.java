@@ -8,8 +8,10 @@ import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.modules.system.dto.AssociatedAddressDto;
 import tech.wetech.admin.modules.system.mapper.AssociatedAddressMapper;
 import tech.wetech.admin.modules.system.po.AssociatedAddress;
+import tech.wetech.admin.modules.system.po.Customer;
 import tech.wetech.admin.modules.system.query.AssociatedAddressQuery;
 import tech.wetech.admin.modules.system.service.AssociatedAddressService;
+import tech.wetech.admin.modules.system.service.CustomerService;
 import tech.wetech.admin.modules.system.service.PasswordHelper;
 import tk.mybatis.mapper.weekend.Weekend;
 import tk.mybatis.mapper.weekend.WeekendCriteria;
@@ -22,9 +24,17 @@ public class AssociatedAddressServiceImpl implements AssociatedAddressService {
     @Autowired
     AssociatedAddressMapper associatedAddressMapper;
 
+    @Autowired
+    CustomerService customerService;
+
     @Override
     public void insertOne(AssociatedAddress associatedAddress) {
         associatedAddressMapper.insert(associatedAddress);
+    }
+
+    @Override
+    public List<AssociatedAddress> selectByCondition(AssociatedAddress associatedAddress) {
+        return associatedAddressMapper.select(associatedAddress);
     }
 
     @Override
@@ -46,6 +56,7 @@ public class AssociatedAddressServiceImpl implements AssociatedAddressService {
         PageHelper.offsetPage(associatedAddressQuery.getOffset(), associatedAddressQuery.getLimit());
         associatedAddressMapper.selectByExample(example).forEach(assadd -> {
             AssociatedAddressDto dto = new AssociatedAddressDto(assadd);
+            dto.setCustomeraddress(getCustomerAddress(dto.getCustomerno()));
             dtoList.add(dto);
         });
 
@@ -69,5 +80,13 @@ public class AssociatedAddressServiceImpl implements AssociatedAddressService {
     @Override
     public void deleteOne(Long id) {
         associatedAddressMapper.deleteByPrimaryKey(id);
+    }
+
+    private String getCustomerAddress(String customerno) {
+        Customer customer = customerService.findOne(customerno);
+        if (customer == null) {
+            return "";
+        }
+        return customer.getCustomeraddress();
     }
 }
