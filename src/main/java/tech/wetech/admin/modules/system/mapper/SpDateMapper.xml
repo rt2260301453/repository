@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.wetech.admin.modules.system.mapper.SpDateMapper" >
+  <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.system.po.SpDate" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="datename" property="datename" jdbcType="VARCHAR" />
+    <result column="pacificup" property="pacificup" jdbcType="TIME" />
+    <result column="pacificoff" property="pacificoff" jdbcType="TIME" />
+    <result column="satup" property="satup" jdbcType="TIME" />
+    <result column="satoff" property="satoff" jdbcType="TIME" />
+    <result column="sunup" property="sunup" jdbcType="TIME" />
+    <result column="sunoff" property="sunoff" jdbcType="TIME" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="updateid" property="updateid" jdbcType="VARCHAR" />
+    <result column="updatename" property="updatename" jdbcType="VARCHAR" />
+    <result column="updateunit" property="updateunit" jdbcType="VARCHAR" />
+    <result column="updatedate" property="updatedate" jdbcType="DATE" />
+  </resultMap>
+</mapper>

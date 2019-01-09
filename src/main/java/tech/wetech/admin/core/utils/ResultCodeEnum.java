@@ -13,7 +13,8 @@ public enum ResultCodeEnum {
     FAILED_DEL_OWN("485", "不能删除自己"),
     FAILED_USER_ALREADY_EXIST("486", "该用户已存在"),
     INTERNAL_SERVER_ERROR("500", "服务器内部错误"),
-    NOT_IMPLEMENTED("501", "业务异常");
+    NOT_IMPLEMENTED("501", "业务异常"),
+    CUOWO("502", "时间名称是唯一的");
 
     private String code;
     private String msg;
