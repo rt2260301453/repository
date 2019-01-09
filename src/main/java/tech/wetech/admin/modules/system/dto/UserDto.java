@@ -31,7 +31,7 @@ public class UserDto {
         this.roleIdList = user.getRoleIdList();
         this.groupIds = user.getGroupIds();
         this.groupIdList = user.getGroupIdList();
-        this.locked = user.getLocked();
+
     }
 
     public String getGroupIds() {

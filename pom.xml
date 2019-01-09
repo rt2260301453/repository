@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>tech.wetech</groupId>
@@ -59,6 +59,14 @@
 					<groupId>org.opensymphony.quartz</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
 		</dependency>
 		<!-- shiro-quartz依赖 commons-collections 否则java.lang.NoClassDefFoundError: org/apache/commons/collections/SetUtils org.quartz.JobDetail.<init>(JobDetail.java:85) -->
 		<dependency>
@@ -192,6 +200,14 @@
 			<artifactId>quartz</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
+
 
 	</dependencies>
 
@@ -231,17 +247,17 @@
 						<artifactId>mapper-generator</artifactId>
 						<version>1.0.0</version>
 					</dependency>
-<!--
-					<dependency>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-starter-tomcat</artifactId>
-						<scope>provided</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.tomcat.embed</groupId>
-						<artifactId>tomcat-embed-jasper</artifactId>
-						<scope>provided</scope>
-					</dependency>-->
+					<!--
+                                        <dependency>
+                                            <groupId>org.springframework.boot</groupId>
+                                            <artifactId>spring-boot-starter-tomcat</artifactId>
+                                            <scope>provided</scope>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.tomcat.embed</groupId>
+                                            <artifactId>tomcat-embed-jasper</artifactId>
+                                            <scope>provided</scope>
+                                        </dependency>-->
 				</dependencies>
 			</plugin>
 			<plugin>
