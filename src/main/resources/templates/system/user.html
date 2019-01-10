@@ -326,7 +326,7 @@
         zNodes.push({id: orgList[i].id, pId: orgList[i].parentId, name: orgList[i].name});
     }
 
-    function onClick(e, treeId, treeNode) {
+   function onClick(e, treeId, treeNode) {
         var zTree = $.fn.zTree.getZTreeObj("tree"),
             nodes = zTree.getSelectedNodes(),
             id = "",
@@ -346,7 +346,6 @@
         $("#editOrganizationName").val(name);
         hideMenu();
     }
-
     function showMenu() {
         var cityObj = $("#organizationName");
         var cityOffset = $("#organizationName").offset();
@@ -380,8 +379,8 @@
         }
     }
 
-    $.fn.zTree.init($("#tree"), setting, zNodes);
+  /*  $.fn.zTree.init($("#tree"), setting, zNodes);
     $("#organizationName").click(showMenu);
-    $("#editOrganizationName").click(showMenuOfEdit);
+    $("#editOrganizationName").click(showMenuOfEdit);*/
 </script>
 </html>

@@ -19,17 +19,18 @@ public class LoginController extends BaseController {
 
     @RequestMapping("/login")
     public String showLoginForm(HttpServletRequest req, Model model) {
+
         String exceptionClassName = (String)req.getAttribute("shiroLoginFailure");
         logger.info("begin to login");
         String error = null;
         if(UnknownAccountException.class.getName().equals(exceptionClassName)) {
-            error = "ç”¨æˆ·å/å¯†ç é”™è¯¯";
+            error = "ÓÃ»§Ãû/ÃÜÂë´íÎó";
         } else if(IncorrectCredentialsException.class.getName().equals(exceptionClassName)) {
-            error = "ç”¨æˆ·å/å¯†ç é”™è¯¯";
+            error = "ÓÃ»§Ãû/ÃÜÂë´íÎó";
         } else if(ExcessiveAttemptsException.class.getName().equals(exceptionClassName)) {
-            error = "ç™»é™†å¤±è´¥æ¬¡æ•°è¿‡å¤š";
+            error = "µÇÂ½Ê§°Ü´ÎÊı¹ı¶à";
         } else if(exceptionClassName != null) {
-            error = "å…¶ä»–é”™è¯¯ï¼š" + exceptionClassName;
+            error = "ÆäËû´íÎó£º" + exceptionClassName;
         }
         model.addAttribute("error", error);
         return "system/login";

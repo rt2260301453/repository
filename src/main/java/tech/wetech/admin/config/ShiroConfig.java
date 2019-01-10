@@ -163,18 +163,6 @@ public class ShiroConfig {
     }
 
     /**
-     * 缓存管理器
-     *
-     * @return
-     */
-    @Bean
-    public SpringCacheManagerWrapper cacheManager(EhCacheCacheManager springCacheManager) {
-        SpringCacheManagerWrapper cacheManager = new SpringCacheManagerWrapper();
-        cacheManager.setCacheManager(springCacheManager);
-        return cacheManager;
-    }
-
-    /**
      * 凭证匹配器
      *
      * @return
