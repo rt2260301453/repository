@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tech.wetech.admin.core.annotation.SystemLog;
 import tech.wetech.admin.core.utils.BaseController;
@@ -14,7 +15,6 @@ import tech.wetech.admin.core.utils.Result;
 import tech.wetech.admin.modules.system.dto.AssociatedWidgetsDto;
 import tech.wetech.admin.modules.system.dto.SpDateDto;
 import tech.wetech.admin.modules.system.po.AssociatedWidgets;
-import tech.wetech.admin.modules.system.po.SpDate;
 import tech.wetech.admin.modules.system.po.Staff;
 import tech.wetech.admin.modules.system.query.AssociatedWidgetsQuery;
 import tech.wetech.admin.modules.system.query.SpDateQuery;
@@ -76,38 +76,24 @@ public class AssociatedWidgetsController extends BaseController {
         System.out.println("staff="+staff1);
         return staff1;
     }
-//
-//    @ResponseBody
-//    @RequestMapping("/update")
-//    @RequiresPermissions("assAddress:update")
-//    @SystemLog("更新地址关联")
-//    public Result update(@Valid  AssociatedAddress associatedAddress) {
-//        associatedAddressService.updateOne(associatedAddress);
-//        return Result.success();
-//    }
-//
-//    @ResponseBody
-//    @RequestMapping("/delete")
-//    @RequiresPermissions("assAddress:delete")
-//    @SystemLog("删除地址关联")
-//    public Result delete(@RequestParam("id") Long[] ids) {
-//        Arrays.asList(ids).forEach(id -> associatedAddressService.deleteOne(id));
-//        return Result.success();
-//    }
-//
-//    @ResponseBody
-//    @RequestMapping("/checkCusParNo")
-//    public List<AssociatedAddress> checkCusParNo(AssociatedAddress associatedAddress,Model model) {
-//        return associatedAddressService.selectByCondition(associatedAddress);
-//    }
-//
-//    @ResponseBody
-//    @RequestMapping("/selectCus")
-//    public List<Map<String, Object>> selectAllCountry(Customer customer) {
-//        return customerService.findByCondition(customer);
-//    }
 
+    @ResponseBody
+    @RequestMapping("/update")
+    @RequiresPermissions("assWidgets:update")
+    @SystemLog("更新地址关联")
+    public Result update(@Valid  AssociatedWidgets associatedWidgets) {
+        associatedWidgetsService.updateOne(associatedWidgets);
+        return Result.success();
+    }
 
+    @ResponseBody
+    @RequestMapping("/delete")
+    @RequiresPermissions("assWidgets:delete")
+    @SystemLog("删除地址关联")
+    public Result delete(@RequestParam("id") Long[] ids) {
+        Arrays.asList(ids).forEach(id -> associatedWidgetsService.deleteOne(id));
+        return Result.success();
+    }
 
     private void setCommonData(Model model) {
         model.addAttribute("fixedAreaList", fixedAreaService.selectAll());

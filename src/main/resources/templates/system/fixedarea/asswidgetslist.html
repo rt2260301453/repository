@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="searchcollectiontime"> 取派时间</label>
-                                <input type="datetime-local" class="form-control input-sm" name="collectiontime" id="searchcollectiontime">
+                                <input type="text" class="form-control input-sm" name="collectiontime" id="searchcollectiontime">
                             </div>
                             <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-default" onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
@@ -46,6 +46,12 @@
                             <button shiro:hasPermission="assWidgets:create" type="button" id="addBtn" class="btn btn-default"
                                     data-toggle="modal"
                                     data-target="#addModal"><i class="glyphicon glyphicon-plus"></i> 新增
+                            </button>
+                            <button shiro:hasPermission="user:update" type="button" id="editBtn" class="btn btn-default"
+                                    data-toggle="modal"
+                                    data-target="#editModal"
+                                    data-action="{type:'editable',form:'#editForm',table:'#table'}"
+                                    disabled><i class="glyphicon glyphicon-edit"></i> 修改
                             </button>
                             <!-- Indicates a dangerous or potentially negative action -->
                             <button shiro:hasPermission="assWidgets:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
@@ -136,12 +142,69 @@
     </div>
 </div>
 
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editModalLabel">修改用户</h4>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" name="id"/>
+                    <input type="hidden" name="fixedareano"/>
+                    <div class="form-group">
+                        <label class="control-label" for="editfetchpeopleno"><span class="asterisk">*</span>取派员编号:</label>
+                        <select name="fetchpeopleno" id="editfetchpeopleno" class="form-control select2"
+                                data-placeholder="请从列表选择一项" required>
+                            <option>请选择</option>
+                            <option th:each="staffList : ${staffList}" th:value="${staffList.staid}" th:text="${staffList.staid}">
+
+                            </option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editfetchpeoplename"> 取派员名</label>
+                        <input type="text" class="form-control input-sm" name="fetchpeoplename" id="editfetchpeoplename" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editcollectionstandard"> 收派标准</label>
+                        <input type="text" class="form-control input-sm" name="collectionstandard" id="editcollectionstandard" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editcollectiontime"> 收派时间</label>
+                        <input type="text" class="form-control input-sm" name="collectiontime" id="editcollectiontime" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editinstitute"> 所属单位</label>
+                        <input type="text" class="form-control input-sm" name="institute" id="editinstitute" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label> 类型</label>
+                        <input type="radio" name="type" value="司机" disabled="disabled">司机
+                        <input type="radio" name="type" value="小件员" disabled="disabled">小件员
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" form="editForm" class="btn btn-primary"
+                        data-action="{type:'submit',form:'#editForm',url:'@{/assWidgets/update}',after:'$.myAction.refreshTable'}">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- delete modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteSmallModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="deleteSmallModalLabel">删除用户</h4>
+                <h4 class="modal-title" id="deleteSmallModalLabel">删除关联取派员</h4>
             </div>
             <div class="modal-body">
                 <form id="deleteForm"></form>

@@ -216,7 +216,10 @@
     $("#addAss").click(function(){
         var customerno = $("#customerno").select2().val()
         var partitionno = $("#partitionno").select2().val()
-        var customerno =  $("#customerno").select2();
+        var customerno =  $("#customerno").select2().val();
+        if(customerno == ''){
+            return
+        }
         $.getJSON(CONTEXT_PATH + "/assAddress/checkCusParNo",{"customerno":customerno},function(json){
             var formAss = $("#addForm").serialize();
             console.log("formAss="+formAss)
