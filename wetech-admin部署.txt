@@ -1,11 +1,10 @@
-´´½¨Êı¾İ¿âwetech_admin£¬Êı¾İ¿â±àÂëÎªUTF-8
-Ö´ĞĞdocs/sql/ÏÂµÄschemalºÍdataÎÄ¼ş£¬³õÊ¼»¯Êı¾İ
-ĞŞ¸Äappication-dev-ymlÎÄ¼ş£¬¸üĞÂMySQLÕËºÅºÍÃÜÂë
-ĞŞ¸Äappication-prd-ymlÎÄ¼ş£¬ĞŞ¸Ätomcat¶Ë¿ÚºÅ
-ÔËĞĞWetechAdminApplicationÀà
-ÏîÄ¿·ÃÎÊÂ·¾¶£ºhttp://localhost:28080/wetech-admin
-ÕËºÅÃÜÂë£ºadmin/123456
+åˆ›å»ºæ•°æ®åº“wetech_adminï¼Œæ•°æ®åº“ç¼–ç ä¸ºUTF-8
+æ‰§è¡Œdocs/sql/ä¸‹çš„schemalå’Œdataæ–‡ä»¶ï¼Œåˆå§‹åŒ–æ•°æ®
+ä¿®æ”¹appication-dev-ymlæ–‡ä»¶ï¼Œæ›´æ–°MySQLè´¦å·å’Œå¯†ç 
+ä¿®æ”¹appication-prd-ymlæ–‡ä»¶ï¼Œä¿®æ”¹tomcatç«¯å£å·
+è¿è¡ŒWetechAdminApplicationç±»
+    é¡¹ç›®è®¿é—®è·¯å¾„ï¼šhttp://localhost:28080/wetech-admin
+è´¦å·å¯†ç ï¼šadmin/123456
 
-mybatis×Ô¶¯Éú³ÉÃüÁî
+mybatisè‡ªåŠ¨ç”Ÿæˆå‘½ä»¤
 mvn mybatis-generator:generate
-

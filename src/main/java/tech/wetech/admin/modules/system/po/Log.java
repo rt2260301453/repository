@@ -7,6 +7,7 @@ import java.util.Date;
  * @author cjbi
  */
 @Table(name="sys_log")
+
 public class Log {
 
     /**

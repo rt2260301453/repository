@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.wetech.admin.modules.system.mapper.BasicMapper" >
+  <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.system.po.Basic" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="basicno" property="basicno" jdbcType="VARCHAR" />
+    <result column="basicname" property="basicname" jdbcType="VARCHAR" />
+    <result column="classifying" property="classifying" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="operationunit" property="operationunit" jdbcType="VARCHAR" />
+    <result column="operationdate" property="operationdate" jdbcType="DATE" />
+  </resultMap>
+</mapper>
