@@ -25,7 +25,16 @@
 		<shiro.version>1.2.2</shiro.version>
 	</properties>
 
+
+
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -64,6 +73,12 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<!-- shiro整合结束 -->
+		<!-- https://mvnrepository.com/artifact/com.fommil/jsonformat -->
+		<dependency>
+			<groupId>com.fommil</groupId>
+			<artifactId>jsonformat_2.12</artifactId>
+			<version>1.0.0-RC9</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
