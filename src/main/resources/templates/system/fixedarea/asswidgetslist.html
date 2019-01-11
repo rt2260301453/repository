@@ -47,7 +47,7 @@
                                     data-toggle="modal"
                                     data-target="#addModal"><i class="glyphicon glyphicon-plus"></i> 新增
                             </button>
-                            <button shiro:hasPermission="user:update" type="button" id="editBtn" class="btn btn-default"
+                            <button shiro:hasPermission="assWidgets:update" type="button" id="editBtn" class="btn btn-default"
                                     data-toggle="modal"
                                     data-target="#editModal"
                                     data-action="{type:'editable',form:'#editForm',table:'#table'}"
@@ -235,7 +235,7 @@
                             <select name="dateName" id="dateName" class="form-control select2"
                                     data-placeholder="请从列表选择一项">
                                 <option value="">请选择</option>
-                                <option th:each="spDateList : ${spDateList}" th:value="${spDateList.dateName}" th:text="${spDateList.dateName}">
+                                <option th:each="spDateList : ${spDateList}" th:value="${spDateList.datename}" th:text="${spDateList.datename}">
                                 </option>
                             </select>
                         </div>
@@ -307,13 +307,13 @@
             idField: 'id',
             toolbar: '#toolbarsp',
             columns: [
-                {field: 'dateName', title: '取派时间名', sortable: true, halign: 'left'},
-                {field: 'pacificUp', title: '平时上班时间', sortable: true, halign: 'left'},
-                {field: 'pacificOff', title: '平时下班时间', sortable: true, halign: 'left'},
-                {field: 'satUp', title: '周六上班时间', sortable: true, halign: 'left'},
-                {field: 'satOff', title: '周六下班时间', sortable: true, halign: 'left'},
-                {field: 'sunUp', title: '周日上班时间', sortable: true, halign: 'left'},
-                {field: 'sunOff', title: '周日下班时间', sortable: true, halign: 'left'},
+                {field: 'datename', title: '取派时间名', sortable: true, halign: 'left'},
+                {field: 'pacificup', title: '平时上班时间', sortable: true, halign: 'left'},
+                {field: 'pacificoff', title: '平时下班时间', sortable: true, halign: 'left'},
+                {field: 'satup', title: '周六上班时间', sortable: true, halign: 'left'},
+                {field: 'satoff', title: '周六下班时间', sortable: true, halign: 'left'},
+                {field: 'sunup', title: '周日上班时间', sortable: true, halign: 'left'},
+                {field: 'sunoff', title: '周日下班时间', sortable: true, halign: 'left'},
                 {
                     field: 'action',
                     title: '操作',
@@ -358,6 +358,11 @@
     window.actionEvents = {
         'click .like': function (e, value, row, index) {
             alert('You click like icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        },
+        'click .edit': function (e, value, row, index) {
+            $('#editModal').modal('show')
+            $('#editForm').fillForm(row);
             console.log(value, row, index);
         },
         'click .remove': function (e, value, row, index) {

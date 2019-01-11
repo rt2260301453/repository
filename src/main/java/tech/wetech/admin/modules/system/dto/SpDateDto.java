@@ -2,8 +2,6 @@ package tech.wetech.admin.modules.system.dto;
 
 import lombok.Data;
 import tech.wetech.admin.modules.system.po.SpDate;
-
-import javax.persistence.*;
 import java.util.Date;
 @Data
 public class SpDateDto {
@@ -15,12 +13,12 @@ public class SpDateDto {
     private Date sunUp;
     private Date sunOff;
     public SpDateDto(SpDate spDate){
-        this.dateName = spDate.getDateName();
-        this.pacificUp = spDate.getPacificUp();
-        this.pacificOff = spDate.getPacificOff();
-        this.satUp = spDate.getSatUp();
-        this.satOff = spDate.getSatOff();
-        this.sunUp = spDate.getSunUp();
-        this.sunOff = spDate.getSunOff();
+        this.dateName = spDate.getDatename();
+        this.pacificUp = spDate.getPacificup();
+        this.pacificOff = spDate.getPacificoff();
+        this.satUp = spDate.getSatup();
+        this.satOff = spDate.getSatoff();
+        this.sunUp = spDate.getSunup();
+        this.sunOff = spDate.getSunoff();
     }
 }

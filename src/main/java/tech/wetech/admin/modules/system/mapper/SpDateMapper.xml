@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="tech.wetech.admin.modules.system.mapper.SpDateMapper">
-  <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.system.po.SpDate">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="date_name" jdbcType="VARCHAR" property="dateName" />
-    <result column="pacific_up" jdbcType="TIME" property="pacificUp" />
-    <result column="pacific_off" jdbcType="TIME" property="pacificOff" />
-    <result column="sat_up" jdbcType="TIME" property="satUp" />
-    <result column="sat_off" jdbcType="TIME" property="satOff" />
-    <result column="sun_up" jdbcType="TIME" property="sunUp" />
-    <result column="sun_off" jdbcType="TIME" property="sunOff" />
-    <result column="state" jdbcType="VARCHAR" property="state" />
-    <result column="unit" jdbcType="VARCHAR" property="unit" />
-    <result column="update_id" jdbcType="VARCHAR" property="updateId" />
-    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
-    <result column="update_unit" jdbcType="VARCHAR" property="updateUnit" />
-    <result column="update_date" jdbcType="DATE" property="updateDate" />
-=======
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="tech.wetech.admin.modules.system.mapper.SpDateMapper" >
@@ -29,19 +6,18 @@
       WARNING - @mbg.generated
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="datename" property="datename" jdbcType="VARCHAR" />
-    <result column="pacificup" property="pacificup" jdbcType="TIME" />
-    <result column="pacificoff" property="pacificoff" jdbcType="TIME" />
-    <result column="satup" property="satup" jdbcType="TIME" />
-    <result column="satoff" property="satoff" jdbcType="TIME" />
-    <result column="sunup" property="sunup" jdbcType="TIME" />
-    <result column="sunoff" property="sunoff" jdbcType="TIME" />
+    <result column="date_name" property="datename" jdbcType="VARCHAR" />
+    <result column="pacific_up" property="pacificup" jdbcType="TIME" />
+    <result column="pacific_off" property="pacificoff" jdbcType="TIME" />
+    <result column="sat_up" property="satup" jdbcType="TIME" />
+    <result column="sat_off" property="satoff" jdbcType="TIME" />
+    <result column="sun_up" property="sunup" jdbcType="TIME" />
+    <result column="sun_off" property="sunoff" jdbcType="TIME" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="unit" property="unit" jdbcType="VARCHAR" />
-    <result column="updateid" property="updateid" jdbcType="VARCHAR" />
-    <result column="updatename" property="updatename" jdbcType="VARCHAR" />
-    <result column="updateunit" property="updateunit" jdbcType="VARCHAR" />
-    <result column="updatedate" property="updatedate" jdbcType="DATE" />
->>>>>>> 6d33d21b07cf5a9ab55662480a172d6b37992622
+    <result column="update_id" property="updateid" jdbcType="VARCHAR" />
+    <result column="update_name" property="updatename" jdbcType="VARCHAR" />
+    <result column="update_unit" property="updateunit" jdbcType="VARCHAR" />
+    <result column="update_date" property="updatedate" jdbcType="DATE" />
   </resultMap>
 </mapper>

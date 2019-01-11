@@ -1,88 +1,47 @@
 package tech.wetech.admin.modules.system.po;
 
-<<<<<<< HEAD
-import lombok.Data;
 
-import javax.persistence.*;
-import java.util.Date;
-@Data
-@Table(name="spdate")
-=======
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-@Table(name = "SpDate")
->>>>>>> 6d33d21b07cf5a9ab55662480a172d6b37992622
+import java.util.Date;
+@Table(name="spdate")
 public class SpDate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-<<<<<<< HEAD
-
-    @Column(name = "date_name")
-    private String dateName;
-
-    @Column(name = "pacific_up")
-    private Date pacificUp;
-
-    @Column(name = "pacific_off")
-    private Date pacificOff;
-
-    @Column(name = "sat_up")
-    private Date satUp;
-
-    @Column(name = "sat_off")
-    private Date satOff;
-
-    @Column(name = "sun_up")
-    private Date sunUp;
-
-    @Column(name = "sun_off")
-    private Date sunOff;
-
-    private String state;
-
-    private String unit;
-
-    @Column(name = "update_id")
-    private String updateId;
-
-    @Column(name = "update_name")
-    private String updateName;
-
-    @Column(name = "update_unit")
-    private String updateUnit;
-
-    @Column(name = "update_date")
-    private Date updateDate;
-=======
     @NotNull(message = "时间名称不能为空")
+    @Column(name = "date_name")
     private String datename;
+    @Column(name = "pacific_up")
     @NotNull(message = "时间不能为空")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     private Date pacificup;
+    @Column(name = "pacific_off")
     @NotNull(message = "时间不能为空")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
     private Date pacificoff;
+    @Column(name = "sat_up")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
     private Date satup;
+    @Column(name = "sat_off")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
     private Date satoff;
+    @Column(name = "sun_up")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
     private Date sunup;
+    @Column(name = "sun_off")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
@@ -92,11 +51,15 @@ public class SpDate {
 
     private String unit;
 
+    @Column(name = "update_id")
     private String updateid;
 
+    @Column(name = "update_name")
     private String updatename;
 
+    @Column(name = "update_unit")
     private String updateunit;
+    @Column(name = "update_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+08:00")
     private Date updatedate;
@@ -296,5 +259,4 @@ public class SpDate {
     public void setUpdatedate(Date updatedate) {
         this.updatedate = updatedate;
     }
->>>>>>> 6d33d21b07cf5a9ab55662480a172d6b37992622
 }

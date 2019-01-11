@@ -110,7 +110,7 @@ public class AssociatedWidgetsServiceImpl implements AssociatedWidgetsService {
         WeekendCriteria<SpDate, Object> criteria = example.weekendCriteria();
 
         if (!StringUtils.isEmpty(spDateQuery.getDateName())) {
-            criteria.andLike(SpDate::getDateName, "%" + spDateQuery.getDateName() + "%");
+            criteria.andLike(SpDate::getDatename, "%" + spDateQuery.getDateName() + "%");
         }
 
         List<SpDateDto> dtoList = new ArrayList<>();

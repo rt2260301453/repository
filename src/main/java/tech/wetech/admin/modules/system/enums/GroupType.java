@@ -1,9 +1,9 @@
 package tech.wetech.admin.modules.system.enums;
 
 public enum GroupType {
-    é€è´§å‘˜,
-    å–ä»¶å‘˜,
-    åˆ†ç±»å‘˜
+    GROUP_1,
+    GROUP_2,
+    GROUP_3
     /**
      * 1¡¢ÓÃ»§User£º×îÖÕ²Ù×÷ÈËÔ±£¬È¨ÏÞµÄ×îÖÕÊÜÒæÕß£¬¿ØÖÆÈ¨ÏÞ¿ØÖÆÈ¨ÏÞÊµ¼ÊÉÏ¾ÍÊÇ¿ØÖÆÓÃ»§µÄÈ¨ÏÞ£¬¶ø²»ÊÇ½ÇÉ«»òÕßÓÃ»§×éµÄÈ¨ÏÞ
      * 2¡¢ÓÃ»§×éUserGroup£ºÊÇÏà¶Ô´¹Ö±¶øÑÔµÄ¡£±ÈÈçËµ²É¹º²¿Õâ¸öÓÃ»§×éÊµ¼ÊÉÏÊÇÓÉ²É¹º²¿µÄÒµÎñÔ±(ÔÝÇÒ¶¨Òå¶¼ÎªÓÃ»§)×é³ÉµÄ£¬¾ßÓÐÉÏÏÂ¼¶µÄÃ÷È·¹ØÏµ£»²É¹º²¿Ö»ÄÜ²é¿´ÊôÓÚ²É¹º²¿µÄÎÄµµ£¬ÏúÊÛ²¿Ö»ÄÜ²é¿´ÊôÓÚÏúÊÛ²¿µÄÎÄµµ£¬´øÓÐÇ¿ÁÒµÄ²¿ÃÅ(×é)ÐÔÖÊ£¬µ«ÊÇ²É¹º²¿ÒµÎñÔ±ËäÈ»¶¼ÊÇÊôÓÚÍ¬Ò»¸ö²¿ÃÅ£¬µ«ÊÇÈ´²»Ò»¶¨ÓÐ×ÅÏàÍ¬µÄÈ¨ÏÞ£¬±ÈÈçËµ¾­ÀíºÍÒ»°ãÒµÎñÔ±µÄÈ¨ÏÞ¿Ï¶¨´æÔÚ²îÒì
