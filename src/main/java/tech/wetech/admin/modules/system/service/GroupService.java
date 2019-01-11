@@ -10,6 +10,7 @@ import java.util.List;
  * 组服务接口
  * @author cjbi
  */
+
 public interface GroupService {
 
     /**

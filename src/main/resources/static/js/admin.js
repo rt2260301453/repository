@@ -473,13 +473,21 @@
         var responseJSON = JSON.parse(request.responseText), msg;
         if (responseJSON) {
             msg = responseJSON.msg;
+<<<<<<< HEAD
 
         } else {
             msg = request.status + '  (' + request.statusText + ')';
         }
         $.myNotify.danger(msg);
     });
+=======
+>>>>>>> 8fb5d7915b12b450a648d8653773f9d4aa5f38fd
 
+        } else {
+            msg = request.status + '  (' + request.statusText + ')';
+        }
+        $.myNotify.danger(msg);
+    });
     // To make Pace works on Ajax calls
     $(document).ajaxStart(function () {
         Pace.restart()

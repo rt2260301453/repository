@@ -1,8 +1,13 @@
 package tech.wetech.admin.modules.system.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import tech.wetech.admin.modules.system.po.AssociatedWidgets;
 
+import java.util.Date;
+@Data
 public class AssociatedWidgetsDto {
     private Integer id;
     private String fixedareano;
@@ -16,11 +21,11 @@ public class AssociatedWidgetsDto {
     public AssociatedWidgetsDto(AssociatedWidgets associatedWidgets) {
         this.id = associatedWidgets.getId();
         this.fixedareano = associatedWidgets.getFixedareano();
-        this.fetchpeopleno = fetchpeopleno;
-        this.fetchpeoplename = fetchpeoplename;
-        this.collectionstandard = collectionstandard;
-        this.collectiontime = collectiontime;
-        this.institute = institute;
-        this.type = type;
+        this.fetchpeopleno = associatedWidgets.getFetchpeopleno();
+        this.fetchpeoplename = associatedWidgets.getFetchpeoplename();
+        this.collectionstandard = associatedWidgets.getCollectionstandard();
+        this.collectiontime = associatedWidgets.getCollectiontime();
+        this.institute = associatedWidgets.getInstitute();
+        this.type = associatedWidgets.getType();
     }
 }
