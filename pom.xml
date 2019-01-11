@@ -18,6 +18,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -230,6 +232,16 @@
 						<artifactId>mysql-connector-java</artifactId>
 						<version>${mysql.version}</version>
 					</dependency>
+
+					<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven -->
+					<dependency>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok-maven</artifactId>
+						<version>1.18.4.0</version>
+						<type>pom</type>
+					</dependency>
+
+
 					<dependency>
 						<groupId>tk.mybatis</groupId>
 						<artifactId>mapper-generator</artifactId>
