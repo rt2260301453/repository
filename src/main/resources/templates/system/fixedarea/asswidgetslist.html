@@ -109,11 +109,11 @@
                     </div>
                     <div class="form-group">
                         <label for="fetchpeoplename"> 取派员名</label>
-                        <input type="text" class="form-control input-sm" name="fetchpeoplename" id="fetchpeoplename">
+                        <input type="text" class="form-control input-sm" name="fetchpeoplename" id="fetchpeoplename" readonly>
                     </div>
                     <div class="form-group">
                         <label for="collectionstandard"> 收派标准</label>
-                        <input type="text" class="form-control input-sm" name="collectionstandard" id="collectionstandard">
+                        <input type="text" class="form-control input-sm" name="collectionstandard" id="collectionstandard" readonly >
                     </div>
                     <div class="form-group">
                         <label for="collectiontime"> 收派时间</label>
@@ -259,6 +259,7 @@
 
 <div id="actionButtons" class="admin-hide">
     <a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>　
+    <a shiro:hasPermission="assWidgets:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>　
     <a shiro:hasPermission="assWidgets:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i class="glyphicon glyphicon-remove"></i></a>　
 </div>
 
