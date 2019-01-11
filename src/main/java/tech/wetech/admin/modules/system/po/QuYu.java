@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "xzqyinfo")
 @Data
 @Setter
-@AllArgsConstructor
+
 @Generated
 @Getter
 public class QuYu {
@@ -59,7 +59,8 @@ public class QuYu {
     public QuYu() {
     }
 
-    public QuYu( String province, String city, String qu, String yzbm, String jm, String csbm, String cgdw, String jgdw, String kfwqy, String bkfwqy, String tsqy, Boolean sfkcz, Boolean sfkczcod, Boolean sfww, Boolean sfjqx, String xz, String ssqy, Integer pycsjb, String sjzxjgczfwq, String kouan) {
+    public QuYu(Integer id, String province, String city, String qu, String yzbm, String jm, String csbm, String cgdw, String jgdw, String kfwqy, String bkfwqy, String tsqy, Boolean sfkcz, Boolean sfkczcod, Boolean sfww, Boolean sfjqx, String xz, String ssqy, Integer pycsjb, String sjzxjgczfwq, String kouan) {
+       this.id=id;
         this.province = province;
         this.city = city;
         this.qu = qu;

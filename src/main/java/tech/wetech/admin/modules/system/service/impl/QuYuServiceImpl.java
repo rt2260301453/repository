@@ -167,14 +167,20 @@ public  class QuYuServiceImpl implements QuYuService {
     }
 
   @Override
-    @Transactional
+
     public void deleteQuYu(Integer quyuId) {
         quyuMapper.deleteByPrimaryKey(quyuId);
     }
 
     @Override
     public List<QuYu> selectAllCity() {
-       return quyuMapper.selectAllCity();
+        return quyuMapper.selectAllCity();
+    }
+    public List<QuYu> selectAllProvince() {
+        return quyuMapper.selectAllProvince();
+    }
+    public List<QuYu> selectAllQu() {
+        return quyuMapper.selectAllQu();
     }
 
    /*    @Override
