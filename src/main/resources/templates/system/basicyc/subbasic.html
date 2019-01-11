@@ -4,13 +4,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header" style="">
     <h1>
-        子级基本档案管理
-        <small>子级基本档案设置页面</small>
+        子级档案管理
+        <small>子级档案设置页面</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-        <li><a href="#">子级基本档案管理</a></li>
-        <li class="active">基本档案</li>
+        <li><a href="#">子级档案管理</a></li>
+        <li class="active">档案管理</li>
     </ol>
 </section>
 
@@ -23,7 +23,7 @@
                     <div id="toolbar">
                         <form class="form-inline" id="searchForm">
                             <div class="form-group">
-                                <label for="searchName"> 子级基本档案编号</label>
+                                <label for="searchName"> 子级档案编号</label>
                                 <input type="text" class="form-control input-sm" name="subbasicno" id="searchName" placeholder="请输入基本档案编号">
                             </div>
                             <div class="btn-group btn-group-sm">
@@ -53,7 +53,7 @@
                             <!-- Indicates a dangerous or potentially negative action -->
                             <button shiro:hasPermission="subbasic:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
                                     data-target="#deleteModal"
-                                    data-action="{type:'delete',form:'#deleteForm',idField:'id',table:'#table'}"
+                                    data-action="{type:'delete',form:'#deleteForm',idField:'subbasicno',table:'#table'}"
                                     disabled><i class="glyphicon glyphicon-remove"></i> 删除
                             </button>
                         </div>
@@ -78,29 +78,55 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="addModalLabel">添加组</h4>
+                <h4 class="modal-title" id="addModalLabel">添加档案信息</h4>
             </div>
             <div class="modal-body">
                 <form id="addForm">
                     <div class="form-group">
-                        <label class="control-label" for="name"><span class="asterisk">*</span>组名称:</label>
-                        <input id="name" type="text" class="form-control" name="name" placeholder="输入组名称"
-                               minlength="3" required>
+                        <label class="control-label" for="addSubbasicno"><span class="asterisk">*</span>档案编号:</label>
+                        <input id="addSubbasicno" type="text" class="form-control" name="subbasicno" placeholder="例:zd00001"
+                               required
+                               pattern="^zd\d{5}$" data-pattern-error="格式应为,例:zd00001"
+                               data-remote="subbasic/checkNo" data-remote-error="该档案编号已存在"
+                        >
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="type"><span class="asterisk">*</span>组类型:</label>
-                        <select name="type" id="type" class="form-control"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:each="groupType : ${groupTypeList}" th:value="${groupType}" th:text="${groupType}">
-                                组类型不存在
-                            </option>
-                        </select>
+                        <label class="control-label" for="addSubbasicname"><span class="asterisk">*</span>档案名称:</label>
+                        <input id="addSubbasicname" type="text" class="form-control" name="subbasicname" placeholder="输入档案名称"
+                               required
+                               data-remote="subbasic/checkName" data-remote-error="该档案名称已存在"
+                        >
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="description">组描述:</label>
-                        <input id="description" type="text" class="form-control" name="description" placeholder="输入组描述">
+                        <label class="control-label" for="addMainbasicno"><span class="asterisk">*</span>上级编号:</label>
+                        <input id="addMainbasicno" type="text" class="form-control" name="mainbasicno" placeholder="输入档案名称"
+                               required
+                               pattern="^d\d{5}$" data-pattern-error="格式应为,例:d00001">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="addMnemoniccode"><span class="asterisk">*</span>助记码:</label>
+                        <input id="addMnemoniccode" type="text" class="form-control" name="mnemoniccode" placeholder="输入助记码">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" ><span class="asterisk">*</span>封存标志:</label>
+                        <input  name="archivemark" value="0" type="radio" class="ace" checked="checked"/>
+                        <span class="lbl"> 否</span> <!--checked="checked"-->
+                        <input  name="archivemark" value="1" type="radio" class="ace" />
+                        <span class="lbl"> 是</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="addSubremark"><span class="asterisk">*</span>备注:</label>
+                        <input id="addSubremark" type="text" class="form-control" name="subremark" placeholder="不能超过20字">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="addSuboperationunit"><span class="asterisk">*</span>操作员单位:</label>
+                        <input id="addSuboperationunit" type="text" class="form-control" name="suboperationunit" placeholder="操作员单位"
+                               required>
                         <div class="help-block with-errors"></div>
                     </div>
                 </form>
@@ -108,7 +134,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="submit" form="addForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#addForm',url:'@{/group/create}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#addForm',url:'@{/subbasic/create}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -122,30 +148,36 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="editModalLabel">修改用户</h4>
+                <h4 class="modal-title" id="editModalLabel">修改档案</h4>
             </div>
             <div class="modal-body">
                 <form id="editForm">
-                    <input type="hidden" name="id"/>
+                    <input type="hidden" name="subbasicno"/>
+
                     <div class="form-group">
-                        <label class="control-label" for="editName"><span class="asterisk">*</span>组名称:</label>
-                        <input id="editName" type="text" class="form-control" name="name" placeholder="输入组名称"
-                               minlength="3" required>
+                        <label class="control-label" for="editSubbasicname"><span class="asterisk">*</span>档案名称:</label>
+                        <input id="editSubbasicname" type="text" class="form-control" name="subbasicname" placeholder="输入档案名称"
+                               required
+                               data-remote="subbasic/checkName" data-remote-error="该档案名称已存在"
+                        >
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="editType"><span class="asterisk">*</span>组类型:</label>
-                        <select name="type" id="editType" class="form-control"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:each="groupType : ${groupTypeList}" th:value="${groupType}" th:text="${groupType}">
-                                组类型不存在
-                            </option>
-                        </select>
+                        <label class="control-label" for="editMnemoniccode"><span class="asterisk">*</span>助记码:</label>
+                        <input id="editMnemoniccode" type="text" class="form-control" name="mnemoniccode" placeholder="输入助记码"
+                               required>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="editDescription">组描述:</label>
-                        <input id="editDescription" type="text" class="form-control" name="description" placeholder="输入组描述">
+                        <label class="control-label" ><span class="asterisk">*</span>封存标志:</label>
+                        <input  name="archivemark" value="0" type="radio" class="ace"/>
+                        <span class="lbl"> 否</span> <!--checked="checked"-->
+                        <input  name="archivemark" value="1" type="radio" class="ace" />
+                        <span class="lbl"> 是</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="editSubremark"><span class="asterisk">*</span>备注:</label>
+                        <input id="editSubremark" type="text" class="form-control" name="subremark" placeholder="不能超过20字">
                         <div class="help-block with-errors"></div>
                     </div>
                 </form>
@@ -153,7 +185,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="submit" form="editForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#editForm',url:'@{/group/update}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#editForm',url:'@{/subbasic/update}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -166,7 +198,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="deleteSmallModalLabel">删除组</h4>
+                <h4 class="modal-title" id="deleteSmallModalLabel">删除档案信息</h4>
             </div>
             <div class="modal-body">
                 <form id="deleteForm"></form>
@@ -175,7 +207,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" form="deleteForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#deleteForm',url:'@{/group/delete}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#deleteForm',url:'@{/subbasic/delete}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -201,11 +233,19 @@
             idField: 'subbasicno',
             columns: [
                 {field: 'state', checkbox: true},
-                {field: 'subbasicno', title: '基本档案编号', sortable: true, halign: 'left'},
-                {field: 'subbasicname', title: '基本档案名称', sortable: true, halign: 'left'},
+                {field: 'subbasicno', title: '档案编号', sortable: true, halign: 'left'},
+                {field: 'subbasicname', title: '档案名称', sortable: true, halign: 'left'},
                 {field: 'mainbasicno', title: '上级编号', sortable: true, halign: 'left'},
                 {field: 'mnemoniccode', title: '助记码', sortable: true, halign: 'left'},
-                {field: 'archivemark', title: '封存标记', sortable: true, halign: 'left'},
+                {field: 'archivemark', title: '封存标记', sortable: true, halign: 'left',
+                    formatter:function(value,row,index){
+                        if(value == 0){
+                            return '否';
+                        }else{
+                            return '是';
+                        }
+                    }
+                },
                 {field: 'subremark', title: '备注', sortable: true, halign: 'left'},
                 {field: 'suboperator', title: '操作人员', sortable: true, halign: 'left'},
                 {field: 'suboperationunit', title: '操作单位', sortable: true, halign: 'left'},

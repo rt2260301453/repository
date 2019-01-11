@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Table(name="basic")
@@ -16,6 +17,7 @@ public class Basic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(message = "基本档案编号不能为空")
+    @Pattern(regexp = "^d\\d{5}$",message = "档案编号格式不正确")
     private String basicno;
 
     /**
