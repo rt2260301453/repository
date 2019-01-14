@@ -16,6 +16,7 @@ public enum ResultCodeEnum {
     INTERNAL_SERVER_ERROR("500", "æœåŠ¡å™¨å†…éƒ¨é”™è¯¯"),
     NOT_IMPLEMENTED("501", "ä¸šåŠ¡å¼‚å¸¸"),
     CUOWO("502", "æ—¶é—´åç§°æ˜¯å”¯ä¸€çš„");
+<<<<<<< HEAD
 =======
     OK("200", "´¦Àí³É¹¦"),
     BAD_REQUEST("400", "ÇëÇó²ÎÊıÓĞÎó"),
@@ -27,6 +28,8 @@ public enum ResultCodeEnum {
     INTERNAL_SERVER_ERROR("500", "·şÎñÆ÷ÄÚ²¿´íÎó"),
     NOT_IMPLEMENTED("501", "ÒµÎñÒì³£");
 >>>>>>> c4f417e7916eb26ad73ce5ba8718fb68e4b21685
+=======
+>>>>>>> dev
 
     private String code;
     private String msg;

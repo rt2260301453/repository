@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.util.Date;
 @Data
 public class BusRouteQuery extends BaseQuery<Busroute> {
-private String style;
+    private String style;
     private String namefrom;
     private String nameto;
     private String license;
@@ -86,4 +86,5 @@ private String style;
     public void setDriver(String driver) {
         this.driver = driver;
     }
+
 }

@@ -1,12 +1,12 @@
-package tech.wetech.admin.modules.system.dto;
+package tech.wetech.admin.modules.system.po;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.hibernate.validator.constraints.Length;
-import tech.wetech.admin.modules.system.po.Busroute;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
-public class BusRouteDto {
+@Data
+public class Bus {
     private Integer busid;
 
     private Integer routeid;
@@ -23,26 +23,37 @@ public class BusRouteDto {
 
     private Integer weight;
 
-    private String style;
-
-    private String namefrom;
-
-    private String nameto;
-
-    private String operator;
+    private String operater;
 
     private String company;
-    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date date;
+    private Route route;
 
-    private String remark;
+    public Bus(Integer busid, Integer routeid, String license, String operators, String model, String driver, Long phone, Integer weight, String operater, String company, Date date, Route route) {
+        this.busid = busid;
+        this.routeid = routeid;
+        this.license = license;
+        this.operators = operators;
+        this.model = model;
+        this.driver = driver;
+        this.phone = phone;
+        this.weight = weight;
+        this.operater = operater;
+        this.company = company;
+        this.date = date;
+        this.route = route;
+    }
 
-    public BusRouteDto(Busroute u) {
+
+    public Bus() {
     }
 
     @Override
     public String toString() {
-        return "BusRouteDto{" +
+        return "Bus{" +
                 "busid=" + busid +
                 ", routeid=" + routeid +
                 ", license='" + license + '\'' +
@@ -51,154 +62,172 @@ public class BusRouteDto {
                 ", driver='" + driver + '\'' +
                 ", phone=" + phone +
                 ", weight=" + weight +
-                ", style='" + style + '\'' +
-                ", namefrom='" + namefrom + '\'' +
-                ", nameto='" + nameto + '\'' +
-                ", operator='" + operator + '\'' +
+                ", operater='" + operater + '\'' +
                 ", company='" + company + '\'' +
                 ", date=" + date +
-                ", remark='" + remark + '\'' +
+                ", route=" + route +
                 '}';
     }
 
-    public BusRouteDto() {
+    public Route getRoute() {
+        return route;
     }
 
-    public BusRouteDto(Integer busid, Integer routeid, String license, String operators, String model, String driver, Long phone, Integer weight, String style, String namefrom, String nameto, String operator, String company, Date date, String remark) {
-        this.busid = busid;
-        this.routeid = routeid;
-        this.license = license;
-        this.operators = operators;
-        this.model = model;
-        this.driver = driver;
-        this.phone = phone;
-        this.weight = weight;
-        this.style = style;
-        this.namefrom = namefrom;
-        this.nameto = nameto;
-        this.operator = operator;
-        this.company = company;
-        this.date = date;
-        this.remark = remark;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
+    /**
+     * @return busid
+     */
     public Integer getBusid() {
         return busid;
     }
 
+    /**
+     * @param busid
+     */
     public void setBusid(Integer busid) {
         this.busid = busid;
     }
 
+    /**
+     * @return routeid
+     */
     public Integer getRouteid() {
         return routeid;
     }
 
+    /**
+     * @param routeid
+     */
     public void setRouteid(Integer routeid) {
         this.routeid = routeid;
     }
 
+    /**
+     * @return license
+     */
     public String getLicense() {
         return license;
     }
 
+    /**
+     * @param license
+     */
     public void setLicense(String license) {
         this.license = license;
     }
 
+    /**
+     * @return operators
+     */
     public String getOperators() {
         return operators;
     }
 
+    /**
+     * @param operators
+     */
     public void setOperators(String operators) {
         this.operators = operators;
     }
 
+    /**
+     * @return model
+     */
     public String getModel() {
         return model;
     }
 
+    /**
+     * @param model
+     */
     public void setModel(String model) {
         this.model = model;
     }
 
+    /**
+     * @return driver
+     */
     public String getDriver() {
         return driver;
     }
 
+    /**
+     * @param driver
+     */
     public void setDriver(String driver) {
         this.driver = driver;
     }
 
+    /**
+     * @return phone
+     */
     public Long getPhone() {
         return phone;
     }
 
+    /**
+     * @param phone
+     */
     public void setPhone(Long phone) {
         this.phone = phone;
     }
 
+    /**
+     * @return weight
+     */
     public Integer getWeight() {
         return weight;
     }
 
+    /**
+     * @param weight
+     */
     public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
-    public String getStyle() {
-        return style;
+    /**
+     * @return operater
+     */
+    public String getOperater() {
+        return operater;
     }
 
-    public void setStyle(String style) {
-        this.style = style;
+    /**
+     * @param operater
+     */
+    public void setOperater(String operater) {
+        this.operater = operater;
     }
 
-    public String getNamefrom() {
-        return namefrom;
-    }
-
-    public void setNamefrom(String namefrom) {
-        this.namefrom = namefrom;
-    }
-
-    public String getNameto() {
-        return nameto;
-    }
-
-    public void setNameto(String nameto) {
-        this.nameto = nameto;
-    }
-
-    public String getOperator() {
-        return operator;
-    }
-
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
+    /**
+     * @return company
+     */
     public String getCompany() {
         return company;
     }
 
+    /**
+     * @param company
+     */
     public void setCompany(String company) {
         this.company = company;
     }
 
+    /**
+     * @return date
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * @param date
+     */
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 }

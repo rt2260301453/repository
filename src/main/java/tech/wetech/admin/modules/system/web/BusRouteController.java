@@ -14,6 +14,7 @@ import tech.wetech.admin.core.utils.ResultCodeEnum;
 import tech.wetech.admin.modules.system.dto.BusRouteDto;
 import tech.wetech.admin.modules.system.dto.UserDto;
 import tech.wetech.admin.modules.system.po.Busroute;
+import tech.wetech.admin.modules.system.po.FixedArea;
 import tech.wetech.admin.modules.system.po.Namefromto;
 import tech.wetech.admin.modules.system.po.User;
 import tech.wetech.admin.modules.system.query.BusRouteQuery;
@@ -22,6 +23,7 @@ import tech.wetech.admin.modules.system.service.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.Console;
 import java.util.Arrays;
@@ -60,12 +62,6 @@ public class BusRouteController extends BaseController {
     @RequestMapping("/list")
     @RequiresPermissions("bus:view")
     public PageResultSet<BusRouteDto> list(BusRouteQuery busRouteQuery) {
-        System.out.println(busRouteQuery.toString());
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
         return busRouteService.findByPage(busRouteQuery);
     }
 
@@ -86,6 +82,8 @@ public class BusRouteController extends BaseController {
     @RequiresPermissions("bus:view")
     @SystemLog("用户管理更新班车")
     public Result update(Busroute busroute) {
+        System.out.println(busroute.toString());
+        System.out.println("&&&&&&&&&&&");
         busRouteService.updateBusRoute(busroute);
         return Result.success();
     }
@@ -104,10 +102,22 @@ public class BusRouteController extends BaseController {
 
     private void setCommonData(Model model) {
         List<Namefromto> a = namefromtoService.findAll();
-
-        System.out.println(a.toString());
         model.addAttribute("namefromList",a);
         model.addAttribute("busRouteList",busRouteService.findAll());
+    }
+
+    @RequestMapping("/checkNo")
+    public void checkNo( Busroute busroute, HttpServletResponse response){
+        int count = busRouteService.selectOne(busroute);
+        if(count == 1){
+            response.setStatus(400);
+        }else {
+            response.setStatus(200);
+        }
+    }
+    @RequestMapping("/checkTrue")
+    public void checkTrue( Busroute busroute,  HttpServletResponse response){
+        response.setStatus(200);
     }
 
 }

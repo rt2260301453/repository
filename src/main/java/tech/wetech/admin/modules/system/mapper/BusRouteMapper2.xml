@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.wetech.admin.modules.system.mapper.BusRouteMapper2" >
+    <resultMap type="tech.wetech.admin.modules.system.dto.BusRouteDto" id="selectbyquery">
+        <result property="busid" column="busid" />
+        <result property="routeid" column="routeid" />
+        <result property="license" column="license" />
+        <result property="operators" column="operators" />
+        <result property="model" column="model" />
+        <result property="driver" column="driver" />
+        <result property="phone" column="phone" />
+        <result property="weight" column="weight" />
+        <result property="style" column="style" />
+        <result property="namefrom" column="namefrom" />
+        <result property="nameto" column="nameto" />
+        <result property="operator" column="operator" />
+        <result property="company" column="company" />
+    </resultMap>
+
+    <select id="selectByQuery" resultMap="selectbyquery" >
+        select
+          bus.busid ,
+          bus.routeid ,
+          bus.license ,
+          bus.operators ,
+          bus.model ,
+          bus.driver ,
+          bus.phone ,
+          bus.weight ,
+
+          route.routeid ,
+          route.style ,
+          route.namefrom ,
+          route.nameto ,
+          route.operator ,
+          route.company ,
+          route.date ,
+          route.remark
+        from bus join route on bus.routeid = route.routeid
+        <where>
+            <if test="style != null and style != '全部'">
+                style like CONCAT('%',#{style},'%')
+            </if>
+            <if test="namefrom != null and namefrom != ''">
+                AND namefrom like CONCAT('%',#{namefrom},'%')
+            </if>
+            <if test="nameto != null and nameto != ''">
+                AND nameto like CONCAT('%',#{nameto},'%')
+            </if>
+            <if test="license != null and license != ''">
+                AND license like CONCAT('%',#{license},'%')
+            </if>
+            <if test="operators != null and operators != ''">
+                AND operators like CONCAT('%',#{operators},'%')
+            </if>
+            <if test="driver != null and driver != ''">
+                AND driver like CONCAT('%',#{driver},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

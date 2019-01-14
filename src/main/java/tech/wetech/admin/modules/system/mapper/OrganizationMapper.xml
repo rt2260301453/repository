@@ -14,6 +14,7 @@
     <result column="leaf" property="leaf" jdbcType="BIT" />
   </resultMap>
   <update id="updateSalefParentIds" parameterType="java.lang.String">
-    update sys_organization set parent_ids=concat(#{makeSelfAsParentIds}, substring(parent_ids, length(#{makeSelfAsParentIds}))) where parent_ids like #{makeSelfAsParentIds} + '%'
+    update sys_organization set parent_ids=concat(#{makeSelfAsParentIds},
+    substring(parent_ids, length(#{makeSelfAsParentIds}))) where parent_ids like #{makeSelfAsParentIds} + '%'
   </update>
 </mapper>

@@ -15,6 +15,7 @@
     <result column="upusername" jdbcType="VARCHAR" property="upusername" />
     <result column="uptime" jdbcType="VARCHAR" property="uptime" />
   </resultMap>
+<<<<<<< HEAD
   <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.example.po.Replay">
     <!--
       WARNING - @mbg.generated
@@ -29,4 +30,6 @@
     <result column="upusername" jdbcType="VARCHAR" property="upusername" />
     <result column="uptime" jdbcType="VARCHAR" property="uptime" />
   </resultMap>
+=======
+>>>>>>> dev
 </mapper>
