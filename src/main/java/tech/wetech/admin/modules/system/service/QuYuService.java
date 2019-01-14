@@ -59,5 +59,7 @@ public interface QuYuService<p, pa> {
     Set<String> findPermissions(String username);*/
 
     List<QuYu> selectAllCity();
+    List<QuYu> selectAllProvince();
+    List<QuYu> selectAllQu();
 
 }

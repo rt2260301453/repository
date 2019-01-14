@@ -21,24 +21,25 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="toolbar">
-                   <form class="form-inline" id="searchForm">
-                            <div class="form-group">
-                                    <div>
-                                        <select id="province" name="province">
+                        <form class="form-inline" id="searchForm">
+                          <!--                            <label class="control-label" for="province"><span class="asterisk">*</span>省份:</label>
+                            <input id="province" name="province" class="form-control"></input>
 
-                                        </select>
-                                        <select id="city" name="city" >
+                            <label class="control-label" for="city"><span class="asterisk">*</span>城市:</label>
+                            <input id="city" name="city" class="form-control"></input>
 
-                                        </select>  
-                                        <select id="county" name="qu">
-
-                                        </select>
-
-                                    </div>
-                                    <div id="show"></div>
+                            <label class="control-label" for="county"><span class="asterisk">*</span>区(县):</label>
+                            <input id="county" name="qu" class="form-control" ></input>
+-->                        <script th:src="@{/static/js/distpicker.min.js}"></script>
+                            <div data-toggle="distpicker" id="div1">
+                                <select data-province="---- 选择省 ----" name="province" class="form-control"></select>
+                                <select data-city="---- 选择市 ----" name="city"  class="form-control"></select>
+                                <select data-district="---- 选择区 ----" name="qu"  class="form-control"></select>
                             </div>
+
                             <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-default" onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
+                                <button type="button" class="btn btn-default"
+                                        onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
                                     <i class="glyphicon glyphicon-search"></i>
                                     查询
                                 </button>
@@ -66,19 +67,19 @@
                                     disabled><i class="glyphicon glyphicon-edit"></i> 修改
                             </button>
                             <!-- Indicates a dangerous or potentially negative action -->
-                            <button shiro:hasPermission="quyu:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
+                            <button shiro:hasPermission="quyu:delete" type="button" id="deleteBtn"
+                                    class="btn btn-default" data-toggle="modal"
                                     data-target="#deleteModal"
                                     data-action="{type:'delete',form:'#deleteForm',idField:'id',table:'#table'}"
                                     disabled><i class="glyphicon glyphicon-remove"></i> 删除
                             </button>
-                            <button shiro:hasPermission="quyu:quxiao" type="button" id="quxBtn" class="btn btn-default"
-                                    data-toggle="modal"
-                                    data-target="#quxryModal"><i class="glyphicon glyphicon-search"></i> 取消
-                            </button>
-                            <button shiro:hasPermission="quyu:daoru" type="button" id="daoBtn" class="btn btn-default"
+                            <button class="btn btn-default" id="window-comeback">取消;</button>
+
+
+                           <!-- <button shiro:hasPermission="quyu:daoru" type="button" id="daoBtn" class="btn btn-default"
                                     data-toggle="modal"
                                     data-target="#daoqryModal"><i class="glyphicon glyphicon-search"></i> 导入
-                            </button>
+                            </button>-->
                         </div>
                     </div>
                     <table id="table"></table>
@@ -96,37 +97,37 @@
 <!-- /.content -->
 <!-- query Modal -->
 <!--<div class="modal fade" id="qryModal" tabindex="-1" role="dialog" aria-labelledby="qryModalLabel">-->
-    <!--<div class="modal-dialog" role="document">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>-->
-                <!--</button>-->
-                <!--<h4 class="modal-title" id="qryModalLabel">查询区域表</h4>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-                <!--<form id="qryForm">-->
-                    <!--<div class="info">-->
-                        <!--<div>-->
-                            <!--<select id="s_province" name="province"></select>-->
-                            <!--<select id="s_city" name="city" ></select>  -->
-                            <!--<select id="s_county" name="qu"></select>-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title" id="qryModalLabel">查询区域表</h4>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<form id="qryForm">-->
+<!--<div class="info">-->
+<!--<div>-->
+<!--<select id="s_province" name="province"></select>-->
+<!--<select id="s_city" name="city" ></select>  -->
+<!--<select id="s_county" name="qu"></select>-->
 
-                        <!--</div>-->
-                        <!--<div id="show"></div>-->
-                    <!--</div>-->
+<!--</div>-->
+<!--<div id="show"></div>-->
+<!--</div>-->
 
 
-                <!--</form>-->
-            <!--</div>-->
-            <!--<div class="modal-footer">-->
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
-                <!--<button type="button" form="qryForm" class="btn btn-primary"-->
-                        <!--onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">-->
-                    <!--确定-->
-                <!--</button>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+<!--<button type="button" form="qryForm" class="btn btn-primary"-->
+<!--onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">-->
+<!--确定-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <!--</div>-->
 <!-- add Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
@@ -142,79 +143,107 @@
 
                     <div class="form-group">
                         <label class="control-label" for="s_province"><span class="asterisk">*</span>省份:</label>
-                        <input  type="text" id="s_province" name="province"  class="form-control"></input>
+                        <select id="s_province" name="province" class="form-control" placeholder="请选择省份"></select>
 
-                        <label class="control-label" for="s_city"><span class="asterisk">*</span>城市:</label>
-                        <input  type="text" id="s_city" name="city" class="form-control"></input>
+                        <label class="control-label" for="s_city">城市:</label>
+                        <select id="s_city" name="city" class="form-control"  placeholder="请选择城市"></select>
 
-                        <label class="control-label" for="s_county"><span class="asterisk">*</span>区(县):</label>
-                        <input  type="text" id="s_county" name="qu"  class="form-control"></input>
-
+                        <label class="control-label" for="s_county">区(县):</label>
+                        <select id="s_county" name="qu" class="form-control"  placeholder="请选择区（县）"></select>
 
 
                     </div>
 
 
-
                     <div class="form-group">
-                        <label class="control-label" for="yzbm"><span class="asterisk">*</span>邮政编码:</label>
+                        <label class="control-label" for="yzbm">邮政编码:</label>
                         <input type="text" id="yzbm" class="form-control"
-                               name="yzbm" placeholder="邮政编码" required>
-                       <!-- <div class="help-block with-errors"></div>-->
+                               name="yzbm" placeholder="邮政编码" pattern="[0-9]{6}" data-pattern-error="必须输入六位数字">
+                        <div class="help-block with-errors"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="jm"><span class="asterisk">*</span>简码:</label>
-                        <input type="text" class="form-control" id="jm" name="jm"  placeholder="请输入简码"
-                               required>
-                       <!-- <div class="help-block with-errors"></div>-->
+                        <input type="text" class="form-control " id="jm" name="jm" placeholder="请输入省市区,最后一级不为空的
+数据的拼音首字母"
+                               required pattern="[A-z]{1}" data-pattern-error="必须输入一位字母">
+                         <div class="help-block with-errors" ></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="csbm"><span class="asterisk">*</span>城市编码:</label>
                         <input type="text" id="csbm" class="form-control"
-                               name="csbm" placeholder="城市编码" required>
-                       <!-- <div class="help-block with-errors"></div>-->
+                               name="csbm" placeholder="城市编码" required  pattern="[A-z]" data-pattern-error="必须输入字母">
+                         <div class="help-block with-errors"></div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="cgdw"><span class="asterisk">*</span>出港单位:</label>
-                        <select id="cgdw" class="form-control" name="cgdw"  required>
+                        <label class="control-label" for="Color_1"><span class="asterisk">*</span>出港单位:</label>
+                        <select id="Color_1" class="form-control " name="cgdw" required onChange="ddlChange1(this.value);">
                             <option id="zong" name="zong">总公司</option>
                             <option id="gong1" name="gong1">公司1</option>
                             <option id="gong2" name="gong2">公司2</option>
                             <option id="gong3" name="gong3">公司3</option>
                             <option id="gong4" name="gong4">公司4</option>
-                       <!-- <div class="help-block with-errors"></div>-->
-                            </select>
+                             <div class="help-block with-errors"></div>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="jgdw"><span class="asterisk">*</span>进港单位:</label>
-                        <input type="text" id="jgdw" class="form-control"
-                               name="jgdw" placeholder="进港单位" required>
-                      <!--  <div class="help-block with-errors"></div>-->
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="kfwqy"><span class="asterisk">*</span>可服务区域:</label>
-                        <input type="text" id="kfwqy" class="form-control"
-                               name="kfwqy" placeholder="可服务区域" required>
+                        <label class="control-label" for="Color_2"><span class="asterisk">*</span>进港单位:</label>
+                        <select id="Color_2" class="form-control " name="jgdw" required onChange="ddlChange2(this.value);">
+                            <option id="gongb" name="gong1">公司1</option>
+                            <option id="zonga" name="zong">总公司</option>
+
+                            <option id="gongc" name="gong2">公司2</option>
+                            <option id="gongd" name="gong3">公司3</option>
+                            <option id="gonge" name="gong4">公司4</option>
+                            <div class="help-block with-errors"></div>
+                        </select>
                         <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="bkfwqy"><span class="asterisk">*</span>不可服务区域:</label>
-                        <input type="text" id="bkfwqy" class="form-control"
-                               name="bkfwqy" placeholder="不可服务区域" required>
+                        <label class="control-label" for="Color1_1"><span class="asterisk">*</span>可服务区域:</label>
+                        <select  id="Color1_1" class="form-control"
+                               name="kfwqy" placeholder="可服务区域" required multiple="multiple" onChange="dlChange1(this.value);">
+
+                            <option value="a">a区</option>
+                        <option value="b">b区</option>
+                        <option value="c">c区</option>
+                        <option value="d">d区</option>
+
+                        </select>
+                        <input type="hidden" name="morezeng" id="morezeng"/>
+                        <!--  <div class="help-block with-errors"></div>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Color1_2"><span class="asterisk">*</span>不可服务区域:</label>
+                        <select  id="Color1_2" class="form-control"
+                               name="bkfwqy" placeholder="不可服务区域" required multiple="multiple" onChange="dlChange2(this.value);">
+
+                            <option value="a">a区</option>
+                        <option value="b">b区</option>
+                        <option value="c">c区</option>
+                        <option value="d">d区</option>
+
+                        </select>
                         <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="tsqy"><span class="asterisk">*</span>特殊区域:</label>
-                        <input type="text" id="tsqy" class="form-control"
-                               name="tsqy" placeholder="特殊区域" required>
+                        <select type="text" id="tsqy" class="form-control"
+                               name="tsqy" placeholder="特殊区域" required multiple="multiple">
+
+                            <option value="a">a区</option>
+                        <option value="b">b区</option>
+                        <option value="c">c区</option>
+                        <option value="d">d区</option>
+
+                        </select>
                         <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="sfkcz"><span class="asterisk">*</span>是否可操作:</label>
-                        <select  id="sfkcz" class="form-control"
-                               name="sfkcz"  required>
+                        <select id="sfkcz" class="form-control"
+                                name="sfkcz" required>
                             <option id="ke" name="ke" value="0">可操作</option>
                             <option id="bk" name="bk" value="1">不可操作</option>
                         </select>
@@ -222,8 +251,8 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="sfkczcod"><span class="asterisk">*</span>是否可操作COD:</label>
-                        <select  id="sfkczcod" class="form-control"
-                                 name="sfkczcod"  required>
+                        <select id="sfkczcod" class="form-control "
+                                name="sfkczcod" required>
                             <option id="kc" name="kc" value="0">可操作</option>
                             <option id="bkc" name="bkc" value="1">不可操作</option>
                         </select>
@@ -231,8 +260,8 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="sfww"><span class="asterisk">*</span>是否外网:</label>
-                        <select  id="sfww" class="form-control"
-                                 name="sfww" required>
+                        <select id="sfww" class="form-control"
+                                name="sfww" required>
                             <option id="shi" name="shi" value="0">是</option>
                             <option id="bs" name="bs" value="1">否</option>
                         </select>
@@ -240,8 +269,8 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="sfjqx"><span class="asterisk">*</span>是否郊区县:</label>
-                        <select  id="sfjqx" class="form-control"
-                                 name="sfjqx"  required>
+                        <select id="sfjqx" class="form-control "
+                                name="sfjqx" required>
                             <option id="sq" name="sq" value="0">市区</option>
                             <option id="sj" name="sj" value="1">市郊</option>
                         </select>
@@ -249,35 +278,35 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="xz"><span class="asterisk">*</span>性质:</label>
-                        <select  id="xz" class="form-control"
-                                 name="xz"  required>
-                            <option id="sji" name="sji" >省级</option>
-                            <option id="sxs" name="sj" >市辖市</option>
-                            <option id="zxs" name="sq" >直辖市</option>
-                            <option id="xj" name="sj" >县级</option>
-                            <option id="dj" name="sq" >地级</option>
-                            <option id="sh" name="sj" >省会</option>
+                        <select id="xz" class="form-control"
+                                name="xz" required>
+                            <option id="sji" name="sji">省级</option>
+                            <option id="sxs" name="sj">市辖市</option>
+                            <option id="zxs" name="sq">直辖市</option>
+                            <option id="xj" name="sj">县级</option>
+                            <option id="dj" name="sq">地级</option>
+                            <option id="sh" name="sj">省会</option>
                         </select>
                         <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="ssqy"><span class="asterisk">*</span>所属区域:</label>
-                        <select  id="ssqy" class="form-control"
-                                 name="ssqy"  required>
-                            <option id="dbq" name="dbq" >东北区</option>
-                            <option id="hdq" name="hdq" >华东区</option>
-                            <option id="hnq" name="hnq" >华南区</option>
-                            <option id="xbq" name="xbq" >西北区</option>
-                            <option id="hzq" name="hzq" >华中区</option>
-                            <option id="xnq" name="xnq" >西南区</option>
-                            <option id="hbq" name="hbq" >华北区</option>
+                        <select id="ssqy" class="form-control"
+                                name="ssqy" required>
+                            <option id="dbq" name="dbq">东北区</option>
+                            <option id="hdq" name="hdq">华东区</option>
+                            <option id="hnq" name="hnq">华南区</option>
+                            <option id="xbq" name="xbq">西北区</option>
+                            <option id="hzq" name="hzq">华中区</option>
+                            <option id="xnq" name="xnq">西南区</option>
+                            <option id="hbq" name="hbq">华北区</option>
                         </select>
                         <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="pycsjb"><span class="asterisk">*</span>普运城市级别:</label>
-                        <select  id="pycsjb" class="form-control"
-                                 name="pycsjb"  required>
+                        <select id="pycsjb" class="form-control"
+                                name="pycsjb" required>
                             <option id="sheng" name="sheng" value="1">省级</option>
                             <option id="xian" name="xian" value="2">县级</option>
                             <option id="di" name="di" value="3">地级</option>
@@ -285,16 +314,25 @@
                         <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="sjzxjgczfwq"><span class="asterisk">*</span>手机专项价格操作服务区域:</label>
-                        <input type="text" id="sjzxjgczfwq" class="form-control"
+                        <label class="control-label" for="sjzxjgczfwq"><span
+                                class="asterisk">*</span>手机专项价格操作服务区域:</label>
+                        <select type="text" id="sjzxjgczfwq" class="form-control"
                                name="sjzxjgczfwq" placeholder="手机专项价格操作服务区域" required>
+                            <option  name="yi" value="1">第一区</option>
+                            <option  name="er" value="2">第二区</option>
+                            <option  name="san" value="3">第三区</option>
                         <!--  <div class="help-block with-errors"></div>-->
+                            </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="kouan"><span class="asterisk">*</span>口岸:</label>
-                        <input type="text" id="kouan" class="form-control"
+                        <select  id="kouan" class="form-control"
                                name="kouan" placeholder="口岸" required>
+                            <option  name="yi" value="1">第一口岸</option>
+                            <option  name="er" value="2">第二口岸</option>
+                            <option  name="xin" value="3">新二口岸</option>
                         <!--  <div class="help-block with-errors"></div>-->
+                            </select>
                     </div>
 
                 </form>
@@ -320,14 +358,19 @@
             </div>
             <div class="modal-body">
                 <form id="editForm">
+                    <div class="form-group">
+                        <label class="control-label" for="id"><span class="asterisk">*</span>id:</label>
+                        <input type="text" id="id" class="form-control"
+                               name="id" placeholder="id" readonly>
+                        <!-- &lt;!&ndash; <div class="help-block with-errors"></div>&ndash;&gt;-->
+                    </div>
+                    <div class="form-group">
 
-                  <div class="form-group">
+                        <input id="s_province1" name="province" class="form-control" readonly></input>
 
-                        <input id="s_province1" name="province"  class="form-control"></input>
+                        <input id="s_city1" name="city" class="form-control" readonly></input>
 
-                        <input id="s_city1" name="city" class="form-control"></input>
-
-                        <input id="s_county1" name="qu"  class="form-control"></input>
+                        <input id="s_county1" name="qu" class="form-control" readonly></input>
 
 
                     </div>
@@ -335,146 +378,183 @@
 
                     <div id="show2"></div>
                     <div class="form-group">
-                        <label class="control-label" for="yzbm1"><span class="asterisk">*</span>邮政编码:</label>
+                        <label class="control-label" for="yzbm1">邮政编码:</label>
                         <input type="text" id="yzbm1" class="form-control"
-                               name="yzbm" placeholder="邮政编码" required>
-                        &lt;!&ndash; <div class="help-block with-errors"></div>&ndash;&gt;
+                               name="yzbm" placeholder="邮政编码" pattern="[0-9]{6}" data-pattern-error="必须输入六位数字">
+                         <div class="help-block with-errors"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="jm1"><span class="asterisk">*</span>简码:</label>
-                        <input type="text" class="form-control" id="jm1" name="jm"  placeholder="请输入简码"
-                               required>
-                        &lt;!&ndash; <div class="help-block with-errors"></div>&ndash;&gt;
+                        <input type="text" class="form-control" id="jm1" name="jm" placeholder="请输入简码"
+                               required readonly>
+                        <!--    &lt;!&ndash; <div class="help-block with-errors"></div>&ndash;&gt;-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="csbm1"><span class="asterisk">*</span>城市编码:</label>
                         <input type="text" id="csbm1" class="form-control"
-                               name="csbm" placeholder="城市编码" required>
-                        &lt;!&ndash; <div class="help-block with-errors"></div>&ndash;&gt;
+                               name="csbm" placeholder="城市编码" required readonly pattern="[A-z]" data-pattern-error="必须输入字母">
+                        <!--   &lt;!&ndash; <div class="help-block with-errors"></div>&ndash;&gt;-->
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="cgdw1"><span class="asterisk">*</span>出港单位:</label>
-                        <select id="cgdw1" class="form-control" name="cgdw"  required>
+                        <label class="control-label" for="Color2_1"><span class="asterisk">*</span>出港单位:</label>
+                        <select id="Color2_1" class="form-control" name="cgdw" required  onChange="xdlChange1(this.value);">
                             <option id="zong1" name="zong">总公司</option>
                             <option id="gong11" name="gong1">公司1</option>
                             <option id="gong21" name="gong2">公司2</option>
                             <option id="gong31" name="gong3">公司3</option>
                             <option id="gong41" name="gong4">公司4</option>
-                            &lt;!&ndash; <div class="help-block with-errors"></div>&ndash;&gt;
+                           &lt;!&ndash; <div class="help-block with-errors"></div>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="jgdw1"><span class="asterisk">*</span>进港单位:</label>
-                        <input type="text" id="jgdw1" class="form-control"
-                               name="jgdw" placeholder="进港单位" required>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <label class="control-label" for="Color2_2"><span class="asterisk">*</span>进港单位:</label>
+                        <select id="Color2_2" class="form-control " name="jgdw" required onChange="xdlChange2(this.value);">
+                            <option  name="gong1">公司1</option>
+                            <option  name="zong">总公司</option>
+
+                            <option  name="gong2">公司2</option>
+                            <option  name="gong3">公司3</option>
+                            <option  name="gong4">公司4</option>
+                            <div class="help-block with-errors"></div>
+                        </select>
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="kfwqy1"><span class="asterisk">*</span>可服务区域:</label>
-                        <input type="text" id="kfwqy1" class="form-control"
-                               name="kfwqy" placeholder="可服务区域" required>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <label class="control-label" for="Color3_1"><span class="asterisk">*</span>可服务区域:</label>
+                        <select  id="Color3_1" class="form-control"
+                                 name="kfwqy" placeholder="可服务区域" required multiple="multiple" onChange="xlChange1(this.value);">
+
+                            <option value="a">a区</option>
+                            <option value="b">b区</option>
+                            <option value="c">c区</option>
+                            <option value="d">d区</option>
+
+                        </select>
+
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="bkfwqy1"><span class="asterisk">*</span>不可服务区域:</label>
-                        <input type="text" id="bkfwqy1" class="form-control"
-                               name="bkfwqy" placeholder="不可服务区域" required>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <label class="control-label" for="Color3_2"><span class="asterisk">*</span>不可服务区域:</label>
+                        <select  id="Color3_2" class="form-control"
+                                 name="bkfwqy" placeholder="不可服务区域" required multiple="multiple" onChange="xlChange2(this.value);">
+
+                            <option value="a">a区</option>
+                            <option value="b">b区</option>
+                            <option value="c">c区</option>
+                            <option value="d">d区</option>
+
+                        </select>
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="tsqy1"><span class="asterisk">*</span>特殊区域:</label>
-                        <input type="text" id="tsqy1" class="form-control"
-                               name="tsqy" placeholder="特殊区域" required>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <select type="text" id="tsqy1" class="form-control"
+                                name="tsqy" placeholder="特殊区域" required multiple="multiple">
+
+                            <option value="a">a区</option>
+                            <option value="b">b区</option>
+                            <option value="c">c区</option>
+                            <option value="d">d区</option>
+
+                        </select>
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="sfkcz1"><span class="asterisk">*</span>是否可操作:</label>
-                        <select  id="sfkcz1" class="form-control"
-                                 name="sfkcz"  required>
-                            <option id="ke1" name="ke" value="0">可操作</option>
-                            <option id="bk1" name="bk" value="1">不可操作</option>
+                        <select id="sfkcz1" class="form-control"
+                                name="sfkcz" required>
+                            <option  name="ke" value="0">可操作</option>
+                            <option  name="bk" value="1">不可操作</option>
                         </select>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="sfkczCOD1"><span class="asterisk">*</span>是否可操作COD:</label>
-                        <select  id="sfkczCOD1" class="form-control"
-                                 name="sfkczCOD"  required>
-                            <option id="kc1" name="kc" value="0">可操作</option>
-                            <option id="bkc1" name="bkc" value="1">不可操作</option>
+                        <label class="control-label" for="sfkczcod1"><span class="asterisk">*</span>是否可操作COD:</label>
+                        <select id="sfkczcod1" class="form-control "
+                                name="sfkczcod" required>
+                            <option  name="kc" value="0">可操作</option>
+                            <option  name="bkc" value="1">不可操作</option>
                         </select>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="sfww1"><span class="asterisk">*</span>是否外网:</label>
-                        <select  id="sfww1" class="form-control"
-                                 name="sfww"  required>
-                            <option id="shi1" name="shi" value="0">是</option>
-                            <option id="bs1" name="bs" value="1">否</option>
+                        <select id="sfww1" class="form-control"
+                                name="sfww" required>
+                            <option  name="shi" value="0">是</option>
+                            <option  name="bs" value="1">否</option>
                         </select>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="sfjqx1"><span class="asterisk">*</span>是否郊区县:</label>
-                        <select  id="sfjqx1" class="form-control"
-                                 name="sfjqx"  required>
-                            <option id="sq1" name="sq" value="0">市区</option>
-                            <option id="sj1" name="sj" value="1">市郊</option>
+                        <select id="sfjqx1" class="form-control "
+                                name="sfjqx" required>
+                            <option name="sq" value="0">市区</option>
+                            <option  name="sj" value="1">市郊</option>
                         </select>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="xz1"><span class="asterisk">*</span>性质:</label>
-                        <select  id="xz1" class="form-control"
-                                 name="xz"  required>
-                            <option id="sji1" name="sji" >省级</option>
-                            <option id="sxs1" name="sj" >市辖市</option>
-                            <option id="zxs1" name="sq" >直辖市</option>
-                            <option id="xj1" name="sj" >县级</option>
-                            <option id="dj1" name="sq" >地级</option>
-                            <option id="sh1" name="sj" >省会</option>
+                        <select id="xz1" class="form-control"
+                                name="xz" required>
+                            <option  name="sji">省级</option>
+                            <option  name="sj">市辖市</option>
+                            <option  name="sq">直辖市</option>
+                            <option  name="sj">县级</option>
+                            <option  name="sq">地级</option>
+                            <option  name="sj">省会</option>
                         </select>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="ssqy1"><span class="asterisk">*</span>所属区域:</label>
-                        <select  id="ssqy1" class="form-control"
-                                 name="ssqy"  required>
-                            <option id="dbq1" name="dbq" >东北区</option>
-                            <option id="hdq1" name="hdq" >华东区</option>
-                            <option id="hnq1" name="hnq" >华南区</option>
-                            <option id="xbq1" name="xbq" >西北区</option>
-                            <option id="hzq1" name="hzq" >华中区</option>
-                            <option id="xnq1" name="xnq" >西南区</option>
-                            <option id="hbq1" name="hbq" >华北区</option>
+                        <select id="ssqy1" class="form-control"
+                                name="ssqy" required>
+                            <option  name="dbq">东北区</option>
+                            <option  name="hdq">华东区</option>
+                            <option  name="hnq">华南区</option>
+                            <option  name="xbq">西北区</option>
+                            <option  name="hzq">华中区</option>
+                            <option  name="xnq">西南区</option>
+                            <option  name="hbq">华北区</option>
                         </select>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="pycsjb1"><span class="asterisk">*</span>普运城市级别:</label>
-                        <select  id="pycsjb1" class="form-control"
-                                 name="pycsjb"  required>
-                            <option id="sheng1" name="sheng" value="1">省级</option>
-                            <option id="xian1" name="xian" value="2">县级</option>
-                            <option id="di1" name="di" value="3">地级</option>
+                        <select id="pycsjb1" class="form-control"
+                                name="pycsjb" required>
+                            <option  name="sheng" value="1">省级</option>
+                            <option  name="xian" value="2">县级</option>
+                            <option  name="di" value="3">地级</option>
                         </select>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <!--  <div class="help-block with-errors"></div>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="sjzxjgczfwq1"><span class="asterisk">*</span>手机专项价格操作服务区域:</label>
-                        <input type="text" id="sjzxjgczfwq1" class="form-control"
-                               name="sjzxjgczfwq" placeholder="手机专项价格操作服务区域" required>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <label class="control-label" for="sjzxjgczfwq"><span
+                                class="asterisk">*</span>手机专项价格操作服务区域:</label>
+                        <select type="text" id="sjzxjgczfwq1" class="form-control"
+                                name="sjzxjgczfwq1" placeholder="手机专项价格操作服务区域" required>
+                            <option  name="yi" value="1">第一区</option>
+                            <option  name="er" value="2">第二区</option>
+                            <option  name="san" value="3">第三区</option>
+                            <!--  <div class="help-block with-errors"></div>-->
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="ka1"><span class="asterisk">*</span>口岸:</label>
-                        <input type="text" id="ka1" class="form-control"
-                               name="ka" placeholder="口岸" required>
-                        &lt;!&ndash;  <div class="help-block with-errors"></div>&ndash;&gt;
+                        <label class="control-label" for="kouan1"><span class="asterisk">*</span>口岸:</label>
+                        <select  id="kouan1" class="form-control"
+                                 name="kouan" placeholder="口岸" required>
+                            <option  name="yi" value="1">第一口岸</option>
+                            <option  name="er" value="2">第二口岸</option>
+                            <option  name="xin" value="3">新二口岸</option>
+                            <!--  <div class="help-block with-errors"></div>-->
+                        </select>
                     </div>
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -510,9 +590,12 @@
     </div>
 </div>
 <div id="actionButtons" class="admin-hide">
-    <a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>　
-    <a shiro:hasPermission="quyu:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>　
-    <a shiro:hasPermission="quyu:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i class="glyphicon glyphicon-remove"></i></a>　
+    <a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i
+            class="glyphicon glyphicon-heart"></i></a>　
+    <a shiro:hasPermission="quyu:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="编辑"><i
+            class="glyphicon glyphicon-edit"></i></a>　
+    <a shiro:hasPermission="quyu:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i
+            class="glyphicon glyphicon-remove"></i></a>　
 </div>
 <!-- zTree -->
 <div id="menuContent" class="menuContent"
@@ -520,20 +603,73 @@
     <ul id="tree" class="ztree"></ul>
 </div>
 <style type="text/css">
-    body{ background:#EEEEEE;margin:0; padding:0; font-family:"微软雅黑", Arial, Helvetica, sans-serif; }
-    a{ color:#006600; text-decoration:none;}
-    a:hover{color:#990000;}
-    .top{ margin:5px auto; color:#990000; text-align:center;}
-    .info select{ border:2px #993300 solid; background:#EEEEEE;}
-    .info{ margin:5px; text-align:center;}
-    .info #show{ color:#3399FF; }
-    .bottom{ text-align:right; font-size:12px; color:#CCCCCC; width:1000px;}
+    body {
+        background: #EEEEEE;
+        margin: 0;
+        padding: 0;
+        font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+    }
+
+    a {
+        color: #006600;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #990000;
+    }
+
+    .top {
+        margin: 5px auto;
+        color: #990000;
+        text-align: center;
+    }
+
+    .info select {
+        border: 2px #993300 solid;
+        background: #EEEEEE;
+    }
+
+    .info {
+        margin: 5px;
+        text-align: center;
+    }
+
+    .info #show {
+        color: #3399FF;
+    }
+
+    .bottom {
+        text-align: right;
+        font-size: 12px;
+        color: #CCCCCC;
+        width: 1000px;
+    }
 </style>
 
-
-<script type="text/javascript">_init_area();</script>
 <script type="text/javascript">
-    window.onload=function(){
+    $(function(){
+        $("#btn1").click(function(){
+            $("#div1").distpicker("reset");
+        })
+    })
+</script>
+<script type="text/javascript">
+    var windowComeback = document.getElementById('window-comeback');
+    windowComeback.addEventListener('click', function () {
+
+        window.location.href = document.referrer;
+    });
+
+
+</script>
+
+<script type="text/javascript">
+    _init_area();
+
+</script>
+<script type="text/javascript">
+    window.onload = function () {
         // var Gid  = document.getElementsByClassName ;
         // var showArea = function(){
         //     Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +
@@ -546,13 +682,219 @@
         // Gid('s_county').setAttribute('onchange','showArea()');
 
 
+    }
+</script>
+<!--<script type="text/javascript">
+    // 返回中文的首字母
+    function getPinYinHeadChar(str) {
 
+        var convert = "";
+        for (var j = 0; j < str.length(); j++) {
+           var word = str.charAt(j);
+           var pinyinArray = PinyinHelper.toHanyuPinyinStringArray(word);
+            if (pinyinArray != null) {
+                convert += pinyinArray[0].charAt(0);
+            } else {
+                convert += word;
+            }
+        }
+        return convert;
     }
 
 
+
+</script>-->
+
+
+
+<!--<script type="text/javascript">
+
+function getPinYinFirstCharacter(str, split,uppercase) {
+
+split = split || " ";
+uppercase = uppercase || false;
+var len = str.length;
+var result = "";
+var reg = new RegExp('[a-zA-Z0-9\- ]');
+var val;
+var name;
+for (var i = 0; i < len; i++) {
+val = str.substr(i, 1);
+if (isChinese(val)) {
+name = arraySearch(val);
+if (reg.test(val)) {
+result += split + val;
+} else if (name !== false) {
+result += split + name.substring(0, 1);
+}
+} else {
+result +=  val;
+}
+}
+
+if(uppercase) result = result.toUpperCase();
+result = result.replace(split,"");
+return result.trim();
+}
+
+function isChinese(str) {
+    var entryVal = str;
+    var cnChar = entryVal.match(/[^\x00-\x80]/g);
+    if (cnChar != null && cnChar.length > 0)
+        return true;
+    return false;
+}
 </script>
 
 
+
+&lt;!&ndash;<script type="text/javascript">
+   $('#s_city').blur(function(){
+       document.getElementById('jm').value=getPinYinFirstCharacter(document.getElementById('s_city').value(), split,uppercase);
+   })
+
+</script>&ndash;&gt;-->
+<script type="text/javascript">
+function ddlChange1(v){
+displayOptions(2, [v]);
+
+ddlChange1.hiddenOption = v;  // keep the hidden value for ddlChange2
+}
+
+function ddlChange2(v){
+
+}
+
+function displayOptions(selectIndex, hiddenOptions){
+// Get select element
+var el = document.getElementById('Color_' + selectIndex);
+el.value = '';
+
+var i;
+
+// Prepare hidden option set
+var hSet = {};
+for (i=0; i<hiddenOptions.length; i++) {
+hSet[hiddenOptions[i]] = true;
+}
+
+// hide the hidden options and show the others
+var ops = el.options;
+for(i=0 ; i < ops.length ; ++i) {
+if(hSet[ops[i].value]){
+ops[i].style.display = "none"; // hide
+} else {
+ops[i].style.display = "";     // show
+}
+}
+}
+</script>
+
+<script type="text/javascript">
+    function dlChange1(v){
+        displayOptions1(2, [v]);
+
+        dlChange1.hiddenOption = v;  // keep the hidden value for ddlChange2
+    }
+
+    function dlChange2(v){
+
+    }
+
+    function displayOptions1(selectIndex, hiddenOptions){
+// Get select element
+        var el = document.getElementById('Color1_' + selectIndex);
+        el.value = '';
+
+        var i;
+
+// Prepare hidden option set
+        var hSet = {};
+        for (i=0; i<hiddenOptions.length; i++) {
+            hSet[hiddenOptions[i]] = true;
+        }
+
+// hide the hidden options and show the others
+        var ops = el.options;
+        for(i=0 ; i < ops.length ; ++i) {
+            if(hSet[ops[i].value]){
+                ops[i].style.display = "none"; // hide
+            } else {
+                ops[i].style.display = "";     // show
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+    function xdlChange1(v){
+        displayOptions2(2, [v]);
+
+        xdlChange1.hiddenOption = v;  // keep the hidden value for ddlChange2
+    }
+
+    function xdlChange2(v){
+
+    }
+
+    function displayOptions2(selectIndex, hiddenOptions){
+// Get select element
+        var el = document.getElementById('Color2_' + selectIndex);
+        el.value = '';
+
+        var i;
+
+// Prepare hidden option set
+        var hSet = {};
+        for (i=0; i<hiddenOptions.length; i++) {
+            hSet[hiddenOptions[i]] = true;
+        }
+
+// hide the hidden options and show the others
+        var ops = el.options;
+        for(i=0 ; i < ops.length ; ++i) {
+            if(hSet[ops[i].value]){
+                ops[i].style.display = "none"; // hide
+            } else {
+                ops[i].style.display = "";     // show
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+    function xlChange1(v){
+        displayOptions3(2, [v]);
+
+        xlChange1.hiddenOption = v;  // keep the hidden value for ddlChange2
+    }
+
+    function xlChange2(v){
+
+    }
+
+    function displayOptions3(selectIndex, hiddenOptions){
+// Get select element
+        var el = document.getElementById('Color3_' + selectIndex);
+        el.value = '';
+
+        var i;
+
+// Prepare hidden option set
+        var hSet = {};
+        for (i=0; i<hiddenOptions.length; i++) {
+            hSet[hiddenOptions[i]] = true;
+        }
+
+// hide the hidden options and show the others
+        var ops = el.options;
+        for(i=0 ; i < ops.length ; ++i) {
+            if(hSet[ops[i].value]){
+                ops[i].style.display = "none"; // hide
+            } else {
+                ops[i].style.display = "";     // show
+            }
+        }
+    }
+</script>
 <script th:inline="javascript">
 
     var $table = $('#table');
@@ -575,7 +917,7 @@
                 {field: 'cgdw', title: '出港单位', sortable: true, halign: 'left'},
                 {field: 'jgdw', title: '进港单位', sortable: true, halign: 'left'},
 
-            {
+                {
                     field: 'action',
                     title: '操作',
                     halign: 'center',
@@ -609,6 +951,7 @@
             $('#editForm').find('[name=groupIds]').find('option[value=' + groupId + ']').prop('selected', true);
         }
     }
+
 
     function actionFormatter(value, row, index) {
         return $('#actionButtons').html();
@@ -712,5 +1055,15 @@
     $.fn.zTree.init($("#tree"), setting, zNodes);
     $("#organizationName").click(showMenu);
     $("#editOrganizationName").click(showMenuOfEdit);
+</script>
+
+<script type="text/javascript">
+    var tabProduct = document.getElementById("table");
+
+    // 设置表格可编辑
+    // 可一次设置多个，例如：EditTables(tb1,tb2,tb2,......)
+    EditTables(tabProduct);
+
+
 </script>
 </html>

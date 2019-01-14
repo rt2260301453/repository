@@ -463,7 +463,11 @@
     });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
    /* //出错提示
+=======
+   //出错提示
+>>>>>>> dev
     $(document).ajaxError(function (event, request, settings) {
         debugger;
         var responseJSON = JSON.parse(request.responseText), msg;
@@ -474,10 +478,14 @@
             msg = request.status + '  (' + request.statusText + ')';
         }
         $.myNotify.danger(msg);
+<<<<<<< HEAD
     });*/
 =======
 
 >>>>>>> aa040a5ec557aea2f3c7922da248e9dc127df37d
+=======
+    });
+>>>>>>> dev
     // To make Pace works on Ajax calls
     $(document).ajaxStart(function () {
         Pace.restart()
