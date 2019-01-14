@@ -467,8 +467,24 @@
         });
     });
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+   /* //出错提示
+=======
+   //出错提示
+>>>>>>> dev
+=======
+>>>>>>> 343d7ca6d5e48db8cea191592ca7fe79b8a6b50b
 
     //出错提示
+<<<<<<< HEAD
+=======
+>>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
+>>>>>>> 682b1fe213ab89b4bab862bcd18f043f1718e966
+>>>>>>> 343d7ca6d5e48db8cea191592ca7fe79b8a6b50b
     $(document).ajaxError(function (event, request, settings) {
         debugger;
         var responseJSON = JSON.parse(request.responseText), msg;
@@ -479,7 +495,23 @@
             msg = request.status + '  (' + request.statusText + ')';
         }
         $.myNotify.danger(msg);
+<<<<<<< HEAD
     });
+=======
+<<<<<<< HEAD
+    });*/
+
+<<<<<<< HEAD
+>>>>>>> aa040a5ec557aea2f3c7922da248e9dc127df37d
+=======
+    });
+>>>>>>> dev
+=======
+=======
+    });
+>>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
+>>>>>>> 682b1fe213ab89b4bab862bcd18f043f1718e966
+>>>>>>> 343d7ca6d5e48db8cea191592ca7fe79b8a6b50b
     // To make Pace works on Ajax calls
     $(document).ajaxStart(function () {
         Pace.restart()
