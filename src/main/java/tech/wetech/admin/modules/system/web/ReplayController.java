@@ -29,10 +29,14 @@ public class ReplayController {
     @Resource
     private ReplayService replayService;
 
+<<<<<<< HEAD
     @Autowired
     private StaffService staffService;
 
     @RequestMapping
+=======
+    @GetMapping
+>>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
     @RequiresPermissions("replay:view")
     public String page(Model model) {
         setCommonData(model);

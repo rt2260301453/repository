@@ -18,6 +18,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -29,6 +31,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
@@ -37,6 +40,8 @@
 =======
 
 >>>>>>> dev
+=======
+>>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -70,7 +75,10 @@
 			</exclusions>
 		</dependency>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -78,7 +86,10 @@
 			<version>1.18.4</version>
 			<scope>provided</scope>
 		</dependency>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
 		<!-- shiro-quartz依赖 commons-collections 否则java.lang.NoClassDefFoundError: org/apache/commons/collections/SetUtils org.quartz.JobDetail.<init>(JobDetail.java:85) -->
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -211,6 +222,13 @@
 			<artifactId>quartz</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
 
 
 	</dependencies>
@@ -236,6 +254,16 @@
 						<artifactId>mysql-connector-java</artifactId>
 						<version>${mysql.version}</version>
 					</dependency>
+
+					<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven -->
+					<dependency>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok-maven</artifactId>
+						<version>1.18.4.0</version>
+						<type>pom</type>
+					</dependency>
+
+
 					<dependency>
 						<groupId>tk.mybatis</groupId>
 						<artifactId>mapper-generator</artifactId>

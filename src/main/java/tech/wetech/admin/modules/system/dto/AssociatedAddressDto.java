@@ -7,6 +7,7 @@ public class AssociatedAddressDto {
     private Integer id;
     private String fixedareano;
     private String cityname;
+    private String customerno;
     private String customeraddress;
     private String partitionno;
 
@@ -14,7 +15,7 @@ public class AssociatedAddressDto {
         this.id = associatedAddress.getId();
         this.fixedareano = associatedAddress.getFixedareano();
         this.cityname = associatedAddress.getCityname();
-        this.customeraddress = associatedAddress.getCustomeraddress();
+        this.customerno = associatedAddress.getCustomerno();
         this.partitionno = associatedAddress.getPartitionno();
     }
 }

@@ -5,7 +5,10 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tech.wetech.admin.core.exception.BizException;
 import tech.wetech.admin.core.utils.PageResultSet;
+import tech.wetech.admin.core.utils.ResultCodeEnum;
 import tech.wetech.admin.modules.system.mapper.BasicMapper;
 import tech.wetech.admin.modules.system.po.Basic;
 import tech.wetech.admin.modules.system.query.BasicQuery;
@@ -48,23 +51,85 @@ public class BasicServicelmpl implements BasicService {
     }
 
     @Override
-    public Basic findOne(int basicId) {
-        return basicMapper.selectByPrimaryKey(basicId);
-    }
-
-    @Override
-    public void createBasic(Basic basic) {
-        basicMapper.insertSelective(basic);
-    }
-
-    @Override
     public void updateBasic(Basic basic) {
+        int cl = selectClass(basic);
+        if(cl == 0){
+            basicMapper.updateByPrimaryKeySelective(basic);
+        }else{
+            if(basic.getClassifying()==1){
+                basicMapper.updateByPrimaryKeySelective(basic);
+            }else{
+                throw new BizException(ResultCodeEnum.FAILED_CLASSIFYING_ALREADY_EXIST);
+            }
+        }
+    }
+
+    @Override
+    public void updateBasicremark(Basic basic) {
         basicMapper.updateByPrimaryKeySelective(basic);
     }
 
     @Override
-    public void deleteBasic(int basicId) {
-        basicMapper.deleteByPrimaryKey(basicId);
+    public void updateBasicreclassifying(Basic basic) {
+        int cl = selectClass(basic);
+        if(cl == 0){
+            basicMapper.updateByPrimaryKeySelective(basic);
+        }else{
+            if(basic.getClassifying()==1){
+                basicMapper.updateByPrimaryKeySelective(basic);
+            }else{
+                throw new BizException(ResultCodeEnum.FAILED_CLASSIFYING_ALREADY_EXIST);
+            }
+        }
     }
+
+    @Override
+    public void deleteBasic(String basicno) { basicMapper.deleteByPrimaryKey(basicno);}
+
+    @Override
+    public Basic findByBasicname(String basicname) {
+        Basic basic = new Basic();
+        basic.setBasicname(basicname);
+        basicMapper.selectOne(basic);
+        return basicMapper.selectOne(basic);
+    }
+
+    @Override
+    public Basic findByBasicno(String basicno) {
+        Basic basic = new Basic();
+        basic.setBasicno(basicno);
+        basicMapper.selectOne(basic);
+        return basicMapper.selectOne(basic);
+    }
+
+    @Override
+    public int selectClass(Basic basic) {
+        return basicMapper.selectByClass(basic);
+    }
+
+    @Override
+    @Transactional
+    public void createBasic(Basic basic) {
+        Basic b = findByBasicname(basic.getBasicname());
+        if (b != null) {
+            throw new BizException(ResultCodeEnum.FAILED_BASICNAME_ALREADY_EXIST);
+        }
+        Basic s = findByBasicno(basic.getBasicno());
+        if (s != null) {
+            throw new BizException(ResultCodeEnum.FAILED_BASICNO_ALREADY_EXIST);
+        }
+        basicMapper.insertSelective(basic);
+    }
+
+    @Override
+    public int selectOneno(Basic basic) {
+        return basicMapper.selectByNo(basic);
+    }
+
+    @Override
+    public int selectOnename(Basic basic) {
+        return basicMapper.selectByName(basic);
+    }
+
 
 }

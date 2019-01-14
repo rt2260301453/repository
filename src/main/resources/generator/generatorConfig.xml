@@ -26,6 +26,7 @@
 
         <javaClientGenerator targetPackage="tech.wetech.admin.modules.example.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
+<<<<<<< HEAD
 
         <!--<table schema="wetech_admin" tableName="sys_group" domainObjectName="Group">
             &lt;!&ndash;mysql 配置&ndash;&gt;
@@ -111,7 +112,13 @@
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
         <!--</table>-->
         <table schema="wetech_admin" tableName="replayof" domainObjectName="replayof">
+=======
+        <table schema="wetech_admin" tableName="spdate" domainObjectName="SpDate">
+            <!--mysql 配置-->
+>>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
     </context>
 </generatorConfiguration>
