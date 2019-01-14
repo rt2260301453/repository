@@ -276,6 +276,7 @@
                       console.log(response);
                       if (response.success){
                           alert("修改成功");
+                          $('table').bootstrapTable('refresh', {silent: true})
                       }
                       else{
                           return response.msg;
@@ -293,6 +294,7 @@
                         console.log(response);
                         if (response.success){
                             alert("修改成功");
+                            $('table').bootstrapTable('refresh', {silent: true})
                         }
                         else{
                             return response.msg;
