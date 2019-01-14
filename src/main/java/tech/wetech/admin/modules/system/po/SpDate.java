@@ -1,40 +1,47 @@
 package tech.wetech.admin.modules.system.po;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-@Table(name = "SpDate")
+import java.util.Date;
+@Table(name="spdate")
 public class SpDate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull(message = "时间名称不能为空")
+    @Column(name = "date_name")
     private String datename;
+    @Column(name = "pacific_up")
     @NotNull(message = "时间不能为空")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     private Date pacificup;
+    @Column(name = "pacific_off")
     @NotNull(message = "时间不能为空")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
     private Date pacificoff;
+    @Column(name = "sat_up")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
     private Date satup;
+    @Column(name = "sat_off")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
     private Date satoff;
+    @Column(name = "sun_up")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
     private Date sunup;
+    @Column(name = "sun_off")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+08:00")
     @NotNull(message = "时间不能为空")
@@ -44,11 +51,15 @@ public class SpDate {
 
     private String unit;
 
+    @Column(name = "update_id")
     private String updateid;
 
+    @Column(name = "update_name")
     private String updatename;
 
+    @Column(name = "update_unit")
     private String updateunit;
+    @Column(name = "update_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+08:00")
     private Date updatedate;

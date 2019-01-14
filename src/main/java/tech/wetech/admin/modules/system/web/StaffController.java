@@ -106,7 +106,8 @@ public class StaffController{
             System.out.print("=====================================================");
             System.out.print("model数据："+aa);
         }
-        model.addAttribute("organizationList", staffService.findAll());
+        model.addAttribute("stafflist", staffService.findAll());
+        model.addAttribute("subbasicList", staffService.findbasic());
     }
 
 

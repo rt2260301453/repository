@@ -20,7 +20,7 @@ public class AssociatedAddress {
     /**
      * 客户地址
      */
-    private String customeraddress;
+    private String customerno;
 
     /**
      * 分区编号
@@ -80,19 +80,19 @@ public class AssociatedAddress {
     /**
      * 获取客户地址
      *
-     * @return customeraddress - 客户地址
+     * @return customerno - 客户地址
      */
-    public String getCustomeraddress() {
-        return customeraddress;
+    public String getCustomerno() {
+        return customerno;
     }
 
     /**
      * 设置客户地址
      *
-     * @param customeraddress 客户地址
+     * @param customerno 客户地址
      */
-    public void setCustomeraddress(String customeraddress) {
-        this.customeraddress = customeraddress;
+    public void setCustomerno(String customerno) {
+        this.customerno = customerno;
     }
 
     /**

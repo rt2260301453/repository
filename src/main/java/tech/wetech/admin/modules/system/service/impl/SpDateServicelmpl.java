@@ -33,8 +33,8 @@ public class SpDateServicelmpl  implements SpDateService {
         }
         Weekend<SpDate> weekend = Weekend.of(SpDate.class);
         WeekendCriteria<SpDate, Object> criteria = weekend.weekendCriteria();
-        if (!StringUtils.isEmpty(spDateQuery.getName())) {
-            criteria.andLike(SpDate::getDatename, spDateQuery.getName());
+        if (!StringUtils.isEmpty(spDateQuery.getDateName())) {
+            criteria.andLike(SpDate::getDatename, spDateQuery.getDateName());
         }
 
         PageResultSet<SpDate> resultSet = new PageResultSet<>();

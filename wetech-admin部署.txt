@@ -3,7 +3,7 @@
 修改appication-dev-yml文件，更新MySQL账号和密码
 修改appication-prd-yml文件，修改tomcat端口号
 运行WetechAdminApplication类
-    项目访问路径：http://localhost:28080/wetech-admin
+项目访问路径：http://localhost:28080/wetech-admin
 账号密码：admin/123456
 
 mybatis自动生成命令

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import tech.wetech.admin.core.utils.BaseController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author cjbi
