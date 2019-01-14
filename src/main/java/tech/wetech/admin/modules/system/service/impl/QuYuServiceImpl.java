@@ -1,7 +1,6 @@
 package tech.wetech.admin.modules.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import net.sourceforge.pinyin4j.PinyinHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -177,9 +176,11 @@ public  class QuYuServiceImpl implements QuYuService {
     public List<QuYu> selectAllCity() {
         return quyuMapper.selectAllCity();
     }
+    @Override
     public List<QuYu> selectAllProvince() {
         return quyuMapper.selectAllProvince();
     }
+    @Override
     public List<QuYu> selectAllQu() {
         return quyuMapper.selectAllQu();
     }
