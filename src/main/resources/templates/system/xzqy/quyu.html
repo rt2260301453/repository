@@ -76,10 +76,10 @@
                             <button class="btn btn-default" id="window-comeback">取消;</button>
 
 
-                            <button shiro:hasPermission="quyu:daoru" type="button" id="daoBtn" class="btn btn-default"
+                           <!-- <button shiro:hasPermission="quyu:daoru" type="button" id="daoBtn" class="btn btn-default"
                                     data-toggle="modal"
                                     data-target="#daoqryModal"><i class="glyphicon glyphicon-search"></i> 导入
-                            </button>
+                            </button>-->
                         </div>
                     </div>
                     <table id="table"></table>
@@ -684,7 +684,30 @@
 
     }
 </script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
+    // 返回中文的首字母
+    function getPinYinHeadChar(str) {
+
+        var convert = "";
+        for (var j = 0; j < str.length(); j++) {
+           var word = str.charAt(j);
+           var pinyinArray = PinyinHelper.toHanyuPinyinStringArray(word);
+            if (pinyinArray != null) {
+                convert += pinyinArray[0].charAt(0);
+            } else {
+                convert += word;
+            }
+        }
+        return convert;
+    }
+
+
+
+</script>-->
+
+
+
+<!--<script type="text/javascript">
 
 function getPinYinFirstCharacter(str, split,uppercase) {
 
@@ -725,12 +748,12 @@ function isChinese(str) {
 
 
 
-<!--<script type="text/javascript">
+&lt;!&ndash;<script type="text/javascript">
    $('#s_city').blur(function(){
        document.getElementById('jm').value=getPinYinFirstCharacter(document.getElementById('s_city').value(), split,uppercase);
    })
 
-</script>-->
+</script>&ndash;&gt;-->
 <script type="text/javascript">
 function ddlChange1(v){
 displayOptions(2, [v]);

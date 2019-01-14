@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.Console;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author cjbi
@@ -51,8 +52,17 @@ public class QuYuController extends BaseController {
     @RequiresPermissions("quyu:view")
     public String page(Model model) {
         setCommonData(model);
+
+
+
         return "system/xzqy/quyu";
     }
+    /**
+     * 取汉字的首字母(默认是大写)
+     *
+     * @param src
+     * @return
+     */
 
     @ResponseBody
     @RequestMapping("/list")
