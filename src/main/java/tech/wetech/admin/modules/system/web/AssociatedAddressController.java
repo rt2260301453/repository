@@ -1,7 +1,9 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1a948da644e1dddeeeb6cb6fd49c772a2ca26bc1
 package tech.wetech.admin.modules.system.web;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,16 +13,13 @@ import tech.wetech.admin.core.utils.BaseController;
 import tech.wetech.admin.core.annotation.SystemLog;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.core.utils.Result;
-import tech.wetech.admin.core.utils.ResultCodeEnum;
 import tech.wetech.admin.modules.system.dto.AssociatedAddressDto;
 import tech.wetech.admin.modules.system.po.AssociatedAddress;
 import tech.wetech.admin.modules.system.po.Customer;
 import tech.wetech.admin.modules.system.query.AssociatedAddressQuery;
 import tech.wetech.admin.modules.system.service.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
