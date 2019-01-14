@@ -23,6 +23,8 @@ public interface AssociatedAddressService {
      */
     List<AssociatedAddress> selectAll();
 
+    List<AssociatedAddress> selectByCondition(AssociatedAddress associatedAddress);
+
     PageResultSet<AssociatedAddressDto> findByPage(AssociatedAddressQuery associatedAddressQuery);
 
     /**

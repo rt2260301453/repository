@@ -49,23 +49,41 @@ public class SubBasicServicelmpl implements SubBasicService {
     }
 
     @Override
-    public SubBasic findOne(int subbasicId) {
-        return subbasicMapper.selectByPrimaryKey(subbasicId);
-    }
-
-    @Override
     public void createsubBasic(SubBasic subbasic) {
         subbasicMapper.insertSelective(subbasic);
     }
 
     @Override
-    public void updatesubBasic(SubBasic subbasic) {
-        subbasicMapper.updateByPrimaryKeySelective(subbasic);
+    public void updatesubBasic(SubBasic subbasic) { subbasicMapper.updateByPrimaryKeySelective(subbasic); }
+
+    @Override
+    public void deletesubBasic(String subbasicno) { subbasicMapper.deleteByPrimaryKey(subbasicno); }
+
+    @Override
+    public int selectOneno(SubBasic subbasic) {
+        return subbasicMapper.selectByNo(subbasic);
     }
 
     @Override
-    public void deletesubBasic(int subbasicId) {
-        subbasicMapper.deleteByPrimaryKey(subbasicId);
+    public int selectOnename(SubBasic subbasic) {
+        return subbasicMapper.selectByName(subbasic);
     }
+
+    @Override
+    public SubBasic findBySubBasicname(String subbasicname) {
+        SubBasic subbasic = new SubBasic();
+        subbasic.setSubbasicname(subbasicname);
+        subbasicMapper.selectOne(subbasic);
+        return subbasicMapper.selectOne(subbasic);
+    }
+
+    @Override
+    public SubBasic findBySubBasicno(String subbasicno) {
+        SubBasic subbasic = new SubBasic();
+        subbasic.setSubbasicno(subbasicno);
+        subbasicMapper.selectOne(subbasic);
+        return subbasicMapper.selectOne(subbasic);
+    }
+
 
 }

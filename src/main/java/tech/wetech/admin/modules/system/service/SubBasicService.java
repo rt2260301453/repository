@@ -13,7 +13,7 @@ import java.util.List;
 public interface SubBasicService {
 
     /**
-     * 分页查询用户组
+     * 分页查询档案信息
      * @param subbasicQuery
      * @return
      */
@@ -26,28 +26,53 @@ public interface SubBasicService {
     List<SubBasic> findAll();
 
     /**
-     * 查询单个
-     * @param subbasicId
+     * 根据subbasicname查找subbasicname
+     * 校验重复
+     * @param subbasicname
      * @return
      */
-    SubBasic findOne(int subbasicId);
+    public SubBasic findBySubBasicname(String subbasicname);
 
     /**
-     * 创建用户组
+     * 根据subbasicno查找subbasicno
+     * 校验重复
+     * @param subbasicno
+     * @return
+     */
+    public SubBasic findBySubBasicno(String subbasicno);
+
+    /**
+     * 校验基本档案编号
+     * 1
+     * @param subbasic
+     * @return
+     */
+    int selectOneno(SubBasic subbasic);
+
+    /**
+     * 校验基本档案名称
+     * 1
+     * @param subbasic
+     * @return
+     */
+    int selectOnename(SubBasic subbasic);
+
+    /**
+     * 创建档案信息
      * @param subbasic
      */
     void createsubBasic(SubBasic subbasic);
 
     /**
-     * 更新用户组
+     * 更新档案信息
      * @param subbasic
      */
     void updatesubBasic(SubBasic subbasic);
 
     /**
-     * 删除用户组
-     * @param subbasicId
+     * 删除档案信息
+     * @param subbasicno
      */
-    void deletesubBasic(int subbasicId);
+    void deletesubBasic(String subbasicno);
 
 }

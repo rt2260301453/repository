@@ -1,9 +1,12 @@
 package tech.wetech.admin.modules.system.po;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 @Table(name="subbasic")
 public class SubBasic {
@@ -12,16 +15,20 @@ public class SubBasic {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(message = "档案编号不能为空")
+    @Pattern(regexp = "^zd\\d{5}$",message = "档案编号格式不正确")
     private String subbasicno;
 
     /**
      * 子级档案名称
      */
+    @NotNull(message = "档案名称不能为空")
     private String subbasicname;
 
     /**
      * 上级编码
      */
+    @Pattern(regexp = "^d\\d{5}$",message = "上级编号格式不正确")
     private String mainbasicno;
 
     /**
@@ -37,6 +44,7 @@ public class SubBasic {
     /**
      * 子级备注
      */
+    @Length(max= 20,message = "备注内容不能超过20字")
     private String subremark;
 
     /**
@@ -47,6 +55,7 @@ public class SubBasic {
     /**
      * 子级操作单位
      */
+    @NotNull(message = "操作人员单位不能为空")
     private String suboperationunit;
 
     /**

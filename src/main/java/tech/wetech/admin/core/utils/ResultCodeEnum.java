@@ -5,6 +5,7 @@ package tech.wetech.admin.core.utils;
  */
 public enum ResultCodeEnum {
 
+
     OK("200", "处理成功"),
     BAD_REQUEST("400", "请求参数有误"),
     UNAUTHORIZED("401", "未授权"),
@@ -13,7 +14,11 @@ public enum ResultCodeEnum {
     FAILED_DEL_OWN("485", "不能删除自己"),
     FAILED_USER_ALREADY_EXIST("486", "该用户已存在"),
     INTERNAL_SERVER_ERROR("500", "服务器内部错误"),
-    NOT_IMPLEMENTED("501", "业务异常");
+    NOT_IMPLEMENTED("501", "业务异常"),
+    FAILED_BASICNAME_ALREADY_EXIST("444", "该档案名称已存在"),
+    FAILED_BASICNO_ALREADY_EXIST("445", "该档案编号已存在"),
+    FAILED_CLASSIFYING_ALREADY_EXIST("446","是否分级选择“是”后,不能修改为“否”！！"),
+    CUOWO("502", "时间名称是唯一的");
 
     private String code;
     private String msg;
