@@ -3,6 +3,7 @@ package tech.wetech.admin.modules.system.service;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.modules.system.dto.StaffDto;
 import tech.wetech.admin.modules.system.po.Staff;
+import tech.wetech.admin.modules.system.po.SubBasic;
 import tech.wetech.admin.modules.system.query.StaffQuery;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface StaffService {
     void deleteStaff(Long id);
 
     int checkstaffid(Staff id);
+
+    List<SubBasic> findbasic();
 }

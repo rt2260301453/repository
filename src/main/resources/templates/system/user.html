@@ -290,6 +290,7 @@
             console.log(value, row, index);
         },
         'click .edit': function (e, value, row, index) {
+            console.log(row)
             $('#editModal').modal('show')
             $('#editForm').fillForm(row);
             editAfter('', row);
