@@ -101,7 +101,7 @@
 <!-- /.content -->
 
 <!-- add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
+<div class="modal fade" id="addModal"  role="dialog" aria-labelledby="addModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -121,7 +121,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
-                        <input type="text" id="name" class="form-control" pattern=" ^[\u4E00-\u9FA5]$" data-match-error="员工姓名只能是长度为2到5的中文字符"
+                        <input type="text" id="name" class="form-control" pattern="^[\u4E00-\u9FA5]+$" data-match-error="员工姓名只能是长度为2到5的中文字符"
                                 name="name" placeholder="输入员工姓名"  required>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -134,12 +134,15 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="haspad"><span class="asterisk">*</span>移动设备:</label>
-                            <select name="haspad" id="haspad" multiple class="form-control select2"
+                            <select name="haspad" id="haspad"  class="form-control select2"
                                     data-placeholder="请从列表选择一项" required>
-                                <option th:value="PDA">
+                                <option value="">
+
+                                </option>
+                                <option value="PDA">
                                  PDA
                                 </option>
-                                <option th:value="其他">
+                                <option value="其他">
                                  其他
                                 </option>
                          </select>
@@ -148,12 +151,15 @@
 
                     <div class="form-group">
                         <label class="control-label" for="deltag"><span class="asterisk">*</span>作废标记:</label>
-                        <select name="deltag" id="deltag" multiple class="form-control select2"
+                        <select name="deltag" id="deltag"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:value="是">
+                            <option value="">
+
+                            </option>
+                            <option value="是">
                                 是
                             </option>
-                            <option th:value="否">
+                            <option value="否">
                                 否
                             </option>
                         </select>
@@ -167,9 +173,12 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="shuttleid"><span class="asterisk">*</span>班车:</label>
-                        <select name="shuttleid" id="shuttleid" multiple class="form-control select2"
+                        <select name="shuttleid" id="shuttleid"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:value="苏A.SBAE86">
+                            <option value="">
+
+                            </option>
+                            <option value="苏A.SBAE86">
                                 苏A.SBAE86
                             </option>
                         </select>
@@ -177,9 +186,12 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="standardid"><span class="asterisk">*</span>收取标准:</label>
-                        <select name="standardid" id="standardid" multiple class="form-control select2"
+                        <select name="standardid" id="standardid"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:value="0-30公斤">
+                            <option value="">
+
+                            </option>
+                            <option value="0-30公斤">
                                 0-30公斤
                             </option>
                         </select>
@@ -187,11 +199,12 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="basisid"><span class="asterisk">*</span>取派员类型:</label>
-                        <select name="basisid" id="basisid" multiple class="form-control select2"
+                        <select name="basisid" id="basisid"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:value="小件员">
-                                小件员
+                            <option value="">
+
                             </option>
+                            <option th:each="subbasic: ${subbasicList}" th:value="${subbasic.subbasicname}" th:text="${subbasic.subbasicname}">类型不存在</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -209,7 +222,7 @@
 </div>
 
 <!-- edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+<div class="modal fade" id="editModal"  role="dialog" aria-labelledby="editModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -230,7 +243,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
-                        <input type="text" id="editname" class="form-control" pattern=" ^[\u4E00-\u9FA5]$" data-match-error="员工姓名只能是长度为2到5的中文字符"
+                        <input type="text" id="editname" class="form-control" pattern="^[\u4E00-\u9FA5]+$" data-match-error="员工姓名只能是长度为2到5的中文字符"
                                name="name" placeholder="输入员工姓名"  required>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -245,7 +258,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="haspad"><span class="asterisk">*</span>移动设备:</label>
-                        <select name="haspad" id="edithaspad" multiple class="form-control select2"
+                        <select name="haspad" id="edithaspad"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
                             <option th:value="PDA">
                                 PDA
@@ -259,7 +272,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="deltag"><span class="asterisk">*</span>作废标记:</label>
-                        <select name="deltag" id="editdeltag" multiple class="form-control select2"
+                        <select name="deltag" id="editdeltag"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
                             <option th:value="是">
                                 是
@@ -278,7 +291,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="shuttleid"><span class="asterisk">*</span>班车:</label>
-                        <select name="shuttleid" id="editshuttleid" multiple class="form-control select2"
+                        <select name="shuttleid" id="editshuttleid"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
                             <option th:value="苏A.SBAE86">
                                 苏A.SBAE86
@@ -288,7 +301,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="standardid"><span class="asterisk">*</span>收取标准:</label>
-                        <select name="standardid" id="editstandardid" multiple class="form-control select2"
+                        <select name="standardid" id="editstandardid"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
                             <option th:value="0-30公斤">
                                 0-30公斤
@@ -298,11 +311,12 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="basisid"><span class="asterisk">*</span>取派员类型:</label>
-                        <select name="basisid" id="editbasisid" multiple class="form-control select2"
+                        <select name="basisid" id="editbasisid"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:value="小件员">
-                                小件员
+                            <option value="">
+
                             </option>
+                            <option th:each="subbasic: ${subbasicList}" th:value="${subbasic.subbasicname}" th:text="${subbasic.subbasicname}">类型不存在</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -310,7 +324,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" form="addForm" class="btn btn-primary"
+                <button type="submit" form="editForm" class="btn btn-primary"
                         data-action="{type:'submit',form:'#editForm',url:'@{/staff/update}',after:'$.myAction.refreshTable'}"
                 >
                     确定

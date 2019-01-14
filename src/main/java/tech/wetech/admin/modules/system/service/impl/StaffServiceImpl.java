@@ -7,7 +7,9 @@ import org.springframework.util.StringUtils;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.modules.system.dto.StaffDto;
 import tech.wetech.admin.modules.system.mapper.StaffMapper;
+import tech.wetech.admin.modules.system.mapper.SubBasicMapper;
 import tech.wetech.admin.modules.system.po.Staff;
+import tech.wetech.admin.modules.system.po.SubBasic;
 import tech.wetech.admin.modules.system.query.StaffQuery;
 import tech.wetech.admin.modules.system.service.StaffService;
 import tk.mybatis.mapper.weekend.Weekend;
@@ -21,6 +23,9 @@ import java.util.List;
 public class StaffServiceImpl implements StaffService {
     @Resource
     private StaffMapper staffMapper;
+
+    @Resource
+    private SubBasicMapper subBasicMapper;
 
     @Override
     public PageResultSet<StaffDto> findByPage(StaffQuery staffQuery) {
@@ -95,5 +100,11 @@ public class StaffServiceImpl implements StaffService {
     public int checkstaffid(Staff id) {
         int count = (int) staffMapper.selectstaffid(id);
         return count;
+    }
+
+    @Override
+    public List<SubBasic> findbasic() {
+        List<SubBasic> subBasic = subBasicMapper.selectAll();
+        return subBasic;
     }
 }

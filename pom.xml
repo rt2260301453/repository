@@ -26,10 +26,7 @@
 	</properties>
 
 	<dependencies>
-<<<<<<< HEAD
 
-=======
->>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -63,9 +60,7 @@
 			</exclusions>
 		</dependency>
 
-<<<<<<< HEAD
 
-=======
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -73,7 +68,7 @@
 			<version>1.18.4</version>
 			<scope>provided</scope>
 		</dependency>
->>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
+
 		<!-- shiro-quartz依赖 commons-collections 否则java.lang.NoClassDefFoundError: org/apache/commons/collections/SetUtils org.quartz.JobDetail.<init>(JobDetail.java:85) -->
 		<dependency>
 			<groupId>commons-collections</groupId>

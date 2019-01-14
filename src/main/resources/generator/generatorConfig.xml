@@ -107,7 +107,10 @@
             &lt;!&ndash;oracle 配置&ndash;&gt;
             &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
         </table>-->
-        <table schema="wetech_admin" tableName="subarea" domainObjectName="Subarea">
+        <!--<table schema="wetech_admin" tableName="subarea" domainObjectName="Subarea">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+        <table schema="wetech_admin" tableName="replayof" domainObjectName="replayof">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>
