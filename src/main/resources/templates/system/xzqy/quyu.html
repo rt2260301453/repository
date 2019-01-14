@@ -166,13 +166,13 @@
                         <label class="control-label" for="jm"><span class="asterisk">*</span>简码:</label>
                         <input type="text" class="form-control " id="jm" name="jm" placeholder="请输入省市区,最后一级不为空的
 数据的拼音首字母"
-                               required pattern="[A-z]{1}">
-                         <div class="help-block with-errors"></div>
+                               required pattern="[A-z]{1}" data-pattern-error="必须输入一位字母">
+                         <div class="help-block with-errors" ></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="csbm"><span class="asterisk">*</span>城市编码:</label>
                         <input type="text" id="csbm" class="form-control"
-                               name="csbm" placeholder="城市编码" required min="1" pattern="[A-z]" >
+                               name="csbm" placeholder="城市编码" required  pattern="[A-z]" data-pattern-error="必须输入字母">
                          <div class="help-block with-errors"></div>
                     </div>
 
@@ -393,7 +393,7 @@
                     <div class="form-group">
                         <label class="control-label" for="csbm1"><span class="asterisk">*</span>城市编码:</label>
                         <input type="text" id="csbm1" class="form-control"
-                               name="csbm" placeholder="城市编码" required readonly>
+                               name="csbm" placeholder="城市编码" required readonly pattern="[A-z]" data-pattern-error="必须输入字母">
                         <!--   &lt;!&ndash; <div class="help-block with-errors"></div>&ndash;&gt;-->
                     </div>
 
