@@ -11,6 +11,7 @@
 	<name>wetech-admin</name>
 	<description>Wetech Admin project for Spring Boot</description>
 
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -27,7 +28,46 @@
 		<shiro.version>1.2.2</shiro.version>
 	</properties>
 
+
+
 	<dependencies>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
+=======
+<<<<<<< HEAD
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.20</version>
+			<scope>provided</scope>
+		</dependency>
+
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
+=======
+>>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
+=======
+
+>>>>>>> dev
+=======
+>>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
+>>>>>>> 682b1fe213ab89b4bab862bcd18f043f1718e966
+>>>>>>> cc7c401a40aa9bdc58c17641f0d8b4db5366311b
+>>>>>>> b5067e2633e99d5ba3044028fcd8e06289ad1dac
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -80,6 +120,12 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<!-- shiro整合结束 -->
+		<!-- https://mvnrepository.com/artifact/com.fommil/jsonformat -->
+		<dependency>
+			<groupId>com.fommil</groupId>
+			<artifactId>jsonformat_2.12</artifactId>
+			<version>1.0.0-RC9</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -212,6 +258,8 @@
 	</dependencies>
 
 	<build>
+
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -283,5 +331,17 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<!-- 如果不加，那么打包的时候mapper文件不会被加载进来 -->
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 	</build>
 </project>
