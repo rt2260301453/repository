@@ -224,15 +224,11 @@
         // bootstrap table初始化
         // http://ootstrap-tableb.wenzhixin.net.cn/zh-cn/documentation/
         $table.bootstrapTable({
-            toolbar: "#toolbar",
             idField: 'basicno',
             pagination: true,
             showRefresh: true,
             search: true,
             clickToSelect: true,
-            queryParams: function (param) {
-                return {};
-            },
             url: CONTEXT_PATH + '/basic/list',
             columns: [
                 {field: 'state', checkbox: true},
