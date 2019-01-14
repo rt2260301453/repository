@@ -22,9 +22,9 @@
                 <div class="box-body">
                     <div id="toolbar">
 
-
                         <div class="modal-body">
                             <form id="searchForm1">
+
                                 <div class="form-group">
                                     <label class="control-label" style="font-size:15px">线路类型：</label>
                                     <select  style="width: 170px;heigh:60px" class="form-control select2" id="style" name="style" >
@@ -43,7 +43,7 @@
                                         <option name="namefrom" th:each="namefromto : ${namefromList}" th:value="${namefromto.namefrom}" th:text="${namefromto.namefrom}">角色不存在</option>
                                     <!--</select>-->
                                     </datalist>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                     <label class="control-label" style="font-size:15px">终点地：</label>
                                     <input list="nameto1" name="nameto" placeholder="请输入要查询的终点地"/>
@@ -72,6 +72,7 @@
                                 </div>
                             </form>
                         </div>
+
                         <div class="btn-group btn-group-sm">
                             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                             <button shiro:hasPermission="user:create" type="button" id="addBtn" class="btn btn-default"
@@ -110,11 +111,13 @@
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
+
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                         <h4 class="modal-title" id="addModalLabel">添加班车</h4>
                     </div>
+
                     <div class="modal-body">
                         <form id="addForm">
                             <div class="form-group">
@@ -147,12 +150,15 @@
                              </div>
                             <div class="form-group">
                                 <label class="control-label">车牌号：</label>
-                                <input type="text" class="form-control input-sm" name="license" id="license3" placeholder="请输入车牌号">
+                                <input type="text" class="form-control input-sm" name="license" id="license3" placeholder="请输入车牌号"
+                                       pattern="^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$"
+                                       data-pattern-error="格式应为苏A1B204">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">司机:</label>
-                                <input type="text" class="form-control input-sm" name="driver" id="driver3" placeholder="请输入司机名称">
+                                <input type="text" class="form-control input-sm" name="driver" id="driver3" placeholder="请输入司机名称"
+                                       pattern="^[\u4e00-\u9fa5]{2,4}$" data-pattern-error="输入中文，2~4位">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
@@ -162,26 +168,30 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">电话:</label>
-                                <input type="text" class="form-control input-sm" name="phone" id="phone3" placeholder="请输入电话" minlength="11" pattern="[0-9]">
+                                <input type="text" class="form-control input-sm" name="phone" id="phone3" placeholder="请输入电话"
+                                       pattern="^1[34578]\d{9}$"  data-pattern-error="格式为1[34579]加9位数字">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">吨数:</label>
-                                <input type="text" class="form-control input-sm" name="weight" id="weight3" placeholder="请输入吨数">
+                                <label class="control-label">吨数(KG):</label>
+                                <input type="number" class="form-control input-sm" name="weight" id="weight3" placeholder="请输入吨数"
+                                   min="0" max="100"    data-pattern-error="吨数必须是1~100的数字">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">车型:</label>
-                                <input type="text" class="form-control input-sm" name="model" id="model3" placeholder="请输入吨数">
+                                <input type="text" class="form-control input-sm" name="model" id="model3" placeholder="请输入车型"
+                                min="1"  max="100">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">备注:</label>
-                                <input type="text" class="form-control input-sm" name="remark" id="remark3" placeholder="请输入吨数">
+                                <input type="text" class="form-control input-sm" name="remark" id="remark3" placeholder="请输入备注">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </form>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         <button type="submit" form="addForm" class="btn btn-primary"
@@ -189,6 +199,7 @@
                             确定
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -217,19 +228,6 @@
                                 </select>
                                 <div class="help-block with-errors"></div>
                             </div>
-                            <!--<div class="form-group">-->
-                                <!--<label class="control-label">始发地:</label>-->
-                                <!--<input type="text" class="form-control input-sm" name="namefrom" id="namefrom2" placeholder="请输入始发地">-->
-                                <!--<br>-->
-                                <!--<div class="help-block with-errors"></div>-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
-                                <!--<label class="control-label">终点地:</label>-->
-                                <!--<input type="text" class="form-control input-sm" name="nameto" id="nameto2" placeholder="请输入终点地">-->
-                                <!--<br>-->
-                                <!--<div class="help-block with-errors"></div>-->
-                            <!--</div>-->
-
                             <div class="form-group">
                                 <label class="control-label" style="font-size:15px">始发地：</label>
                                 <select style="width:120px;" name="aaa" class="form-control select2">
@@ -251,29 +249,34 @@
 
                             <div class="form-group">
                                 <label class="control-label">车牌号：</label>
-                                <input type="text" class="form-control input-sm" name="license" id="license2" placeholder="请输入车牌号" >
+                                <input type="text" class="form-control input-sm" name="license" id="license2" placeholder="请输入车牌号"
+                                       pattern="^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$"
+                                       data-pattern-error="格式应为苏A1B204">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">车型:</label>
-                                <input type="text" class="form-control input-sm" name="model" id="model2" placeholder="请输入司机名称">
+                                <input type="text" class="form-control input-sm" name="model" id="model2" placeholder="请输入车型">
 
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">司机:</label>
-                                <input type="text" class="form-control input-sm" name="driver" id="driver2" placeholder="请输入司机名称">
+                                <input type="text" class="form-control input-sm" name="driver" id="driver2" placeholder="请输入司机名称"
+                                       pattern="^[\u4e00-\u9fa5]{2,4}$" data-pattern-error="输入中文，2~4位">
 
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">电话:</label>
-                                <input type="text" class="form-control input-sm" name="phone" id="phone2" placeholder="请输入司机名称">
+                                <input type="text" class="form-control input-sm" name="phone" id="phone2" placeholder="请输入电话"
+                                       pattern="^1[34578]\d{9}$"  data-pattern-error="格式为1[34579]加9位数字">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">吨数:</label>
-                                <input type="text" class="form-control input-sm" name="weight" id="weight2" placeholder="请输入司机名称">
+                                <label class="control-label">吨数(KG):</label>
+                                <input type="number" class="form-control input-sm" name="weight" id="weight2" placeholder="请输入吨数"
+                                min="1"  max="100"  data-pattern-error="吨数必须是1~100的数字">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
@@ -394,7 +397,7 @@
     function actionFormatter(value, row, index) {
         return $('#actionButtons').html();
     }
-
+    var oldlicense;
     window.actionEvents = {
         'click .like': function (e, value, row, index) {
             alert('You click like icon, row: ' + JSON.stringify(row));
@@ -403,6 +406,8 @@
         'click .edit': function (e, value, row, index) {
             $('#editModal').modal('show')
             $('#editForm').fillForm(row);
+
+            oldlicense = $('#license2').val();
             editAfter('', row);
             console.log(value, row, index);
         },
@@ -416,6 +421,24 @@
             $('#deleteForm').html(html);
         }
     };
+
+    $("#license2").blur(function(){
+        var No = document.getElementById("license2");
+        console.log(oldlicense);
+        if($(this).val() != oldlicense){
+            No.setAttribute("data-remote-trigger","blur");
+            No.setAttribute("data-remote","bus/checkNo");
+            No.setAttribute("data-remote-error", "这个车牌号已经在数据库存在啦");
+         }
+    })
+
+
+    $("#license3").blur(function(){
+        var No = document.getElementById("license3");
+            No.setAttribute("data-remote-trigger","blur");
+            No.setAttribute("data-remote","bus/checkNo");
+            No.setAttribute("data-remote-error", "这个车牌号已经在数据库存在啦");
+    })
 
     var setting = {
         view: {

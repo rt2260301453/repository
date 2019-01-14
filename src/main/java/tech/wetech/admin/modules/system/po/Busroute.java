@@ -17,8 +17,38 @@ public class Busroute {
     @Id
     private Integer busid;
 
+private int routeid;
+
+    public Busroute() {
+    }
+
+    public int getRouteid() {
+        return routeid;
+    }
+
+    public void setRouteid(int routeid) {
+        this.routeid = routeid;
+    }
 
     private String license;
+
+    public Busroute(Integer busid, int routeid, String license, String operators, String model, String driver, @NotBlank(message = "电话不能为空") @Length(min = 11, max = 11, message = "电话必须是11位的数字") Long phone, Integer weight, String style, String namefrom, String nameto, String operator, String company, Date date, String remark) {
+        this.busid = busid;
+        this.routeid = routeid;
+        this.license = license;
+        this.operators = operators;
+        this.model = model;
+        this.driver = driver;
+        this.phone = phone;
+        this.weight = weight;
+        this.style = style;
+        this.namefrom = namefrom;
+        this.nameto = nameto;
+        this.operator = operator;
+        this.company = company;
+        this.date = date;
+        this.remark = remark;
+    }
 
     private String operators;
 
@@ -50,6 +80,7 @@ public class Busroute {
     public String toString() {
         return "Busroute{" +
                 "busid=" + busid +
+                ", routeid=" + routeid +
                 ", license='" + license + '\'' +
                 ", operators='" + operators + '\'' +
                 ", model='" + model + '\'' +

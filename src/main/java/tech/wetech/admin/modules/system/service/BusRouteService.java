@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.modules.system.dto.BusRouteDto;
 import tech.wetech.admin.modules.system.po.Busroute;
+import tech.wetech.admin.modules.system.po.FixedArea;
 import tech.wetech.admin.modules.system.query.BusRouteQuery;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface BusRouteService {
     void deletebusroute(Integer id);
 
     void createQuYu(Busroute busroute);
+
+    int selectOne(Busroute busroute);
 }

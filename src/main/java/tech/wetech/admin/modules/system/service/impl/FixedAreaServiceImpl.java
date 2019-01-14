@@ -14,12 +14,13 @@ import tech.wetech.admin.modules.system.service.PasswordHelper;
 import tk.mybatis.mapper.weekend.Weekend;
 import tk.mybatis.mapper.weekend.WeekendCriteria;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class FixedAreaServiceImpl implements FixedAreaService {
-    @Autowired
+    @Resource
     FixedAreaMapper fixedAreaMapper;
 
     @Override

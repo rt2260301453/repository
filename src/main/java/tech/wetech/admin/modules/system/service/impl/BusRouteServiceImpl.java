@@ -116,6 +116,7 @@ public class BusRouteServiceImpl implements BusRouteService {
     @Override
     @Transactional
     public void updateBusRoute(Busroute busroute) {
+        System.out.println("&&&&&&&&&&&&&&&&&&");
         busrouteMapper.updateByPrimaryKeySelective(busroute);
     }
 
@@ -127,6 +128,11 @@ public class BusRouteServiceImpl implements BusRouteService {
     @Override
     public void createQuYu(Busroute busroute) {
         busrouteMapper.insertSelective(busroute);
+    }
+
+    @Override
+    public int selectOne(Busroute busroute) {
+         return busrouteMapper.selectByNo(busroute);
     }
 
 }
