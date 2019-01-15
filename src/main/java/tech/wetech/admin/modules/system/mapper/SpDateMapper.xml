@@ -6,18 +6,18 @@
       WARNING - @mbg.generated
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="date_name" property="datename" jdbcType="VARCHAR" />
-    <result column="pacific_up" property="pacificup" jdbcType="TIME" />
-    <result column="pacific_off" property="pacificoff" jdbcType="TIME" />
-    <result column="sat_up" property="satup" jdbcType="TIME" />
-    <result column="sat_off" property="satoff" jdbcType="TIME" />
-    <result column="sun_up" property="sunup" jdbcType="TIME" />
-    <result column="sun_off" property="sunoff" jdbcType="TIME" />
+    <result column="datename" property="datename" jdbcType="VARCHAR" />
+    <result column="pacificup" property="pacificup" jdbcType="TIME" />
+    <result column="pacificoff" property="pacificoff" jdbcType="TIME" />
+    <result column="satup" property="satup" jdbcType="TIME" />
+    <result column="satoff" property="satoff" jdbcType="TIME" />
+    <result column="sunup" property="sunup" jdbcType="TIME" />
+    <result column="sunoff" property="sunoff" jdbcType="TIME" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="unit" property="unit" jdbcType="VARCHAR" />
-    <result column="update_id" property="updateid" jdbcType="VARCHAR" />
-    <result column="update_name" property="updatename" jdbcType="VARCHAR" />
-    <result column="update_unit" property="updateunit" jdbcType="VARCHAR" />
-    <result column="update_date" property="updatedate" jdbcType="DATE" />
+    <result column="updateid" property="updateid" jdbcType="VARCHAR" />
+    <result column="updatename" property="updatename" jdbcType="VARCHAR" />
+    <result column="updateunit" property="updateunit" jdbcType="VARCHAR" />
+    <result column="updatedate" property="updatedate" jdbcType="DATE" />
   </resultMap>
 </mapper>

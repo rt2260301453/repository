@@ -10,7 +10,9 @@ import tech.wetech.admin.core.exception.BizException;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.core.utils.ResultCodeEnum;
 import tech.wetech.admin.modules.system.mapper.SpDateMapper;
+import tech.wetech.admin.modules.system.po.Route;
 import tech.wetech.admin.modules.system.po.SpDate;
+import tech.wetech.admin.modules.system.po.User;
 import tech.wetech.admin.modules.system.query.SpDateQuery;
 import tech.wetech.admin.modules.system.service.SpDateService;
 import tk.mybatis.mapper.weekend.Weekend;
@@ -33,8 +35,8 @@ public class SpDateServicelmpl  implements SpDateService {
         }
         Weekend<SpDate> weekend = Weekend.of(SpDate.class);
         WeekendCriteria<SpDate, Object> criteria = weekend.weekendCriteria();
-        if (!StringUtils.isEmpty(spDateQuery.getDateName())) {
-            criteria.andLike(SpDate::getDatename, spDateQuery.getDateName());
+        if (!StringUtils.isEmpty(spDateQuery.getName())) {
+            criteria.andLike(SpDate::getDatename, spDateQuery.getName());
         }
 
         PageResultSet<SpDate> resultSet = new PageResultSet<>();
@@ -50,13 +52,30 @@ public class SpDateServicelmpl  implements SpDateService {
     }
 
     @Override
+    public int findBySpDate(Route route) {
+        return 0;
+    }
+
+    @Override
     public SpDate findOne(String  searchName){
         return spDateMapper.selectByPrimaryKey(searchName);
     }
 
     @Override
     public void createSpDate(SpDate spDate) {
+        SpDate u = findByUsername(spDate.getDatename());
+        if (u != null) {
+            throw new BizException(ResultCodeEnum.CUOWO);
+        }
         spDateMapper.insertSelective(spDate);
+    }
+
+    @Override
+    public SpDate findByUsername(String spDate) {
+        SpDate spDate1 = new SpDate();
+        spDate1.setDatename(spDate);
+        spDateMapper.selectOne(spDate1);
+        return spDateMapper.selectOne(spDate1);
     }
 
     @Override
@@ -74,18 +93,6 @@ public class SpDateServicelmpl  implements SpDateService {
         return spDateMapper.selectByName(spDate);
     }
 
-  /*  @Override
-    @Transactional
-    public void createBasic(SpDate basic) {
-        SpDate b = findByBasicname(basic.getDatename());
-        if (b != null) {
-            throw new BizException(ResultCodeEnum.FAILED_BASICNAME_ALREADY_EXIST);
-        }
-        SpDate s = findByBasicno(basic.getBasicno());
-        if (s != null) {
-            throw new BizException(ResultCodeEnum.FAILED_BASICNO_ALREADY_EXIST);
-        }
-        basicMapper.insertSelective(basic);
-    }*/
+
 
 }

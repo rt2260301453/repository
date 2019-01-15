@@ -43,20 +43,29 @@ public class SpDateController {
     @ResponseBody
     @PostMapping("/create")
     @SystemLog("用户管理创建用户组")
-    public void create(@Valid SpDate spDate, HttpServletResponse response) {
+    public Result create(@Valid SpDate spDate) {
         Date sj = new Date();
         spDate.setUpdatedate(sj);
         spDate.setUpdatename((String) SecurityUtils.getSubject().getPrincipal());
+        spDateService.createSpDate(spDate);
+        return Result.success();
+    }
+
+    @ResponseBody
+    @RequestMapping("/check")
+    @SystemLog("用户管理创建用户组")
+    public void check(SpDate spDate, HttpServletResponse response) {
+        System.out.println("********************************************************************************");
         int count = spDateService.selectOnename(spDate);
+        System.out.println("count"+count);
         System.out.println("Datename()="+spDate.getDatename());
         if(count == 1){
-            response.setStatus(445);
+            response.setStatus(400);
         }else {
-            spDate.setUnit("新增成功");
+            
             response.setStatus(200);
         }
     }
-
     @ResponseBody
     @PostMapping("/update")
     @SystemLog("用户管理更新用户组")
