@@ -1,5 +1,6 @@
 package tech.wetech.admin.modules.system.po;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.StringUtils;
 
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * @author cjbi
  */
+@Data
 @Table(name = "sys_user")
 public class User {
 

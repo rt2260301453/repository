@@ -26,6 +26,8 @@
 	</properties>
 
 	<dependencies>
+
+
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -205,11 +207,16 @@
 			<version>1.18.4</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 94f1ae013ac64502a3ed6faa12ddcf9bc3196852
+			<!--&lt;!&ndash; ============================================= excel导出插件 =============================================== &ndash;&gt;-->
+			<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -238,7 +245,12 @@
 						<artifactId>mapper-generator</artifactId>
 						<version>1.0.0</version>
 					</dependency>
-					<!--
+
+
+
+
+
+                    <!--
                                         <dependency>
                                             <groupId>org.springframework.boot</groupId>
                                             <artifactId>spring-boot-starter-tomcat</artifactId>
