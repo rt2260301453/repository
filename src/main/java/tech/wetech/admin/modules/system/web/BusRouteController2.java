@@ -192,11 +192,15 @@ public class BusRouteController2 {
     @RequiresPermissions("bus:view")
     @SystemLog("用户管理用户电话的")
     public String DriverPhone(String driver, HttpServletResponse response, Model model) {
+        System.out.println(driver);
         System.out.println("进入到这里了");
+        if(driver.equals("")){
+            return "";
+        }
         Long[] number = busService.DriverPhone(driver);
-        System.out.println(number);
+        System.out.println(number.toString());
         System.out.println("****************");
-        if (number != null) {
+        if (number.length!= 0) {
             return Long.toString(number[0]);
         } else {
             return "";

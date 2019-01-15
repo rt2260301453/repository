@@ -38,7 +38,7 @@
 
                                            <div class="form-group">
                                                <label class="control-label" style="font-size:15px">线路类型：</label>
-                                               <select  style="width: 170px;heigh:60px" class="form-control select2" id="style" name="style" >
+                                               <select  style="width: 170px;heigh:60px" class="form-control select2" id="style" name="style" required>
                                                    <option value="全部" th:align="50px">全部</option>
                                                    <option value="干线">干线</option>
                                                    <option value="周边">周边</option>
@@ -47,16 +47,16 @@
                                                    <option value="市内">市内</option>
                                                </select>
                                                <br><br>
-                                               <label class="control-label" style="font-size:15px">始发地：</label>
-                                               <input list="namefrom1" name="namefrom" placeholder="请输入要查询的始发地"/>
+                                               <label class="control-label" style="font-size:15px">span class="asterisk">*</span>始发地：</label>
+                                               <input list="namefrom1" name="namefrom" placeholder="请输入要查询的始发地" required/>
                                                <datalist id="namefrom1" >
-                                                   <option name="namefrom" th:each="namefromto : ${namefromList}" th:value="${namefromto.namefrom}" th:text="${namefromto.namefrom}">角色不存在</option>
+                                                   <option  name="namefrom" th:each="namefromto : ${namefromList}" th:value="${namefromto.namefrom}" th:text="${namefromto.namefrom}">角色不存在</option>
                                                </datalist>
                                                <br><br>
                                                <label class="control-label" style="font-size:15px">终点地：</label>
-                                               <input list="nameto1" name="nameto" placeholder="请输入要查询的终点地"/>
+                                               <input list="nameto1" name="nameto" placeholder="请输入要查询的终点地" required/>
                                                <datalist id="nameto1">
-                                                   <option  th:each="namefromto : ${namefromList}" th:value="${namefromto.nameto}" th:text="${namefromto.nameto}">角色不存在</option>
+                                                   <option   th:each="namefromto : ${namefromList}" th:value="${namefromto.nameto}" th:text="${namefromto.nameto}">角色不存在</option>
                                                </datalist>
                                                <br><br>
 
@@ -145,7 +145,7 @@
                 <form id="addForm">
 
                     <div class="form-group">
-                        <label class="control-label">线路类型：</label>
+                        <label class="control-label"><span class="asterisk">*</span>线路类型：</label>
                         <select  style="width: 170px;heigh:60px" id="style3" name="style">
                             <option value="全部" th:align="50px">全部</option>
                             <option value="干线">干线</option>
@@ -157,62 +157,62 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" style="font-size:15px">始发地：<span id="aaa"></span></label>
+                        <label class="control-label" style="font-size:15px">始发地：</label><span id="aaa" class="asterisk"></span>
                         <select style="width:120px;" class="form-control select2" name="namefrom" id="namefrom3">
-                            <option disabled selected hidden value="" aria-expanded="false">请输入要新增的始发地</option>
+                            <!--<option disabled selected hidden value="" aria-expanded="false">请输入要新增的始发地</option>-->
                             <option  th:each="namefromto : ${namefromList}" th:value="${namefromto.namefrom}" th:text="${namefromto.namefrom}">角色不存在</option>
                         </select>
 
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" style="font-size:15px">终点地：<span id="bbb"></span></label>
+                        <label class="control-label" style="font-size:15px"><span class="asterisk">*</span>终点地：</label><span id="bbb" class="asterisk"></span>
                         <select style="width:120px;" class="form-control select2" name="nameto" id="nameto3">
-                            <option disabled aria-expanded="false" selected  value="">请输入要新增的终点地</option>
+                            <!--<option disabled aria-expanded="false" selected  value="">请输入要新增的终点地</option>-->
                             <option  th:each="namefromto : ${namefromList}" th:value="${namefromto.nameto}" th:text="${namefromto.nameto}">角色不存在</option>
                         </select>
 
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">车牌号：</label>
+                        <label class="control-label"><span class="asterisk">*</span>车牌号：</label>
                         <input type="text" class="form-control input-sm" name="license" id="license3" placeholder="请输入车牌号"
                                pattern="^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$"
-                               data-pattern-error="格式应为苏A1B204">
+                               data-pattern-error="格式应为苏A1B204" required>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">司机:</label>
+                        <label class="control-label"><span class="asterisk">*</span>司机:</label>
                         <input type="text" class="form-control input-sm" name="driver" id="driver3" placeholder="请输入司机名称"
-                               pattern="^[\u4e00-\u9fa5]{2,4}$" data-pattern-error="输入中文，2~4位">
+                               pattern="^[\u4e00-\u9fa5]{2,4}$" data-pattern-error="输入中文，2~4位" required>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">承运商:</label>
+                        <label class="control-label"><span class="asterisk">*</span>承运商:</label>
                         <input type="text" class="form-control input-sm" name="operators" id="operators3" placeholder="请输入承运商的名称">
-                        <div class="help-block with-errors"></div>
+                        <div class="help-block with-errors" required></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">电话:</label>
+                        <label class="control-label"><span class="asterisk">*</span>电话:</label>
                         <input type="text" class="form-control input-sm" name="phone" id="phone3" placeholder="请输入电话"
-                               pattern="^1[34578]\d{9}$"  data-pattern-error="格式为1[34579]加9位数字"  value="">
+                               pattern="^1[34578]\d{9}$"  data-pattern-error="格式为1[34579]加9位数字"   required>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">吨数(KG):</label>
-                        <input type="number" class="form-control input-sm" name="weight" id="weight3" placeholder="请输入吨数"
+                        <label class="control-label"><span class="asterisk">*</span>吨数(KG):</label>
+                        <input type="number" class="form-control input-sm" name="weight" id="weight3" placeholder="请输入吨数" required
                                min="0" max="100"    data-pattern-error="吨数必须是1~100的数字">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">车型:</label>
-                        <input type="text" class="form-control input-sm" name="model" id="model3" placeholder="请输入车型"
+                        <label class="control-label"><span class="asterisk">*</span>车型:</label>
+                        <input type="text" class="form-control input-sm" name="model" id="model3" placeholder="请输入车型" required
                                min="1"  max="100">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">备注:</label>
-                        <input type="text" class="form-control input-sm" name="remark" id="remark3" placeholder="请输入备注">
+                        <label class="control-label"><span class="asterisk">*</span>备注:</label>
+                        <input type="text" class="form-control input-sm" name="remark" id="remark3" placeholder="请输入备注" required>
                         <div class="help-block with-errors"></div>
                     </div>
                 </form>
@@ -245,7 +245,7 @@
                 <form id="editForm">
                     <input type="hidden" name="busid"/>
                     <div class="form-group">
-                        <label class="control-label">线路类型：</label>
+                        <label class="control-label"><span class="asterisk">*</span>线路类型：</label>
                         <select  style="width: 170px;heigh:60px" id="style2" name="style">
                             <option value="全部" th:align="50px">全部</option>
                             <option value="干线">干线</option>
@@ -257,57 +257,57 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" style="font-size:15px" >始发地：</label>
-                        <select style="width:120px;"  class="form-control select2" name="namefrom" data-placeholder="请输入要修改的始发地">
-                            <!--<option disabled   value="" aria-expanded="false">请输入要修改的始发地</option>-->
+                        <label class="control-label" style="font-size:15px" ><span class="asterisk">*</span>始发地：</label><span class="asterisk" id="ccc" ></span>
+                        <select style="width:120px;"  class="form-control select2" name="namefrom"  id="namefrom2">
+                            <option disabled   value="" aria-expanded="false">请输入要修改的始发地</option>
                             <option  th:each="namefromto : ${namefromList}"  th:value="${namefromto.namefrom}"
                                     th:text="${namefromto.namefrom}">角色不存在</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" style="font-size:15px" >终点地：</label>
-                        <select style="width:120px;"  class="form-control select2" name="nameto" data-placeholder="请输入要修改的终点地">
-                            <!--<option disabled   value="" aria-expanded="false">请输入要修改的终点地</option>-->
+                        <label class="control-label" style="font-size:15px" ><span class="asterisk">*</span>终点地：</label><span class="asterisk" id="ddd" ></span>
+                        <select style="width:120px;"  class="form-control select2" name="nameto"  id="nameto2">
+                            <option disabled   value="" aria-expanded="false">请输入要修改的终点地</option>
                             <option  th:each="namefromto : ${namefromList}" th:value="${namefromto.nameto}"
                                     th:text="${namefromto.nameto}">角色不存在</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">车牌号：</label>
+                        <label class="control-label"><span class="asterisk">*</span>车牌号：</label>
                         <input type="text" class="form-control input-sm" name="license" id="license2" placeholder="请输入车牌号"
                                pattern="^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$"
                                data-pattern-error="格式应为苏A1B204">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">车型:</label>
+                        <label class="control-label"><span class="asterisk">*</span>车型:</label>
                         <input type="text" class="form-control input-sm" name="model" id="model2" placeholder="请输入车型">
 
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">司机:</label>
+                        <label class="control-label"><span class="asterisk">*</span>司机:</label>
                         <input type="text" class="form-control input-sm" name="driver" id="driver2" placeholder="请输入司机名称"
                                pattern="^[\u4e00-\u9fa5]{2,4}$" data-pattern-error="输入中文，2~4位">
 
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">电话:</label>
+                        <label class="control-label"><span class="asterisk">*</span>电话:</label>
                         <input type="text" class="form-control input-sm" name="phone" id="phone2" placeholder="请输入电话"
                                pattern="^1[34578]\d{9}$"  data-pattern-error="格式为1[34579]加9位数字">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">吨数(KG):</label>
+                        <label class="control-label"><span class="asterisk">*</span>吨数(KG):</label>
                         <input type="number" class="form-control input-sm" name="weight" id="weight2" placeholder="请输入吨数"
                                min="1"  max="100"  data-pattern-error="吨数必须是1~100的数字">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">备注:</label>
+                        <label class="control-label"><span class="asterisk">*</span>备注:</label>
                         <input type="text" class="form-control input-sm" name="remark" id="remark2" placeholder="请输入司机名称">
                         <div class="help-block with-errors"></div>
                     </div>
@@ -468,6 +468,34 @@
         No.setAttribute("data-remote-error", "这个车牌号已经在数据库存在啦");
     })
 
+    $("#namefrom3").change(function() {
+        var namefrom = $("#namefrom3").val();
+        var nameto = $("#nameto3").val();
+        console.log(namefrom)
+        console.log(nameto)
+        console.log(namefrom == nameto)
+        if(namefrom == nameto){
+            $("#bbb").html("不能和始发地一样")
+            $("#aaa").html("不能和终点地一样")
+        }else{
+            $("#bbb").html("")
+            $("#aaa").html("")
+        }
+    })
+
+    $("#nameto3").change(function() {
+        var namefrom = $("#namefrom3").val();
+        var nameto = $("#nameto3").val();
+        console.log(namefrom)
+        console.log(nameto)
+        if(namefrom == nameto){
+            $("#bbb").html("不能和始发地一样")
+            $("#aaa").html("不能和终点地一样")
+        }else{
+            $("#bbb").html("")
+            $("#aaa").html("")
+        }
+    })
 
         $("#driver3").blur(function() {
             $.ajax({
@@ -490,7 +518,7 @@
             async: true,
             success: function (msg) {
                 console.log(msg)
-                $("#phone2").prop("value",msg);
+                $("#phone2").prop("text",msg);
             }
         })
     })
@@ -503,8 +531,8 @@
         console.log(nameto)
         console.log(namefrom == nameto)
         if(namefrom == nameto){
-            $("#bbb").prop("html", "不能和终点地一样")
-            $("#aaa").prop("text", "不能和始发地一样")
+            $("#bbb").prop("data-pattern-error\"", "不能和终点地一样")
+            $("#aaa").prop("data-pattern-error\"", "不能和始发地一样")
         }
     })
 
@@ -514,11 +542,34 @@
         console.log(namefrom)
         console.log(nameto)
         if(namefrom == nameto){
-            $("#bbb").prop("html", "不能和终点地一样")
-            $("#aaa").prop("text", "不能和始发地一样")
+            $("#bbb").prop("data-pattern-error", "不能和终点地一样")
+            $("#aaa").prop("data-pattern-error", "不能和始发地一样")
         }
     })
 
+    $("#namefrom2").change(function() {
+        var namefrom = $("#namefrom2").val();
+        var nameto = $("#nameto2").val();
+        console.log(namefrom)
+        console.log(nameto)
+        console.log(namefrom == nameto)
+        if(namefrom == nameto){
+            $("#ccc").html( "不能和终点地一样")
+            $("#ddd").html( "不能和始发地一样")
+        }
+    })
+
+    $("#nameto2").change(function() {
+        var namefrom = $("#namefrom2").val();
+        var nameto = $("#nameto2").val();
+        console.log(namefrom)
+        console.log(nameto)
+        console.log(namefrom == nameto)
+        if(namefrom == nameto){
+            $("#ccc").html("不能和终点地一样")
+            $("#ddd").html( "不能和始发地一样")
+        }
+    })
     var setting = {
         view: {
             dblClickExpand: false
