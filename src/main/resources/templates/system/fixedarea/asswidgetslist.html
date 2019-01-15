@@ -232,7 +232,7 @@
                     <form class="form-inline" id="searchSpDateForm">
                         <div class="form-group">
                             <label for="dateName"></span> 时间名:</label>
-                            <select name="dateName" id="dateName" class="form-control select2"
+                            <select name="name" id="dateName" class="form-control select2"
                                     data-placeholder="请从列表选择一项">
                                 <option value="">请选择</option>
                                 <option th:each="spDateList : ${spDateList}" th:value="${spDateList.datename}" th:text="${spDateList.datename}">

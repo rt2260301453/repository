@@ -1,7 +1,7 @@
 package tech.wetech.admin.modules.system.enums;
 
 public enum ResourceType {
-    MENU("èœå•"), BUTTON("æŒ‰é’®");
+    MENU("²Ëµ¥"), BUTTON("°´Å¥");
 
     private final String info;
 
