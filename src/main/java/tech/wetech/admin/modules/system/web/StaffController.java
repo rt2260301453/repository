@@ -64,15 +64,9 @@ public class StaffController{
     @PostMapping("/update")
     @RequiresPermissions("staff:update")
     @SystemLog("取派管理更新取派员")
-<<<<<<< HEAD
-    public Result update(Staff staff) {
-        System.out.println("*****************************************");
-        System.out.println("Staff="+staff);
-=======
     public Result update(@Valid Staff staff) {
         System.out.println("**************************************");
         System.out.println("staff="+staff);
->>>>>>> maindev
         staffService.updatestaff(staff);
         return Result.success();
     }
