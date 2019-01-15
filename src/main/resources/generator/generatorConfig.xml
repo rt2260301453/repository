@@ -27,6 +27,7 @@
         <javaClientGenerator targetPackage="tech.wetech.admin.modules.example.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
+
         <!--<table schema="wetech_admin" tableName="sys_group" domainObjectName="Group">
             &lt;!&ndash;mysql 配置&ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
@@ -75,11 +76,18 @@
             &lt;!&ndash;oracle 配置&ndash;&gt;
             &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
         </table>-->
+=======
+        <!--<table schema="wetech_admin" tableName="sys_group" domainObjectName="Group">&ndash;&gt;
+            &lt;!&ndash;&lt;!&ndash;mysql 配置&ndash;&gt;&ndash;&gt;
+            &lt;!&ndash;<generatedKey column="id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;
+            &lt;!&ndash;&lt;!&ndash;oracle 配置&ndash;&gt;&ndash;&gt;
+            &lt;!&ndash;&lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
+      </table>-->
+
+
         <table schema="wetech_admin" tableName="spdate" domainObjectName="SpDate">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-            <!--oracle 配置-->
-            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
     </context>
 </generatorConfiguration>

@@ -10,6 +10,7 @@ import tech.wetech.admin.core.exception.BizException;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.core.utils.ResultCodeEnum;
 import tech.wetech.admin.modules.system.mapper.SpDateMapper;
+import tech.wetech.admin.modules.system.po.Route;
 import tech.wetech.admin.modules.system.po.SpDate;
 import tech.wetech.admin.modules.system.po.User;
 import tech.wetech.admin.modules.system.query.SpDateQuery;
@@ -48,6 +49,11 @@ public class SpDateServicelmpl  implements SpDateService {
     @Override
     public List<SpDate> findAll() {
         return spDateMapper.selectAll();
+    }
+
+    @Override
+    public int findBySpDate(Route route) {
+        return 0;
     }
 
     @Override

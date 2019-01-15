@@ -48,7 +48,6 @@ public class SpDateController {
         spDate.setUpdatedate(sj);
         spDate.setUpdatename((String) SecurityUtils.getSubject().getPrincipal());
         spDateService.createSpDate(spDate);
-        spDate.setUnit("新增成功");
         return Result.success();
     }
 
@@ -63,7 +62,7 @@ public class SpDateController {
         if(count == 1){
             response.setStatus(400);
         }else {
-
+            
             response.setStatus(200);
         }
     }

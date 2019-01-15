@@ -1,9 +1,10 @@
 package tech.wetech.admin.modules.system.dto;
 
+import lombok.Data;
 import tech.wetech.admin.modules.system.po.Role;
 
 import java.util.List;
-
+@Data
 public class RoleDto {
 
     private Long id; // 编号

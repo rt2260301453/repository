@@ -1,5 +1,6 @@
 package tech.wetech.admin.modules.system.po;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.StringUtils;
 
@@ -12,39 +13,40 @@ import java.util.List;
 /**
  * @author cjbi
  */
+@Data
 @Table(name = "sys_user")
 public class User {
 
     /**
-     * ç¼–å·
+     * ±àºÅ
      */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
-     * æ‰€å±å…¬å¸
+     * ËùÊô¹«Ë¾
      */
-    @NotNull(message = "æ‰€å±ç»„ç»‡ä¸èƒ½ä¸ºç©º")
+    @NotNull(message = "ËùÊô×éÖ¯²»ÄÜÎª¿Õ")
     private Long organizationId;
     /**
-     * ç”¨æˆ·å
+     * ÓÃ»§Ãû
      */
-    @NotBlank(message = "ç”¨æˆ·åä¸èƒ½ä¸ºç©º")
-    @Length(min= 3,message = "ç”¨æˆ·åä¸èƒ½ä½äº3ä½")
+    @NotBlank(message = "ÓÃ»§Ãû²»ÄÜÎª¿Õ")
+    @Length(min= 3,message = "ÓÃ»§Ãû²»ÄÜµÍÓÚ3Î»")
     private String username;
     /**
-     * å¯†ç 
+     * ÃÜÂë
      */
-    @NotBlank(message = "å¯†ç ä¸èƒ½ä¸ºç©º")
-    @Length(min= 6,message = "ç”¨æˆ·åä¸èƒ½ä½äº6ä½")
+    @NotBlank(message = "ÃÜÂë²»ÄÜÎª¿Õ")
+    @Length(min= 6,message = "ÓÃ»§Ãû²»ÄÜµÍÓÚ6Î»")
     private String password;
     /**
-     * åŠ å¯†å¯†ç çš„ç›
+     * ¼ÓÃÜÃÜÂëµÄÑÎ
      */
     private String salt;
     /**
-     * æ‹¥æœ‰çš„è§’è‰²åˆ—è¡¨
+     * ÓµÓĞµÄ½ÇÉ«ÁĞ±í
      */
     private String roleIds;
 

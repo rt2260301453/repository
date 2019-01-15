@@ -2,6 +2,7 @@ package tech.wetech.admin.modules.system.service;
 
 import tech.wetech.admin.core.exception.BizException;
 import tech.wetech.admin.core.utils.PageResultSet;
+import tech.wetech.admin.modules.system.po.Route;
 import tech.wetech.admin.modules.system.po.SpDate;
 import tech.wetech.admin.modules.system.po.User;
 import tech.wetech.admin.modules.system.query.SpDateQuery;
@@ -25,6 +26,7 @@ public interface SpDateService {
      */
     List<SpDate> findAll();
 
+    int findBySpDate(Route route);
     /**
      * 查询单个
      * @param searchName

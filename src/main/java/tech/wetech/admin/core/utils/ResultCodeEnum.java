@@ -16,6 +16,7 @@ public enum ResultCodeEnum {
     NOT_IMPLEMENTED("501", "业务异常"),
     CUOWO("502", "时间名称是唯一的");
 
+
     private String code;
     private String msg;
 

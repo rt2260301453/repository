@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:c="http://www.w3.org/1999/html">
+<!-- Content Header (Page header) -->
+<section class="content-header" style="">
+    <h1>
+        基本档案管理
+        <small>基本档案设置页面</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+        <li><a href="#">基本档案管理</a></li>
+        <li class="active">基本档案</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="toolbar">
+                        <form class="form-inline" id="searchForm">
+                            <div class="form-group">
+                                <label for="searchName"> 基本档案编号</label>
+                                <input type="text" class="form-control input-sm" name="basicno" id="searchName" placeholder="请输入基本档案编号">
+                            </div>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-default" onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    查询
+                                </button>
+                                <button type="reset" class="btn btn-default">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                    清空
+                                </button>
+                            </div>
+                        </form>
+                        <div class="btn-group btn-group-sm">
+                            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                            <button shiro:hasPermission="basic:create" type="button" id="addBtn" class="btn btn-default"
+                                    data-toggle="modal"
+                                    data-target="#addModal"><i class="glyphicon glyphicon-plus"></i> 新增
+                            </button>
+                            <!-- Indicates caution should be taken with this action -->
+                            <button shiro:hasPermission="basic:update" type="button" id="editBtn" class="btn btn-default"
+                                    data-toggle="modal"
+                                    data-target="#editModal"
+                                    data-action="{type:'editable',form:'#editForm',table:'#table'}"
+                                    disabled><i class="glyphicon glyphicon-edit"></i> 修改
+                            </button>
+                            <!-- Indicates a dangerous or potentially negative action -->
+                            <button shiro:hasPermission="basic:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
+                                    data-target="#deleteModal"
+                                    data-action="{type:'delete',form:'#deleteForm',idField:'basicno',table:'#table'}"
+                                    disabled><i class="glyphicon glyphicon-remove"></i> 删除
+                            </button>
+                            <!--<a shiro:hasPermission="basic:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除">
+                            <i class="glyphicon glyphicon-remove"></i></a>　-->
+                        </div>
+                    </div>
+                    <table id="table"></table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+<!-- add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addModalLabel">添加基本档案</h4>
+            </div>
+            <div class="modal-body">
+                <form id="addForm">
+                    <div class="form-group">
+                        <label class="control-label" for="addBasicno"><span class="asterisk">*</span>基本档案编号:</label>
+                        <input id="addBasicno" type="text" class="form-control" name="basicno" placeholder="例:d00001"
+                                required
+                               pattern="^d\d{5}$" data-pattern-error="格式应为,例:d00001"
+                               data-remote="basic/checkNo" data-remote-error="该档案编号已存在">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="addBasicname"><span class="asterisk">*</span>基本档案名称:</label>
+                        <input id="addBasicname" type="text" class="form-control" name="basicname" placeholder="例:**属性"
+                                required
+                               data-remote="basic/checkName" data-remote-error="该档案名称已存在">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" ><span class="asterisk">*</span>是否分级:</label>
+                        <input  name="classifying" value="0" type="radio" class="ace" checked="checked"/>
+                        <span class="lbl"> 否</span> <!--checked="checked"-->
+                        <input  name="classifying" value="1" type="radio" class="ace" />
+                        <span class="lbl"> 是</span>
+                        <!--<input id="editClassifying" type="text" class="form-control" name="classifying"-->
+                        <!--minlength="3" required>-->
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="addRemark"><span class="asterisk">*</span>备注:</label>
+                        <input id="addRemark" type="text" class="form-control" name="remark" placeholder="不能超过20字"
+                                >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label class="control-label" for="addOperator"><span class="asterisk">*</span>操作员:</label>-->
+                        <!--<input id="addOperator" type="text" class="form-control" name="operator"-->
+                                <!--required>-->
+                        <!--<div class="help-block with-errors"></div>-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label class="control-label" for="addOperationunit"><span class="asterisk">*</span>操作员单位:</label>
+                        <input id="addOperationunit" type="text" class="form-control" name="operationunit"
+                                required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <!--controller层new了时间-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="control-label" for="addOperationdate"><span class="asterisk">*</span>操作时间:</label>-->
+                        <!--<input id="addOperationdate" type="text" class="form-control" name="operationdate"-->
+                               <!--minlength="3" required>-->
+                        <!--<div class="help-block with-errors"></div>-->
+                    <!--</div>-->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" form="addForm" class="btn btn-primary"
+                        data-action="{type:'submit',form:'#addForm',url:'@{/basic/create}',after:'$.myAction.refreshTable'}">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editModalLabel">修改基础档案</h4>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" name="basicno"/>
+
+                    <div class="form-group">
+                        <label class="control-label" ><span class="asterisk">*</span>是否分级:</label>
+                            <input  name="classifying" value="0" type="radio" class="ace" />
+                            <span class="lbl"> 否</span> <!--checked="checked"-->
+                            <input  name="classifying" value="1" type="radio" class="ace" />
+                            <span class="lbl"> 是</span>
+                        <!--<input id="editClassifying" type="text" class="form-control" name="classifying"-->
+                               <!--minlength="3" required>-->
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="editRemark"><span class="asterisk">*</span>备注:</label>
+                        <input id="editRemark" type="text" class="form-control" name="remark" placeholder="不能超过20字"
+                               >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" form="editForm" class="btn btn-primary"
+                        data-action="{type:'submit',form:'#editForm',url:'@{/basic/update}',after:'$.myAction.refreshTable'}">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteSmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="deleteSmallModalLabel">删除组</h4>
+            </div>
+            <div class="modal-body">
+                <form id="deleteForm"></form>
+                确定要删除选中的 <span class="records"></span> 条记录?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" form="deleteForm" class="btn btn-primary"
+                        data-action="{type:'submit',form:'#deleteForm',url:'@{/basic/delete}',after:'$.myAction.refreshTable'}">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="actionButtons" class="admin-hide">
+    <a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>　
+    <a shiro:hasPermission="basic:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>　
+    <a shiro:hasPermission="basic:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i class="glyphicon glyphicon-remove"></i></a>　
+</div>
+
+
+
+<script th:inline="javascript">
+    var $table = $('#table');
+    $(function () {
+        // bootstrap table初始化
+        // http://ootstrap-tableb.wenzhixin.net.cn/zh-cn/documentation/
+        $table.bootstrapTable({
+            idField: 'basicno',
+            pagination: true,
+            showRefresh: true,
+            search: true,
+            clickToSelect: true,
+            url: CONTEXT_PATH + '/basic/list',
+            columns: [
+                {field: 'state', checkbox: true},
+                {field: 'basicno', title: '基本档案编号', sortable: true, halign: 'left'},
+                {field: 'basicname', title: '基本档案名称', sortable: true, halign: 'left'},
+                {field: 'classifying', title: '是否分级', sortable: true, halign: 'left',
+                    formatter:function(value,row,index){
+                        if(value == 0){
+                            return "<a href=\"#\" name=\"classifying\" data-url=\""+CONTEXT_PATH + "/basic/updateclassifying"+"\" data-name=\"classifying\" data-type=\"select\" data-pk=\""+row.basicno+"\" data-title=\"是否分级\">"
+                                + "否" + "</a>";
+                        }else{
+                            return "<a href=\"#\" name=\"classifying\" data-url=\""+CONTEXT_PATH + "/basic/updateclassifying"+"\" data-name=\"classifying\" data-type=\"select\" data-pk=\""+row.basicno+"\" data-title=\"是否分级\">"
+                                + "是" + "</a>";
+                        }
+
+                    }
+                },
+                {field: 'remark', title: '备注', sortable: true, halign: 'left',
+                    formatter: function (value, row, index) {
+                        return "<a href=\"#\" name=\"remark\" data-url=\""+CONTEXT_PATH + "/basic/updateremark"+"\" data-name=\"remark\" data-type=\"text\" data-pk=\""+row.basicno+"\" data-title=\"备注\">"
+                            + value + "</a>";
+                    },
+                    events:'actionEvents'
+                },
+                {field: 'operator', title: '操作人员', sortable: true, halign: 'left'},
+                {field: 'operationunit', title: '操作单位', sortable: true, halign: 'left'},
+                {field: 'operationdate', title: '操作时间', sortable: true, halign: 'left'},
+                {
+                    field: 'action',
+                    title: '操作',
+                    halign: 'center',
+                    align: 'center',
+                    formatter: 'actionFormatter',
+                    events: 'actionEvents',
+                    clickToSelect: false
+                }
+            ],
+            onLoadSuccess: function (aa, bb, cc) {
+                $("#table [name='remark']").editable({
+                    success:function(response,newValue){
+                      console.log(response);
+                      if (response.success){
+                          alert("修改成功");
+                          $('table').bootstrapTable('refresh', {silent: true})
+                      }
+                      else{
+                          return response.msg;
+                      }
+                    },
+                    type: 'text',//编辑框的类型。支持text|textarea|select|date|checklist等
+                    title: "编辑",              //编辑框的标题
+                    disabled: false,             //是否禁用编辑
+                    emptytext: "点击添加",        //空值的默认文本
+                    mode: "popup" //编辑框的模式：支持popup和inline两种模式，默认是popup
+                });
+
+                $('#table [name=\'classifying\']').editable({
+                    success:function(response,newValue){
+                        console.log(response);
+                        if (response.success){
+                            alert("修改成功");
+                            $('table').bootstrapTable('refresh', {silent: true})
+                        }
+                        else{
+                            return response.msg;
+                        }
+                    },
+                    type: "select",              //编辑框的类型。支持text|textarea|select|date|checklist等
+                    source: [{ value: 0, text: "否" }, { value: 1, text: "是" }],
+                    title: "是否分级",           //编辑框的标题
+                    disabled: false,           //是否禁用编辑
+                    emptytext: "空文本",       //空值的默认文本
+                    mode: "popup",            //编辑框的模式：支持popup和inline两种模式，默认是popup
+                    validate: function (value) { //字段验证
+                        console.log(value);
+                        if (!$.trim(value)) {
+                            return '不能为空';
+                        }
+                    },
+                    error: function (response,newValue) {
+                        if (response.status != 200) {
+                            return '是否分级选择“是”后,不能修改为“否”！！';
+                        }
+                    }
+
+                });
+            }
+        });
+    });
+
+    // 数据表格展开内容
+    function detailFormatter(index, row) {
+        var html = [];
+        $.each(row, function (key, value) {
+            html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+        });
+        return html.join('');
+    }
+
+    function actionFormatter(value, row, index) {
+        return $('#actionButtons').html();
+    }
+
+    window.actionEvents = {
+        'click .like': function (e, value, row, index) {
+            alert('You click like icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        },
+        'click .edit': function (e, value, row, index) {
+            $('#editModal').modal('show')
+            $('#editForm').fillForm(row);
+            console.log(value, row, index);
+        },
+        'click .remove': function (e, value, row, index) {
+            $('#deleteModal').modal('show');
+            $('.records').html('1');
+            var html = '';
+            for (var key in row) {
+                html += '<input type="hidden" name="' + key + '" value="' + row[key] + '">';
+            }
+            $('#deleteForm').html(html);
+        }
+    };
+</script>
+</html>

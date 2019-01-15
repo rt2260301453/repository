@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.wetech.admin.modules.system.mapper.ReplayMapper">
+  <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.system.po.Replay">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="replayid" jdbcType="VARCHAR" property="replayid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="starttime" jdbcType="TIME" property="starttime" />
+    <result column="endtime" jdbcType="TIME" property="endtime" />
+    <result column="station" jdbcType="VARCHAR" property="station" />
+    <result column="deltag" jdbcType="VARCHAR" property="deltag" />
+    <result column="upusername" jdbcType="VARCHAR" property="upusername" />
+    <result column="uptime" jdbcType="VARCHAR" property="uptime" />
+    <result column="replayofid" property="replayofid" jdbcType="VARCHAR" />
+    <result column="nameof" property="nameof" jdbcType="VARCHAR" />
+    <result column="stationof" jdbcType="VARCHAR" property="stationof" />
+  </resultMap>
+</mapper>

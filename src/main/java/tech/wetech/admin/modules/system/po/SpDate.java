@@ -12,7 +12,7 @@ public class SpDate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    
     private String datename;
     @NotNull(message = "时间不能为空")
     @DateTimeFormat(pattern = "HH:mm")

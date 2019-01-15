@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.wetech.admin.modules.system.mapper.QuYuMapper" >
+  <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.system.po.QuYu" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="qu" property="qu" jdbcType="VARCHAR" />
+    <result column="yzbm" property="yzbm" jdbcType="VARCHAR" />
+    <result column="jm" property="jm" jdbcType="VARCHAR" />
+    <result column="csbm" property="csbm" jdbcType="VARCHAR" />
+    <result column="cgdw" property="cgdw" jdbcType="VARCHAR" />
+    <result column="jgdw" property="jgdw" jdbcType="VARCHAR" />
+    <result column="kfwqy" property="kfwqy" jdbcType="VARCHAR" />
+    <result column="bkfwqy" property="bkfwqy" jdbcType="VARCHAR" />
+    <result column="tsqy" property="tsqy" jdbcType="VARCHAR" />
+    <result column="sfkcz" property="sfkcz" jdbcType="BIT" />
+    <result column="sfkczCOD" property="sfkczcod" jdbcType="BIT" />
+    <result column="sfww" property="sfww" jdbcType="BIT" />
+    <result column="sfjqx" property="sfjqx" jdbcType="BIT" />
+    <result column="xz" property="xz" jdbcType="VARCHAR" />
+    <result column="ssqy" property="ssqy" jdbcType="VARCHAR" />
+    <result column="pycsjb" property="pycsjb" jdbcType="INTEGER" />
+    <result column="sjzxjgczfwq" property="sjzxjgczfwq" jdbcType="VARCHAR" />
+    <result column="kouan" property="kouan" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

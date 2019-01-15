@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="tech.wetech.admin.modules.system.mapper.SubBasicMapper" >
+  <resultMap id="BaseResultMap" type="tech.wetech.admin.modules.system.po.SubBasic" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="subbasicno" property="subbasicno" jdbcType="VARCHAR" />
+    <result column="subbasicname" property="subbasicname" jdbcType="VARCHAR" />
+    <result column="mainbasicno" property="mainbasicno" jdbcType="VARCHAR" />
+    <result column="mnemoniccode" property="mnemoniccode" jdbcType="VARCHAR" />
+    <result column="archivemark" property="archivemark" jdbcType="INTEGER" />
+    <result column="subremark" property="subremark" jdbcType="VARCHAR" />
+    <result column="suboperator" property="suboperator" jdbcType="VARCHAR" />
+    <result column="suboperationunit" property="suboperationunit" jdbcType="VARCHAR" />
+    <result column="suboperationdate" property="suboperationdate" jdbcType="DATE" />
+  </resultMap>
+</mapper>
