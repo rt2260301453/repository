@@ -70,6 +70,7 @@ public class ReplayServiceImpl implements ReplayService {
     }
 
     @Override
+    @Transactional
     public void updatestaff(Replay replay) {
         replayMapper.updateByPrimaryKeySelective(replay);
     }
@@ -85,6 +86,7 @@ public class ReplayServiceImpl implements ReplayService {
 //    }
 
     @Override
+    @Transactional
     public void deletereplay(Long id) {
         replayMapper.deleteByPrimaryKey(id);
     }

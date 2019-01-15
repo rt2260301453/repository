@@ -94,6 +94,7 @@
                     <div class="form-group">
                         <label class="control-label" for="replayid"><span class="asterisk">*</span>替工号:</label>
                         <select name="replayid" id="replayid" style="width: 570px;height: 34px"  class="form-control select2"
+                                data-datamatch="#replayofid"    data-datamatch-error="不能自己替班自己"
                                 data-placeholder="请从列表选择一项" required>
                             <option value="">
                             </option>
@@ -109,7 +110,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="station"><span class="asterisk">*</span>所属单位:</label>
-                        <input type="text" class="form-control" id="station" name="station" unselectable="on" required>
+                        <input type="text" class="form-control" id="station" name="station" readonly unselectable="on" required>
                         <div class="help-block with-errors"></div>
                     </div>
 
@@ -132,7 +133,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="stationof"><span class="asterisk">*</span>被替员工所属单位:</label>
-                        <input type="text" class="form-control" id="stationof" name="stationof" unselectable="on" required>
+                        <input type="text" class="form-control" id="stationof" name="stationof" readonly unselectable="on" required>
                         <div class="help-block with-errors"></div>
                     </div>
 
@@ -193,9 +194,11 @@
             </div>
             <div class="modal-body">
                 <form id="editForm" role="form" data-toggle="validator">
+                    <input type="hidden" name="id"/>
                     <div class="form-group">
                         <label class="control-label" for="editreplayid"><span class="asterisk">*</span>替工号:</label>
                         <select name="replayid" id="editreplayid" style="width: 570px;height: 34px"  class="form-control select2"
+                                data-datamatch="#editreplayofid"    data-datamatch-error="不能自己替班自己"
                                 data-placeholder="请从列表选择一项" required>
                             <option value=""></option>
                             <option th:each="staff: ${staffList}" th:value="${staff.staid}" th:text="${staff.staid}">员工编号不存在</option>
@@ -212,14 +215,14 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="editstation"><span class="asterisk">*</span>所属单位:</label>
-                        <input type="text" class="form-control" id="editstation" name="station" unselectable="on" required>
+                        <input type="text" class="form-control" id="editstation" name="station" readonly unselectable="on" required>
                         <div class="help-block with-errors"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="editreplayofid"><span class="asterisk">*</span>被替工号:</label>
                         <select name="replayofid" id="editreplayofid" style="width: 570px;height: 34px"  class="form-control select2"
-                                data-datamatch="#replayid"    data-datamatch-error="不能自己替班自己"
+                                data-datamatch="#editreplayid"    data-datamatch-error="不能自己替班自己"
                                 data-placeholder="请从列表选择一项" required>
                             <option value="">
                             </option>
@@ -235,7 +238,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="editstationof"><span class="asterisk">*</span>被替员工所属单位:</label>
-                        <input type="text" class="form-control" id="editstationof" name="stationof" unselectable="on" required>
+                        <input type="text" class="form-control" id="editstationof" name="stationof" readonly unselectable="on" required>
                         <div class="help-block with-errors"></div>
                     </div>
 
@@ -268,8 +271,6 @@
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
-
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -351,13 +352,10 @@
     $('select[name=replayid]').change(function(){
         // $(this).parent().parent().find('input[name=name]').val('tom')
         console.log($('select[name=replayid]').val())
-
-
-
             var select = $(this)
             $.ajax({
                 url: "replay/ajax4input",
-                data:'replayid='+$('select[name=replayid]').val(),
+                data:'replayid='+select.val(),
                 cache:false,
                 success:function(replay){
                     console.log('data='+replay);
@@ -369,11 +367,12 @@
     })
     $('select[name=replayofid]').change(function(){
         // $(this).parent().parent().find('input[name=name]').val('tom')
-        console.log($('select[name=replayofid]').val())
+
         var select = $(this)
+        console.log(select.val())
         $.ajax({
             url: "replay/ajax4input",
-            data:'replayid='+$('select[name=replayofid]').val(),
+            data:'replayid='+select.val(),
             cache:false,
             success:function(replay){
                 console.log('data='+replay.toString());
@@ -405,21 +404,7 @@
                         return datetime_error;
                     }
                 }
-            },
-
-            // startime: function($el) {
-            // var otherElId = $el.data("startime");
-            //     var startime_error = $el.data("startime-error");
-            //     var time = new Date()
-            //     var year = time.toLocaleDateString().replace('/','-').replace('/','-');
-            //     var hour = time.getHours()
-            //     var s1 = ""+hour+":"+time.getMinutes()
-            //     var ss = year+"T"+s1
-            //     if($el.val() <= ss){
-            //         return startime_error;
-            //     }
-            // }
-
+            }
     });
 
 
