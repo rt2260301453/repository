@@ -16,7 +16,6 @@ import tech.wetech.admin.modules.system.po.Staff;
 import tech.wetech.admin.modules.system.query.AssociatedWidgetsQuery;
 import tech.wetech.admin.modules.system.query.SpDateQuery;
 import tech.wetech.admin.modules.system.service.AssociatedWidgetsService;
-import tech.wetech.admin.modules.system.service.PasswordHelper;
 import tk.mybatis.mapper.weekend.Weekend;
 import tk.mybatis.mapper.weekend.WeekendCriteria;
 
@@ -109,8 +108,8 @@ public class AssociatedWidgetsServiceImpl implements AssociatedWidgetsService {
         Weekend<SpDate> example = Weekend.of(SpDate.class);
         WeekendCriteria<SpDate, Object> criteria = example.weekendCriteria();
 
-        if (!StringUtils.isEmpty(spDateQuery.getDateName())) {
-            criteria.andLike(SpDate::getDatename, "%" + spDateQuery.getDateName() + "%");
+        if (!StringUtils.isEmpty(spDateQuery.getName())) {
+            criteria.andLike(SpDate::getDatename, "%" + spDateQuery.getName() + "%");
         }
 
         List<SpDateDto> dtoList = new ArrayList<>();

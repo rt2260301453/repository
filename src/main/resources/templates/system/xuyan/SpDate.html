@@ -27,6 +27,7 @@
                                 <input type="text" class="form-control input-sm" name="name" id="searchName" placeholder="请输入时间名称">
 
                             </div>
+<<<<<<< HEAD
                             <!--<div class="form-group">-->
                                 <!--<label class="control-label" for="unit"><span class="asterisk">*</span>所属单位:</label>-->
                                 <!--<select name="unit" id="unit" class="form-control"-->
@@ -37,6 +38,18 @@
                                 <!--</select>-->
                                 <!--<div class="help-block with-errors"></div>-->
                             <!--</div>-->
+=======
+                           <!-- <div class="form-group">
+                                <label class="control-label" for="unit"><span class="asterisk">*</span>所属单位:</label>
+                                <select name="unit" id="unit" class="form-control"
+                                        data-placeholder="请从列表选择一项" required>
+                                    <option th:each="groupType : ${groupTypeList}" th:value="${groupType}" th:text="${groupType}">
+                                        组类型不存在
+                                    </option>
+                                </select>
+                                <div class="help-block with-errors"></div>
+                            </div>-->
+>>>>>>> maindev
                             <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-default" onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -96,7 +109,8 @@
                     <div class="form-group">
                         <label class="control-label" for="name"><span class="asterisk">*</span>送派时间名称:</label>
                         <input id="name" type="text" class="form-control" name="datename" placeholder="输入送派时间名称"
-                               minlength="3">
+                               minlength="3" data-remote="sp/check" data-remote-error="送派时间名称已存在！"
+                        >
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -199,6 +213,14 @@
                         <input id="xsat_off" type="time" class="form-control" name="satoff" placeholder="输入周六下班时间">
                         <div class="help-block with-errors"></div>
                     </div>
+
+
+
+
+
+
+
+
                     <div class="form-group">
                         <label class="control-label" for="xsun_up">周日上班时间:</label>
                         <input id="xsun_up" type="time" class="form-control" name="sunup" placeholder="输入周日上班时间">
