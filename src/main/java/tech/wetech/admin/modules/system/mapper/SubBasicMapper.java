@@ -9,7 +9,7 @@ public interface SubBasicMapper extends MyMapper<SubBasic> {
     @Select(value = "select count(1) from subbasic where subbasicno=#{subbasicno}")
     int selectByNo(SubBasic subbasic);
 
-    @Select(value = "select subbasicname from subbasic where subbasicname=#{subbasicname}")
+    @Select(value = "select subbasicname from subbasic where subbasicno=#{subbasicno}")
     SubBasic selectByName1(SubBasic subbasic);
 
     @Select(value = "select count(1) from subbasic where subbasicname=#{subbasicname}")

@@ -65,7 +65,9 @@ public class SubBasicServicelmpl implements SubBasicService {
 
     @Override
     public void updatesubBasic(SubBasic subbasic) {
-        SubBasic b1 = findBySubBasicname1(subbasic.getSubbasicname());
+        System.out.println("*******="+subbasic.getSubbasicno());
+        SubBasic b1 = findBySubBasicname1(subbasic.getSubbasicno());
+        System.out.println("*******="+subbasic.getSubbasicname());
         SubBasic b = findBySubBasicname(subbasic.getSubbasicname());
         if (b != null) {
             if(b1.getSubbasicname().equals(subbasic.getSubbasicname())){
@@ -108,9 +110,9 @@ public class SubBasicServicelmpl implements SubBasicService {
     }
 
     @Override
-    public SubBasic findBySubBasicname1(String subbasicname) {
+    public SubBasic findBySubBasicname1(String subbasicno) {
         SubBasic subbasic = new SubBasic();
-        subbasic.setSubbasicname(subbasicname);
+        subbasic.setSubbasicno(subbasicno);
         subbasicMapper.selectByName1(subbasic);
         return subbasicMapper.selectByName1(subbasic);
     }

@@ -70,6 +70,7 @@ public class SubBasicController {
         System.out.println("********************************************************");
         System.out.println("********************************************************");
         System.out.println("77777777777777777777777777777="+subbasic.getSubbasicname());
+        System.out.println("77777777777777777777777777777="+subbasic.getSubbasicno());
         subbasicService.updatesubBasic(subbasic);
         return Result.success();
     }
@@ -113,9 +114,11 @@ public class SubBasicController {
     public void checkName1( SubBasic subbasic, HttpServletResponse response){
         System.out.println("********************************************************");
         System.out.println("subbasicname="+subbasic.getSubbasicname());
+        System.out.println("subbasicno="+subbasic.getSubbasicno());
         int count = subbasicService.selectOnename(subbasic);
         SubBasic b = subbasicService.selectOnename1(subbasic);
-        System.out.println("subbasicname="+subbasic.getSubbasicname());
+        System.out.println("********************************************************");
+        System.out.println("subbasicname="+b.getSubbasicname());
         if(count == 1){
             if(b.getSubbasicname().equals(subbasic.getSubbasicname())){
                 System.out.println("22222222222222222222222222222222222222222222222222222222");
