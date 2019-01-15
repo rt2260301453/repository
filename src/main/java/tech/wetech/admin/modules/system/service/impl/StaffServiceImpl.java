@@ -87,11 +87,13 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
+    @Transactional
     public void updatestaff(Staff staff) {
         staffMapper.updateByPrimaryKeySelective(staff);
     }
 
     @Override
+    @Transactional
     public void deleteStaff(Long id) {
         staffMapper.deleteByPrimaryKey(id);
     }
