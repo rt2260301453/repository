@@ -27,16 +27,16 @@
                                 <input type="text" class="form-control input-sm" name="name" id="searchName" placeholder="请输入时间名称">
 
                             </div>
-                            <div class="form-group">
-                                <label class="control-label" for="unit"><span class="asterisk">*</span>所属单位:</label>
-                                <select name="unit" id="unit" class="form-control"
-                                        data-placeholder="请从列表选择一项" required>
-                                    <option th:each="groupType : ${groupTypeList}" th:value="${groupType}" th:text="${groupType}">
-                                        组类型不存在
-                                    </option>
-                                </select>
-                                <div class="help-block with-errors"></div>
-                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<label class="control-label" for="unit"><span class="asterisk">*</span>所属单位:</label>-->
+                                <!--<select name="unit" id="unit" class="form-control"-->
+                                        <!--data-placeholder="请从列表选择一项" required>-->
+                                    <!--<option th:each="groupType : ${groupTypeList}" th:value="${groupType}" th:text="${groupType}">-->
+                                        <!--组类型不存在-->
+                                    <!--</option>-->
+                                <!--</select>-->
+                                <!--<div class="help-block with-errors"></div>-->
+                            <!--</div>-->
                             <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-default" onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
                                     <i class="glyphicon glyphicon-search"></i>
