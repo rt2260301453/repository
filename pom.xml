@@ -11,6 +11,7 @@
 	<name>wetech-admin</name>
 	<description>Wetech Admin project for Spring Boot</description>
 
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -27,21 +28,16 @@
 		<shiro.version>1.2.2</shiro.version>
 	</properties>
 
+
+
 	<dependencies>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
-=======
->>>>>>> 7138a8ad4e4e721b993f37e3757824a26640b9f7
-=======
-
->>>>>>> dev
-=======
->>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -74,22 +70,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.4</version>
-			<scope>provided</scope>
-		</dependency>
-<<<<<<< HEAD
-
-=======
->>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
 		<!-- shiro-quartz依赖 commons-collections 否则java.lang.NoClassDefFoundError: org/apache/commons/collections/SetUtils org.quartz.JobDetail.<init>(JobDetail.java:85) -->
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -102,6 +82,12 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<!-- shiro整合结束 -->
+		<!-- https://mvnrepository.com/artifact/com.fommil/jsonformat -->
+		<dependency>
+			<groupId>com.fommil</groupId>
+			<artifactId>jsonformat_2.12</artifactId>
+			<version>1.0.0-RC9</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -222,18 +208,21 @@
 			<artifactId>quartz</artifactId>
 			<version>2.3.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.4</version>
-			<scope>provided</scope>
-		</dependency>
 
+
+			<!--&lt;!&ndash; ============================================= excel导出插件 =============================================== &ndash;&gt;-->
+			<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.0.1</version>
+		</dependency>
 
 	</dependencies>
 
 	<build>
+
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -269,7 +258,12 @@
 						<artifactId>mapper-generator</artifactId>
 						<version>1.0.0</version>
 					</dependency>
-					<!--
+
+
+
+
+
+                    <!--
                                         <dependency>
                                             <groupId>org.springframework.boot</groupId>
                                             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -305,5 +299,17 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<!-- 如果不加，那么打包的时候mapper文件不会被加载进来 -->
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 	</build>
 </project>

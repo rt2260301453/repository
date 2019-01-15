@@ -1,5 +1,6 @@
 package tech.wetech.admin.modules.system.service;
 
+import lombok.Data;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.modules.system.po.Role;
 import tech.wetech.admin.modules.system.dto.RoleDto;
@@ -7,6 +8,7 @@ import tech.wetech.admin.modules.system.query.RoleQuery;
 
 import java.util.List;
 import java.util.Set;
+
 
 public interface RoleService {
 

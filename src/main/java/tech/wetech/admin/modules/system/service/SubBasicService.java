@@ -34,6 +34,15 @@ public interface SubBasicService {
     public SubBasic findBySubBasicname(String subbasicname);
 
     /**
+     * 根据subbasicname查找subbasicname
+     * 校验重复
+     * @param subbasicname
+     * @return
+     */
+    public SubBasic findBySubBasicname1(String subbasicname);
+
+
+    /**
      * 根据subbasicno查找subbasicno
      * 校验重复
      * @param subbasicno
@@ -56,6 +65,13 @@ public interface SubBasicService {
      * @return
      */
     int selectOnename(SubBasic subbasic);
+    /**
+     * 校验基本档案名称
+     * 1
+     * @param subbasic
+     * @return
+     */
+    public SubBasic selectOnename1(SubBasic subbasic);
 
     /**
      * 创建档案信息
@@ -74,5 +90,7 @@ public interface SubBasicService {
      * @param subbasicno
      */
     void deletesubBasic(String subbasicno);
+
+
 
 }

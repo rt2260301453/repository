@@ -28,15 +28,11 @@ import java.util.Date;
 public class ReplayController {
     @Resource
     private ReplayService replayService;
-
-<<<<<<< HEAD
     @Autowired
     private StaffService staffService;
 
     @RequestMapping
-=======
     @GetMapping
->>>>>>> 4fda17d58cafde2acf6796a63b33a4ca9cc53f2e
     @RequiresPermissions("replay:view")
     public String page(Model model) {
         setCommonData(model);
@@ -56,7 +52,7 @@ public class ReplayController {
     @ResponseBody
     @PostMapping("/create")
     @RequiresPermissions("replay:create")
-//    @SystemLog("å–æ´¾ç®¡ç†åˆ›å»º")
+//    @SystemLog("È¡ÅÉ¹ÜÀí´´½¨")
     public Result create(@Valid Replay replay, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
@@ -65,7 +61,8 @@ public class ReplayController {
          int count = replayService.checktime(replay);
          System.out.println(count);
             if (count==1){
-                return Result.failure("GBK","è¯¥å‘˜å·¥åœ¨è¿™æ®µæ—¶é—´æ²¡å·²åˆ†é…å·¥ä½œ");
+                return Result.failure("200","¸ÃÔ±¹¤ÔÚÕâ¶ÎÊ±¼äÄÚÒÑ·ÖÅä¹¤×÷");
+
             }else{
                 String username =  (String) SecurityUtils.getSubject().getPrincipal();
                 replay.setUpusername(username);
@@ -83,7 +80,7 @@ public class ReplayController {
 
     @ResponseBody
     @RequestMapping("/ajax4input")
-//    @SystemLog("å–æ´¾ç®¡ç†åˆ›å»ºæ›¿ç­ä¿¡æ¯")
+//    @SystemLog("È¡ÅÉ¹ÜÀí´´½¨Ìæ°àÐÅÏ¢")
     public Staff queryname(String replayid) {
         System.out.println(replayid);
         Staff replay = replayService.queryAllForFormSelect(replayid);
@@ -96,7 +93,7 @@ public class ReplayController {
     @ResponseBody
     @PostMapping("/update")
     @RequiresPermissions("replay:update")
-    @SystemLog("å–æ´¾ç®¡ç†æ›´æ–°æ›¿ç­ä¿¡æ¯")
+    @SystemLog("È¡ÅÉ¹ÜÀí¸üÐÂÌæ°àÐÅÏ¢")
     public Result update(@Valid Replay replay,BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
@@ -105,7 +102,7 @@ public class ReplayController {
             int count = replayService.checktime(replay);
             System.out.println(count);
             if (count==1){
-                return Result.failure("UTF-8","è¯¥å‘˜å·¥åœ¨è¿™æ®µæ—¶é—´æ²¡å·²åˆ†é…å·¥ä½œ");
+                return Result.failure("UTF-8","¸ÃÔ±¹¤ÔÚÕâ¶ÎÊ±¼äÃ»ÒÑ·ÖÅä¹¤×÷");
             }else{
                 String username =  (String) SecurityUtils.getSubject().getPrincipal();
                 replay.setUpusername(username);
@@ -121,9 +118,9 @@ public class ReplayController {
     @ResponseBody
     @PostMapping("/delete")
     @RequiresPermissions("replay:delete")
-//    @SystemLog("å–æ´¾ç®¡ç†åˆ é™¤å–æ´¾å‘˜")
+//    @SystemLog("È¡ÅÉ¹ÜÀíÉ¾³ýÈ¡ÅÉÔ±")
     public Result delete(@RequestParam("id") Long[] ids) {
-        // å½“å‰ç”¨æˆ·
+        // µ±Ç°ÓÃ»§
         Arrays.asList(ids).forEach(id -> replayService.deletereplay(id));
         return Result.success();
     }

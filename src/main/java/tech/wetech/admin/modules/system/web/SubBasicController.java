@@ -63,6 +63,14 @@ public class SubBasicController {
         String nowoperator = (String) SecurityUtils.getSubject().getPrincipal();
         subbasic.setSuboperationdate(nowoperationdate);
         subbasic.setSuboperator(nowoperator);
+        System.out.println("********************************************************");
+        System.out.println("********************************************************");
+        System.out.println("********************************************************");
+        System.out.println("********************************************************");
+        System.out.println("********************************************************");
+        System.out.println("********************************************************");
+        System.out.println("77777777777777777777777777777="+subbasic.getSubbasicname());
+        System.out.println("77777777777777777777777777777="+subbasic.getSubbasicno());
         subbasicService.updatesubBasic(subbasic);
         return Result.success();
     }
@@ -98,6 +106,35 @@ public class SubBasicController {
         if(count == 1){
             response.setStatus(400);
         }else {
+            response.setStatus(200);
+        }
+    }
+
+    @RequestMapping("/checkName1")
+    public void checkName1( SubBasic subbasic, HttpServletResponse response){
+        System.out.println("********************************************************");
+        System.out.println("subbasicname="+subbasic.getSubbasicname());
+        System.out.println("subbasicno="+subbasic.getSubbasicno());
+        int count = subbasicService.selectOnename(subbasic);
+        SubBasic b = subbasicService.selectOnename1(subbasic);
+        System.out.println("********************************************************");
+        System.out.println("subbasicname="+b.getSubbasicname());
+        if(count == 1){
+            if(b.getSubbasicname().equals(subbasic.getSubbasicname())){
+                System.out.println("22222222222222222222222222222222222222222222222222222222");
+                System.out.println("********************************************************");
+                System.out.println("********************************************************");
+                response.setStatus(200);
+            }else{
+                System.out.println("33333333333333333333333333333333333333333333333333333333");
+                System.out.println("********************************************************");
+                System.out.println("********************************************************");
+                response.setStatus(400);
+            }
+        }else {
+            System.out.println("44444444444444444444444444444444444444444444444444444444");
+            System.out.println("********************************************************");
+            System.out.println("********************************************************");
             response.setStatus(200);
         }
     }

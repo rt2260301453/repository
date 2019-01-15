@@ -1,5 +1,6 @@
 package tech.wetech.admin.modules.system.po;
 
+import lombok.Data;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * @author cjbi
  */
+@Data
 @Table(name = "sys_role")
 public class Role {
 

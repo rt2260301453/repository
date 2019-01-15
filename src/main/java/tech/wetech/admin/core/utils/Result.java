@@ -1,6 +1,7 @@
 package tech.wetech.admin.core.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import tech.wetech.admin.core.exception.BizException;
@@ -14,6 +15,7 @@ import java.util.Map;
 /**
  * @author cjbi
  */
+@Data
 public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -109,9 +111,18 @@ public class Result<T> implements Serializable {
         if (obj == null) {
             // 若返回数据为null 统一返回给前端{}
             result.setData(new HashMap<>(1));
+
         } else {
             result.setData(obj);
         }
+        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");
+        System.out.println(result);
         return result;
     }
 

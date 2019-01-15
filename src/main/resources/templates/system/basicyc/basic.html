@@ -218,21 +218,18 @@
 </div>
 
 
+
 <script th:inline="javascript">
     var $table = $('#table');
     $(function () {
         // bootstrap table初始化
         // http://ootstrap-tableb.wenzhixin.net.cn/zh-cn/documentation/
         $table.bootstrapTable({
-            toolbar: "#toolbar",
             idField: 'basicno',
             pagination: true,
             showRefresh: true,
             search: true,
             clickToSelect: true,
-            queryParams: function (param) {
-                return {};
-            },
             url: CONTEXT_PATH + '/basic/list',
             columns: [
                 {field: 'state', checkbox: true},
@@ -276,6 +273,7 @@
                       console.log(response);
                       if (response.success){
                           alert("修改成功");
+                          $('table').bootstrapTable('refresh', {silent: true})
                       }
                       else{
                           return response.msg;
@@ -293,6 +291,7 @@
                         console.log(response);
                         if (response.success){
                             alert("修改成功");
+                            $('table').bootstrapTable('refresh', {silent: true})
                         }
                         else{
                             return response.msg;

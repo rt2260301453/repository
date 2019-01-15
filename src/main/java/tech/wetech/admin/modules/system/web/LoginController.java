@@ -25,13 +25,13 @@ public class LoginController extends BaseController {
         logger.info("begin to login");
         String error = null;
         if(UnknownAccountException.class.getName().equals(exceptionClassName)) {
-            error = "ÓÃ»§Ãû/ÃÜÂë´íÎó";
+            error = "ç”¨æˆ·å/å¯†ç é”™è¯¯";
         } else if(IncorrectCredentialsException.class.getName().equals(exceptionClassName)) {
-            error = "ÓÃ»§Ãû/ÃÜÂë´íÎó";
+            error = "ç”¨æˆ·å/å¯†ç é”™è¯¯";
         } else if(ExcessiveAttemptsException.class.getName().equals(exceptionClassName)) {
-            error = "µÇÂ½Ê§°Ü´ÎÊı¹ı¶à";
+            error = "ç™»é™†å¤±è´¥æ¬¡æ•°è¿‡å¤š";
         } else if(exceptionClassName != null) {
-            error = "ÆäËû´íÎó£º" + exceptionClassName;
+            error = "å…¶ä»–é”™è¯¯ï¼š" + exceptionClassName;
         }
         model.addAttribute("error", error);
         return "system/login";

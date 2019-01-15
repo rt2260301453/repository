@@ -5,7 +5,6 @@
 <section class="content-header" style="">
     <h1>
         分区管理
-        <small>分区管理页面</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
@@ -14,33 +13,81 @@
 </section>
 
 <section class="content">
+    <h5>分区页面管理</h5><br/><br/>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="toolbar">
-                        <form class="form-inline" id="searchForm">
-                            <div class="form-group">
-                                <label for="searchId"> 分拣编号</label>
-                                <input type="text" class="form-control input-sm" name="id" id="searchId" placeholder="分拣编号">
+
+
+                        <!-- search Modal -->
+                        <div class="modal fade" id="compositeQueryFormModal" tabindex="-1" role="dialog" aria-labelledby="compositeQueryFormModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title" id="searchModalLabel">查询分区数据</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="searchForm">
+                                            <div class="form-group">
+                                                <label class="control-label" for="proname"><span class="asterisk">*</span>省份:</label><br/>
+                                                <select id="proname" name="pro"
+                                                        class="form-control select2">
+                                                    <option></option>
+                                                    <option
+                                                            th:each="findpro : ${findAddr}" th:value="${findpro.pro}" th:text="${findpro.pro}">
+                                                    </option>
+                                                </select>
+                                                <label class="control-label" for="cityname"><span class="asterisk">*</span>城市:</label><br/>
+                                                <select  id="cityname" name="city"  class="form-control select2" data-placeholder="请从列表选择一项" required>
+                                                </select>
+                                                <label class="control-label" for="countyname"><span class="asterisk">*</span>区（县）：</label><br/>
+                                                <select id="countyname" name="county"  class="form-control select2" data-placeholder="请从列表选择一项" required>
+                                                </select>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">关键字:</label>
+                                                <input id="keyword" type="text" class="form-control" name="keyword" placeholder="输入关键字"
+                                                       minlength="3">
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">辅助关键字:</label>
+                                                <input  type="text" class="form-control" name="auxiliarykeywords" placeholder="输入辅助关键字"
+                                                        minlength="3">
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="id">分拣编码:</label>
+                                                <input id="id" type="text" class="form-control" name="id" placeholder="输入编码"
+                                                       minlength="3">
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <button type="submit" form="addForm" class="btn btn-primary"
+                                                onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});"
+                                                data-dismiss="modal"
+                                        >
+                                            确定
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-default" onclick="javascript:$('table').bootstrapTable('refresh', {silent: true});">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                    查询
-                                </button>
-                                <button type="reset" class="btn btn-default">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                    清空
-                                </button>
-                            </div>
-                        </form>
+                        </div>
+
                         <div class="btn-group btn-group-sm">
                             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                            <button shiro:hasPermission="subarea:search" type="button" id="compositeQueryFormBtn" class="btn btn-default"
+                            <button shiro:hasPermission="subarea:view" type="button" id="compositeQueryFormBtn" class="btn btn-default"
                                     data-toggle="modal"
-                                    data-target="#compositeQueryFormModal"><i class="glyphicon glyphicon-plus"></i> 查询
+                                    data-target="#compositeQueryFormModal"><i class="glyphicon glyphicon-plus"></i> 查询按钮
                             </button>
                             <button shiro:hasPermission="subarea:create" type="button" id="addBtn" class="btn btn-default"
                                     data-toggle="modal"
@@ -59,6 +106,8 @@
                                     data-action="{type:'delete',form:'#deleteForm',idField:'id',table:'#table'}"
                                     disabled><i class="glyphicon glyphicon-remove"></i> 删除
                             </button>
+                           <!-- <button   type="submit" onclick=""><i class="glyphicon glyphicon-plus"></i>导出
+                            </button>-->
                         </div>
                     </div>
                     <table id="table"></table>
@@ -74,62 +123,6 @@
 </section>
 <!-- /.content -->
 
-<!-- search Modal -->
-<div class="modal fade" id="compositeQueryFormModal" tabindex="-1" role="dialog" aria-labelledby="compositeQueryFormModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="searchModalLabel">查询分区数据</h4>
-            </div>
-            <div class="modal-body">
-                <form id="compositeQueryForm">
-                    <div class="form-group">
-                        <label class="control-label" for="addr"><span class="asterisk">*</span>地区:</label><br/>
-                        省份：<select multiple class="form-control select2">
-                           <option>
-                                角色1不存在
-                            </option>
-                        </select>
-                       城市： <select  multiple class="form-control select2" >
-                            <option>
-                                角色2不存在
-                            </option>
-                        </select >
-                        区（县）：<select multiple class="form-control select2">
-                            <option>
-                                角色3不存在
-                            </option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="id"><span class="asterisk">*</span>定区编码:</label>
-                        <input id="fixedareaId" type="text" class="form-control" name="fixedareaId" placeholder="输入定区编号"
-                               minlength="3">
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="id"><span class="asterisk">*</span>关键字:</label>
-                        <input id="keyword" type="text" class="form-control" name="keyword" placeholder="输入关键字"
-                               minlength="3">
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" form="addForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#compositeQueryForm',url:'@{/subarea/search}',after:'$.myAction.refreshTable'}">
-                    确定
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <!-- add Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
     <div class="modal-dialog" role="document">
@@ -142,56 +135,69 @@
             <div class="modal-body">
                 <form id="addForm">
                     <div class="form-group">
-                        <label class="control-label" for="id"><span class="asterisk">*</span>分拣编号:</label>
-                        <input id="id" type="text" class="form-control" name="id" placeholder="输入分拣编号"
-                               minlength="3">
-                        <div class="help-block with-errors"></div>
-                    </div>
-                   <div class="form-group">
-                        <label class="control-label" for="addr"><span class="asterisk">*</span>地区:</label>
-                       <select name="roleIds" id="addr" multiple class="form-control select2"
-                               data-placeholder="请从列表选择一项" required>
-                           <option th:each="role : ${roleList}" th:value="${role.id}" th:text="${role.description}">
-                               角色不存在
-                           </option>
-                       </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <!-- <div class="form-group">
-                        <label class="control-label" for="inputPasswordConfirm"><span
-                                class="asterisk">*</span>确认密码:</label>
-                        <input type="password" class="form-control" id="inputPasswordConfirm" minlength="6"
-                               data-match="#password" data-match-error="密码输入不一致。" name="chkpassowrd" placeholder="确认密码"
-                               required>
+                        <label class="control-label"    ><span class="asterisk">*</span>分拣编号:</label>
+                        <input  type="text" class="form-control" name="id" placeholder="输入分拣编号"
+                                pattern="^FQ[0-9]{3}$" data-pattern-error="格式应为FQ001"
+                                data-remote="subarea/checkId" data-remote-error="该编号已存在"
+                               >
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="organizationName"><span class="asterisk">*</span>所属组织:</label>
-                        <input type="text" class="form-control" id="organizationName" name="organizationName" readonly
-                               required>
-                        <input type="hidden" id="organizationId" name="organizationId" readonly required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="roleIds"><span class="asterisk">*</span>角色列表:</label>
-                        <select name="roleIds" id="roleIds" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:each="role : ${roleList}" th:value="${role.id}" th:text="${role.description}">
-                                角色不存在
+                        <label class="control-label" for="proAddr"><span class="asterisk">*</span>省份:</label><br/>
+                        <select id="proAddr" name="pro"
+                                class="form-control select2">
+                            <option></option>
+                            <option data-placeholder="请从列表选择一项" required
+                                    th:each="findpro : ${findAddr}" th:value="${findpro.pro}" th:text="${findpro.pro}">
                             </option>
+                        </select>
+                        <label class="control-label" for="cityAddr"><span class="asterisk">*</span>城市:</label><br/>
+                        <select  id="cityAddr" name="city"  class="form-control select2">
+                            <option data-placeholder="请从列表选择一项" required></option>
+                        </select>
+                        <label class="control-label" for="countyAddr"><span class="asterisk">*</span>区（县）：</label><br/>
+                        <select id="countyAddr" name="county"  class="form-control select2">
+                            <option data-placeholder="请从列表选择一项" required></option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="groupIds"><span class="asterisk">*</span>组列表:</label>
-                        <select name="groupIds" id="groupIds" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:each="group : ${groupList}" th:value="${group.id}" th:text="${group.name}">
-                                用户组不存在
-                            </option>
-                        </select>
+                        <label class="control-label"><span class="asterisk">*</span>定区编号</label>
+                        <input  type="text" class="form-control" name="fixedareaId" placeholder="请选择定区编号"
+                                >
                         <div class="help-block with-errors"></div>
-                    </div>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" ><span class="asterisk">*</span>关键字:</label>
+                        <input  type="text" class="form-control" name="keyword" placeholder="请输入关键字"
+                                maxlength="10">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>辅助关键字:</label>
+                        <input  type="text" class="form-control" name="auxiliarykeywords" placeholder="请输入辅助关键字"
+                                maxlength="10">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>起始号:</label>
+                        <input  type="number" class="form-control" name="starnum" placeholder="请输入起始号"
+                                min="0" max="99"
+                                >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>终止号:</label>
+                        <input  type="number" class="form-control" name="endnum" placeholder="请输入终止号"
+                                min="0" max="99">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>单双号:</label>
+                        <input  type="radio"  checked="checked" name="single" value="0"/>单号
+                        <input  type="radio" name="single" value="1"/>双号
+                        <div class="help-block with-errors"></div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -215,36 +221,62 @@
             </div>
             <div class="modal-body">
                 <form id="editForm">
-                    <input type="hidden" name="id"/>
                     <div class="form-group">
-                        <label class="control-label" for="username"><span class="asterisk">*</span>分拣编号:</label>
-                        <input id="editUsername" type="text" class="form-control" name="username" placeholder="输入分拣编号"
+                        <label class="control-label"><span class="asterisk">*</span>分拣编号:</label>
+                        <input id="editUsername" type="text" class="form-control" name="id" placeholder="输入分拣编号"
                                minlength="3" readonly required>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="organizationName"><span class="asterisk">*</span>所属组织:</label>
-                        <input type="text" class="form-control" id="editOrganizationName" name="organizationName"
-                               readonly required>
-                        <input type="hidden" id="editOrganizationId" name="organizationId" required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="editRoleIds"><span class="asterisk">*</span>角色列表:</label>
-                        <select name="roleIds" id="editRoleIds" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:each="role: ${roleList}" th:value="${role.id}" th:text="${role.description}">角色不存在</option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="editGroupIds"><span class="asterisk">*</span>组列表:</label>
-                        <select name="groupIds" id="editGroupIds" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:each="group : ${groupList}" th:value="${group.id}" th:text="${group.name}">
-                                用户组不存在
+                        <label class="control-label" ><span class="asterisk">*</span>省份:</label><br/>
+                        <select id="proEdit" name="pro"
+                                class="form-control select2"
+                                data-placeholder="请从列表选择一项" required><option></option>
+                            <option th:each="findpro : ${findAddr}" th:value="${findpro.pro}" th:text="${findpro.pro}">
                             </option>
                         </select>
+                        <label class="control-label" for="cityAddr"><span class="asterisk">*</span>城市:</label><br/>
+                        <select  id="cityEdit" class="form-control" name="city" data-placeholder="请从列表选择一项" required>
+                        </select>
+                        <label class="control-label" for="countyAddr"><span class="asterisk">*</span>区（县）：</label><br/>
+                        <select id="countyEdit" class="form-control" name="county" data-placeholder="请从列表选择一项" required>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>定区编号</label>
+                        <input  type="text" class="form-control" name="fixedareaId" placeholder="请选择定区编号"
+                        >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" ><span class="asterisk">*</span>关键字:</label>
+                        <input  type="text" class="form-control" name="keyword"
+                                maxlength="10">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>辅助关键字:</label>
+                        <input  type="text" class="form-control" name="auxiliarykeywords"
+                                maxlength="10">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>起始号:</label>
+                        <input  type="number" class="form-control" name="starnum"
+                                min="0" max="99">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>终止号:</label>
+                        <input  type="number" class="form-control" name="endnum"
+                                min="0" max="99">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span class="asterisk">*</span>单双号:</label>
+                        <input  type="radio"  checked="checked" name="single" value="0"/>单号
+                        <input  type="radio" name="single" value="1"/>双号
                         <div class="help-block with-errors"></div>
                     </div>
                 </form>
@@ -252,7 +284,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="submit" form="editForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#editForm',url:'@{/user/update}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#editForm',url:'@{/subarea/update}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -274,7 +306,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" form="deleteForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#deleteForm',url:'@{/user/delete}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#deleteForm',url:'@{/subarea/delete}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -283,8 +315,8 @@
 </div>
 <div id="actionButtons" class="admin-hide">
     <a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>　
-    <a shiro:hasPermission="user:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>　
-    <a shiro:hasPermission="user:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i class="glyphicon glyphicon-remove"></i></a>　
+    <a shiro:hasPermission="subarea:update" class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>　
+    <a shiro:hasPermission="subarea:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i class="glyphicon glyphicon-remove"></i></a>　
 </div>
 <!-- zTree -->
 <div id="menuContent" class="menuContent"
@@ -292,6 +324,8 @@
     <ul id="tree" class="ztree"></ul>
 </div>
 <script th:inline="javascript">
+
+
 
     var $table = $('#table');
 
@@ -321,6 +355,7 @@
         });
     });
 
+
     // 数据表格展开内容
     function detailFormatter(index, row) {
         var html = [];
@@ -347,6 +382,66 @@
         return $('#actionButtons').html();
     }
 
+    // $('#cityEdit').mouseover(function(){
+    //     var pro = $('#proEdit').select2()
+    //     console.log("pro="+pro.val())
+    //     if(pro.val() == ''){
+    //         $("#cityEdit").append("<option>请选择</option>");
+    //         return
+    //     }
+    //     console.log("city="+$('#cityEdit').val())
+    //     if(oldpro == pro.val() && $('#cityEdit').val() != '请选择'){
+    //         return
+    //     }
+    //     console.log("city2="+$('#cityEdit').val())
+    //     oldpro = $('#proEdit').select2().val()
+    //     $('#cityEdit').empty()
+    //     $.ajax({
+    //         url: CONTEXT_PATH + "/subarea/selectCity?pro="+
+    //             $('#proEdit').select2().val(),
+    //         dataType:'json',
+    //         cache:false,
+    //         async:false,
+    //         success:function(data){
+    //             console.log("data="+data)
+    //             $("#cityEdit").append("<option>请选择</option>");
+    //             $.each(data,function (i,e) {
+    //                 console.log("e.city="+e.city)
+    //                 $("#cityEdit").append("<option value='"+e.city+"'>"+e.city+"</option>");
+    //             })
+    //     }
+    //     });
+    // })
+    //
+    // $("#countyEdit").click(function(){
+    //     var city = $("#cityEdit")
+    //     console.log("pro="+city.val())
+    //     if(city.val() == ''){
+    //         $("#countyEdit").append("<option>请选择</option>");
+    //         return
+    //     }
+    //     if(oldcity == city.val() && $('#countyEdit').val() != '请选择'){
+    //         return
+    //     }
+    //     oldcity = city.val()
+    //     $('#countyEdit').empty()
+    //     $.ajax({
+    //         url: CONTEXT_PATH + "/subarea/selectCou?city="+
+    //             city.val(),
+    //         dataType:'json',
+    //         cache:false,
+    //         async:false,
+    //         success:function(data){
+    //             $("#countyEdit").append("<option>请选择</option>");
+    //             $.each(data,function (i,e) {
+    //                 $("#countyEdit").append("<option value='"+e.county+"'>"+e.county+"</option>");
+    //             })
+    //         }
+    //     });
+    // })
+
+    var oldpro = ''
+    var oldcity = ''
     window.actionEvents = {
         'click .like': function (e, value, row, index) {
             alert('You click like icon, row: ' + JSON.stringify(row));
@@ -355,8 +450,42 @@
         'click .edit': function (e, value, row, index) {
             $('#editModal').modal('show')
             $('#editForm').fillForm(row);
+            $("#cityEdit").empty()
+            $("#countyEdit").empty()
+            var pro = row.pro
+            var county = row.county
+            var city = row.city
+            $.ajax({
+                url: CONTEXT_PATH + "/subarea/selectCity?pro="+pro,
+                dataType:'json',
+                cache:false,
+                async:false,
+                success:function(data){
+                    console.log("data="+data)
+                    $("#cityEdit").append("<option>请选择</option>");
+                    $.each(data,function (i,e) {
+                        console.log("e.city="+e.city)
+                        $("#cityEdit").append("<option value='"+e.city+"'>"+e.city+"</option>");
+                    })
+                    $("#cityEdit option[value="+city+"]").prop("selected", true);
+                }
+            });
+            $.ajax({
+                url: CONTEXT_PATH + "/subarea/selectCou?city="+city,
+                dataType:'json',
+                cache:false,
+                async:false,
+                success:function(data){
+                    $("#countyEdit").append("<option>请选择</option>");
+                    $.each(data,function (i,e) {
+                        $("#countyEdit").append("<option value='"+e.county+"'>"+e.county+"</option>");
+                    })
+                    $("#countyEdit option[value="+county+"]").prop("selected", true);
+                }
+            });
             editAfter('', row);
             console.log(value, row, index);
+
         },
         'click .remove': function (e, value, row, index) {
             $('#deleteModal').modal('show');
@@ -368,6 +497,41 @@
             $('#deleteForm').html(html);
         }
     };
+
+
+    $('#proEdit').change(function(){
+        $("#cityEdit").empty()
+        $("#countyEdit").empty()
+        $("#countyEdit").append("<option>请选择</option>")
+        console.log("prochange="+$('#proEdit').select2().val())
+        $.ajax({
+            url: CONTEXT_PATH + "/subarea/selectCity?pro="+$('#proEdit').select2().val(),
+            dataType:'json',
+            cache:false,
+            success:function(data){
+                console.log("data="+data)
+                $.each(data,function (i,e) {
+                    console.log("e.city="+e.city)
+                    $("#cityEdit").append("<option value='"+e.city+"'>"+e.city+"</option>");
+                })
+            }
+        });
+    })
+
+    $('#cityEdit').change(function(){
+        $("#countyEdit").empty()
+        $.ajax({
+            url: CONTEXT_PATH + "/subarea/selectCou?city="+$('#cityEdit').val(),
+            dataType:'json',
+            cache:false,
+            success:function(data){
+                $.each(data,function (i,e) {
+                    $("#countyEdit").append("<option value='"+e.county+"'>"+e.county+"</option>");
+                })
+            }
+        });
+    })
+
 
     var setting = {
         view: {
@@ -382,10 +546,15 @@
             onClick: onClick
         }
     };
-    var orgList = [[${organizationList}]];
+    var organizationList = [[${organizationList}]];
+    console.log(organizationList);
+
+    var org = [[${findEdit}]];
+    console.log(org);
+    var orgList = [[${findAddr}]];
     var zNodes = [];
     for (var i in orgList) {
-        zNodes.push({id: orgList[i].id, pId: orgList[i].parentId, name: orgList[i].name});
+        zNodes.push({id: orgList[i].id,  fixedareaId: orgList[i].fixedareaId});
     }
 
     function onClick(e, treeId, treeNode) {
@@ -408,6 +577,123 @@
         $("#editOrganizationName").val(name);
         hideMenu();
     }
+
+    $('#proname').change(function(){
+        console.log("proname="+$('#proname').select2().val())
+        var cityname=  $("#cityname").select2();
+        var countyname=  $("#countyname").select2();
+        cityname.empty();
+        countyname.empty();
+        $.ajax({
+            url: CONTEXT_PATH + "/subarea/city?pro="+$('#proname').select2().val(),
+            dataType:'json',
+            cache:false,
+            success:function(data){
+                console.log("cityname="+data)
+                $('#cityname').select2({
+                    data:data,
+                    //	 placeholder:'请选择',//默认文字提示
+                    language: "zh-CN",//汉化
+                });
+            }
+        });
+    })
+
+    $('#cityname').click(function(){
+        console.log("cityname="+$('#cityname').select2().val())
+        console.log("countyname="+$('#countyname').select2().val())
+        var countyname=  $("#countyname").select2();
+        countyname.empty();
+        $.ajax({
+            url: CONTEXT_PATH + "/subarea/county?city="+$('#cityname').select2().val(),
+            dataType:'json',
+            cache:false,
+            success:function(data){
+                console.log("countyAddr="+data)
+                $('#countyname').select2({
+                    data:data,
+                    language: "zh-CN",//汉化
+                });
+            }
+        });
+    })
+
+
+
+    $('#cityname').change(function(){
+        console.log("cityname="+$('#cityname').select2().val())
+        console.log("countyname="+$('#countyname').select2().val())
+        var countyname=  $("#countyname").select2();
+        countyname.empty();
+        $.ajax({
+            url: CONTEXT_PATH + "/subarea/county?city="+$('#cityname').select2().val(),
+            dataType:'json',
+            cache:false,
+            success:function(data){
+                console.log("countyAddr="+data)
+                $('#countyname').select2({
+                    data:data,
+                    language: "zh-CN",//汉化
+                });
+            }
+        });
+    })
+
+
+
+    $('#proAddr').change(function(){
+        console.log("proAddr="+$('#proAddr').select2().val())
+        var cityAddr=  $("#cityAddr").select2();
+        var countyAddr=  $("#countyAddr").select2();
+        cityAddr.empty();
+        countyAddr.empty();
+        $.ajax({
+            url: CONTEXT_PATH + "/subarea/city?pro="+$('#proAddr').select2().val(),
+            dataType:'json',
+            cache:false,
+            success:function(data){
+                console.log("cityAddr="+data)
+                $('#cityAddr').select2({
+                    data:data,
+                    //	 placeholder:'请选择',//默认文字提示
+                    language: "zh-CN",//汉化
+                });
+            }
+        });
+    })
+
+
+    $('#cityAddr').change(function(){
+        console.log("cityAddr="+$('#cityAddr').select2().val())
+        console.log("countyname="+$('#countyAddr').select2().val())
+        var countyAddr=  $("#countyAddr").select2();
+        countyAddr.empty();
+        $.ajax({
+            url: CONTEXT_PATH + "/subarea/county?city="+$('#cityAddr').select2().val(),
+            dataType:'json',
+            cache:false,
+            success:function(data){
+                console.log("countyAddr="+data)
+                $('#countyAddr').select2({
+                    data:data,
+                    language: "zh-CN",//汉化
+                });
+            }
+        });
+    })
+
+    $('#proEdit').change(function(){
+        $("#cityEdit").empty()
+        $("#countyEdit").empty()
+        $("#cityEdit").append("<option>请选择</option>");
+        $("#countyEdit").append("<option>请选择</option>");
+    })
+
+    $('#cityEdit').change(function(){
+        $("#countyEdit").empty()
+        $("#countyEdit").append("<option>请选择</option>");
+    })
+
 
     function showMenu() {
         var cityObj = $("#organizationName");
@@ -446,4 +732,7 @@
     $("#organizationName").click(showMenu);
     $("#editOrganizationName").click(showMenuOfEdit);
 </script>
+
+
+
 </html>

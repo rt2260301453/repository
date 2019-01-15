@@ -3,6 +3,8 @@ package tech.wetech.admin.modules.system.po;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author cjbi
  */
@@ -12,6 +14,7 @@ public class Subarea {
 
     @Id
     @Column(name = "id")
+    @NotBlank(message = "分拣编号不能为空")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
@@ -21,13 +24,13 @@ public class Subarea {
     @Column(name = "pro")
     private String pro;
 
-    @Column(name = "city")
     private String city;
 
     @Column(name = "county")
     private String county;
 
     private String attribute;
+
 
     private String keyword;
 
