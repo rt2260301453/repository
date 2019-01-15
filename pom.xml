@@ -31,10 +31,6 @@
 
 
 	<dependencies>
-<<<<<<< HEAD
-
-
-=======
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -42,7 +38,6 @@
 			<version>1.18.4</version>
 			<scope>provided</scope>
 		</dependency>
->>>>>>> a73359c91648809dcb907679ec8f7a34a32261a2
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -74,14 +69,6 @@
 					<groupId>org.opensymphony.quartz</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.4</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- shiro-quartz依赖 commons-collections 否则java.lang.NoClassDefFoundError: org/apache/commons/collections/SetUtils org.quartz.JobDetail.<init>(JobDetail.java:85) -->
 		<dependency>
@@ -220,13 +207,6 @@
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>2.3.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.4</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 

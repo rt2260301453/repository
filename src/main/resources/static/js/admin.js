@@ -467,12 +467,8 @@
         });
     });
 
-<<<<<<< HEAD
 
-   /* //出错提示
-=======
     //出错提示
->>>>>>> a73359c91648809dcb907679ec8f7a34a32261a2
     $(document).ajaxError(function (event, request, settings) {
         debugger;
         var responseJSON = JSON.parse(request.responseText), msg;
@@ -483,12 +479,7 @@
             msg = request.status + '  (' + request.statusText + ')';
         }
         $.myNotify.danger(msg);
-<<<<<<< HEAD
-    });*/
-
-=======
     });
->>>>>>> a73359c91648809dcb907679ec8f7a34a32261a2
     // To make Pace works on Ajax calls
     $(document).ajaxStart(function () {
         Pace.restart()

@@ -107,7 +107,7 @@ public class SubareaServiceImpl implements SubareaService {
         List listNew=new ArrayList<>();
         set.addAll(pro);
         listNew.addAll(set);
-        listNew.add(0,"ÇëÑ¡Ôñ");
+        listNew.add(0,"ï¿½ï¿½Ñ¡ï¿½ï¿½");
         return listNew;
     };
 
@@ -129,9 +129,9 @@ public class SubareaServiceImpl implements SubareaService {
         Set set = new HashSet();
         List listNew=new ArrayList<>();
         set.addAll(pro);
-        System.out.println("²éÑ¯·ÖÇøÊý¾ÝSubareaServiceset£º"+set);
+        System.out.println("ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SubareaServicesetï¿½ï¿½"+set);
         listNew.addAll(set);
-        listNew.add(0,"ÇëÑ¡Ôñ");
+        listNew.add(0,"ï¿½ï¿½Ñ¡ï¿½ï¿½");
         return listNew;
     };
 
@@ -139,7 +139,7 @@ public class SubareaServiceImpl implements SubareaService {
 
     @Override
     public PageResultSet<SubareaDto> findByPage(SubareaQuery subareaQuery) {
-        System.out.println("²éÑ¯·ÖÇøÊý¾ÝSubareaServiceImpl");
+        System.out.println("ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SubareaServiceImpl");
         if(!StringUtils.isEmpty(subareaQuery.getOrderBy())) {
             PageHelper.orderBy(subareaQuery.getOrderBy());
         }
@@ -168,11 +168,11 @@ public class SubareaServiceImpl implements SubareaService {
         subareaMapper.selectByExample(example).forEach(u -> {
             SubareaDto dto = new SubareaDto(u);
             dtoList.add(dto);
-            System.out.println("SubareaServiceImpl+++dto£º"+dto);
+            System.out.println("SubareaServiceImpl+++dtoï¿½ï¿½"+dto);
         });
         long total = subareaMapper.selectCountByExample(example);
-        System.out.println("SubareaServiceImpl+++total£º"+total);
-        System.out.println("SubareaServiceImpl+++dtoList£º"+dtoList);
+        System.out.println("SubareaServiceImpl+++totalï¿½ï¿½"+total);
+        System.out.println("SubareaServiceImpl+++dtoListï¿½ï¿½"+dtoList);
         PageResultSet<SubareaDto> resultSet = new PageResultSet<>();
         resultSet.setRows(dtoList);
         resultSet.setTotal(total);
@@ -189,4 +189,8 @@ public class SubareaServiceImpl implements SubareaService {
         return  subareaMapper.selectCou(addr);
     }
 
+    @Override
+    public List<Subarea> findAll(){
+        return  subareaMapper.selectAll();
+    }
 }

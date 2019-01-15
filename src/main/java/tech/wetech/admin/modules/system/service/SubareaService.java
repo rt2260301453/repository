@@ -30,6 +30,8 @@ public interface SubareaService {
 
     List<Subarea> excel();
 
+    List<Subarea> findAll();
+
     List<Addr> findPro();
 
     List<Addr> findEdit();
