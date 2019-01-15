@@ -65,6 +65,8 @@ public class StaffController{
     @RequiresPermissions("staff:update")
     @SystemLog("取派管理更新取派员")
     public Result update(Staff staff) {
+        System.out.println("*****************************************");
+        System.out.println("Staff="+staff);
         staffService.updatestaff(staff);
         return Result.success();
     }
