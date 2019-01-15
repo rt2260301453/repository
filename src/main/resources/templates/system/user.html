@@ -21,6 +21,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="toolbar">
+
                         <form class="form-inline" id="searchForm">
                             <div class="form-group">
                                 <label for="searchName"> 用户名</label>
@@ -37,6 +38,7 @@
                                 </button>
                             </div>
                         </form>
+
                         <div class="btn-group btn-group-sm">
                             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                             <button shiro:hasPermission="user:create" type="button" id="addBtn" class="btn btn-default"
@@ -57,6 +59,7 @@
                                     disabled><i class="glyphicon glyphicon-remove"></i> 删除
                             </button>
                         </div>
+
                     </div>
                     <table id="table"></table>
                 </div>
@@ -131,6 +134,7 @@
                     </div>
                 </form>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="submit" form="addForm" class="btn btn-primary"
@@ -138,6 +142,7 @@
                     确定
                 </button>
             </div>
+
         </div>
     </div>
 </div>
@@ -145,11 +150,13 @@
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title" id="editModalLabel">修改用户</h4>
             </div>
+
             <div class="modal-body">
                 <form id="editForm">
                     <input type="hidden" name="id"/>
@@ -290,6 +297,7 @@
             console.log(value, row, index);
         },
         'click .edit': function (e, value, row, index) {
+            console.log(row)
             $('#editModal').modal('show')
             $('#editForm').fillForm(row);
             editAfter('', row);
@@ -300,7 +308,7 @@
             $('.records').html('1');
             var html = '';
             for (var key in row) {
-                html += '<input type="hidden" name="' + key + '" value="' + row[key] + '">';
+                html += '<input type="text" name="' + key + '" value="' + row[key] + '">';
             }
             $('#deleteForm').html(html);
         }

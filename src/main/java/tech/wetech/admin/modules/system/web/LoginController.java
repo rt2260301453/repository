@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import tech.wetech.admin.core.utils.BaseController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author cjbi
@@ -19,6 +20,7 @@ public class LoginController extends BaseController {
 
     @RequestMapping("/login")
     public String showLoginForm(HttpServletRequest req, Model model) {
+
         String exceptionClassName = (String)req.getAttribute("shiroLoginFailure");
         logger.info("begin to login");
         String error = null;

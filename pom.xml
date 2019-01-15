@@ -11,12 +11,15 @@
 	<name>wetech-admin</name>
 	<description>Wetech Admin project for Spring Boot</description>
 
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,9 +28,21 @@
 		<shiro.version>1.2.2</shiro.version>
 	</properties>
 
+
+
 	<dependencies>
+<<<<<<< HEAD
 
 
+=======
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
+>>>>>>> a73359c91648809dcb907679ec8f7a34a32261a2
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
@@ -80,6 +95,12 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<!-- shiro整合结束 -->
+		<!-- https://mvnrepository.com/artifact/com.fommil/jsonformat -->
+		<dependency>
+			<groupId>com.fommil</groupId>
+			<artifactId>jsonformat_2.12</artifactId>
+			<version>1.0.0-RC9</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -220,6 +241,8 @@
 	</dependencies>
 
 	<build>
+
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -240,6 +263,16 @@
 						<artifactId>mysql-connector-java</artifactId>
 						<version>${mysql.version}</version>
 					</dependency>
+
+					<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven -->
+					<dependency>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok-maven</artifactId>
+						<version>1.18.4.0</version>
+						<type>pom</type>
+					</dependency>
+
+
 					<dependency>
 						<groupId>tk.mybatis</groupId>
 						<artifactId>mapper-generator</artifactId>
@@ -286,5 +319,17 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<!-- 如果不加，那么打包的时候mapper文件不会被加载进来 -->
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 	</build>
 </project>

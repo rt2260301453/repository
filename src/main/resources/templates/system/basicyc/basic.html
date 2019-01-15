@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:c="http://www.w3.org/1999/html">
 <!-- Content Header (Page header) -->
 <section class="content-header" style="">
     <h1>
@@ -53,9 +53,11 @@
                             <!-- Indicates a dangerous or potentially negative action -->
                             <button shiro:hasPermission="basic:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
                                     data-target="#deleteModal"
-                                    data-action="{type:'delete',form:'#deleteForm',idField:'id',table:'#table'}"
+                                    data-action="{type:'delete',form:'#deleteForm',idField:'basicno',table:'#table'}"
                                     disabled><i class="glyphicon glyphicon-remove"></i> 删除
                             </button>
+                            <!--<a shiro:hasPermission="basic:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除">
+                            <i class="glyphicon glyphicon-remove"></i></a>　-->
                         </div>
                     </div>
                     <table id="table"></table>
@@ -85,13 +87,16 @@
                     <div class="form-group">
                         <label class="control-label" for="addBasicno"><span class="asterisk">*</span>基本档案编号:</label>
                         <input id="addBasicno" type="text" class="form-control" name="basicno" placeholder="例:d00001"
-                               minlength="3" required>
+                                required
+                               pattern="^d\d{5}$" data-pattern-error="格式应为,例:d00001"
+                               data-remote="basic/checkNo" data-remote-error="该档案编号已存在">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="addBasicname"><span class="asterisk">*</span>基本档案名称:</label>
                         <input id="addBasicname" type="text" class="form-control" name="basicname" placeholder="例:**属性"
-                               minlength="3" required>
+                                required
+                               data-remote="basic/checkName" data-remote-error="该档案名称已存在">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -107,27 +112,28 @@
                     <div class="form-group">
                         <label class="control-label" for="addRemark"><span class="asterisk">*</span>备注:</label>
                         <input id="addRemark" type="text" class="form-control" name="remark" placeholder="不能超过20字"
-                               minlength="3" >
+                                >
                         <div class="help-block with-errors"></div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" for="addOperator"><span class="asterisk">*</span>操作员:</label>
-                        <input id="addOperator" type="text" class="form-control" name="operator"
-                               minlength="3" required>
-                        <div class="help-block with-errors"></div>
-                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label class="control-label" for="addOperator"><span class="asterisk">*</span>操作员:</label>-->
+                        <!--<input id="addOperator" type="text" class="form-control" name="operator"-->
+                                <!--required>-->
+                        <!--<div class="help-block with-errors"></div>-->
+                    <!--</div>-->
                     <div class="form-group">
                         <label class="control-label" for="addOperationunit"><span class="asterisk">*</span>操作员单位:</label>
                         <input id="addOperationunit" type="text" class="form-control" name="operationunit"
-                               minlength="3" required>
+                                required>
                         <div class="help-block with-errors"></div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" for="addOperationdate"><span class="asterisk">*</span>操作时间:</label>
-                        <input id="addOperationdate" type="text" class="form-control" name="operationdate"
-                               minlength="3" required>
-                        <div class="help-block with-errors"></div>
-                    </div>
+                    <!--controller层new了时间-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="control-label" for="addOperationdate"><span class="asterisk">*</span>操作时间:</label>-->
+                        <!--<input id="addOperationdate" type="text" class="form-control" name="operationdate"-->
+                               <!--minlength="3" required>-->
+                        <!--<div class="help-block with-errors"></div>-->
+                    <!--</div>-->
                 </form>
             </div>
             <div class="modal-footer">
@@ -152,10 +158,7 @@
             <div class="modal-body">
                 <form id="editForm">
                     <input type="hidden" name="basicno"/>
-                    <input type="hidden" name="basicname"/>
-                    <input type="hidden" name="operator"/>
-                    <input type="hidden" name="operationunit"/>
-                    <input type="hidden" name="operationdate"/>
+
                     <div class="form-group">
                         <label class="control-label" ><span class="asterisk">*</span>是否分级:</label>
                             <input  name="classifying" value="0" type="radio" class="ace" />
@@ -166,10 +169,11 @@
                                <!--minlength="3" required>-->
                         <div class="help-block with-errors"></div>
                     </div>
+
                     <div class="form-group">
                         <label class="control-label" for="editRemark"><span class="asterisk">*</span>备注:</label>
                         <input id="editRemark" type="text" class="form-control" name="remark" placeholder="不能超过20字"
-                               minlength="3" required>
+                               >
                         <div class="help-block with-errors"></div>
                     </div>
                 </form>
@@ -199,7 +203,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" form="deleteForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#deleteForm',url:'@{/group/delete}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#deleteForm',url:'@{/basic/delete}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -213,22 +217,43 @@
     <a shiro:hasPermission="basic:delete" class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="删除"><i class="glyphicon glyphicon-remove"></i></a>　
 </div>
 
+
+
 <script th:inline="javascript">
-
     var $table = $('#table');
-
     $(function () {
         // bootstrap table初始化
-        // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
+        // http://ootstrap-tableb.wenzhixin.net.cn/zh-cn/documentation/
         $table.bootstrapTable({
-            url: CONTEXT_PATH + '/basic/list',
             idField: 'basicno',
+            pagination: true,
+            showRefresh: true,
+            search: true,
+            clickToSelect: true,
+            url: CONTEXT_PATH + '/basic/list',
             columns: [
                 {field: 'state', checkbox: true},
                 {field: 'basicno', title: '基本档案编号', sortable: true, halign: 'left'},
                 {field: 'basicname', title: '基本档案名称', sortable: true, halign: 'left'},
-                {field: 'classifying', title: '是否分级', sortable: true, halign: 'left'},
-                {field: 'remark', title: '备注', sortable: true, halign: 'left'},
+                {field: 'classifying', title: '是否分级', sortable: true, halign: 'left',
+                    formatter:function(value,row,index){
+                        if(value == 0){
+                            return "<a href=\"#\" name=\"classifying\" data-url=\""+CONTEXT_PATH + "/basic/updateclassifying"+"\" data-name=\"classifying\" data-type=\"select\" data-pk=\""+row.basicno+"\" data-title=\"是否分级\">"
+                                + "否" + "</a>";
+                        }else{
+                            return "<a href=\"#\" name=\"classifying\" data-url=\""+CONTEXT_PATH + "/basic/updateclassifying"+"\" data-name=\"classifying\" data-type=\"select\" data-pk=\""+row.basicno+"\" data-title=\"是否分级\">"
+                                + "是" + "</a>";
+                        }
+
+                    }
+                },
+                {field: 'remark', title: '备注', sortable: true, halign: 'left',
+                    formatter: function (value, row, index) {
+                        return "<a href=\"#\" name=\"remark\" data-url=\""+CONTEXT_PATH + "/basic/updateremark"+"\" data-name=\"remark\" data-type=\"text\" data-pk=\""+row.basicno+"\" data-title=\"备注\">"
+                            + value + "</a>";
+                    },
+                    events:'actionEvents'
+                },
                 {field: 'operator', title: '操作人员', sortable: true, halign: 'left'},
                 {field: 'operationunit', title: '操作单位', sortable: true, halign: 'left'},
                 {field: 'operationdate', title: '操作时间', sortable: true, halign: 'left'},
@@ -241,7 +266,57 @@
                     events: 'actionEvents',
                     clickToSelect: false
                 }
-            ]
+            ],
+            onLoadSuccess: function (aa, bb, cc) {
+                $("#table [name='remark']").editable({
+                    success:function(response,newValue){
+                      console.log(response);
+                      if (response.success){
+                          alert("修改成功");
+                          $('table').bootstrapTable('refresh', {silent: true})
+                      }
+                      else{
+                          return response.msg;
+                      }
+                    },
+                    type: 'text',//编辑框的类型。支持text|textarea|select|date|checklist等
+                    title: "编辑",              //编辑框的标题
+                    disabled: false,             //是否禁用编辑
+                    emptytext: "点击添加",        //空值的默认文本
+                    mode: "popup" //编辑框的模式：支持popup和inline两种模式，默认是popup
+                });
+
+                $('#table [name=\'classifying\']').editable({
+                    success:function(response,newValue){
+                        console.log(response);
+                        if (response.success){
+                            alert("修改成功");
+                            $('table').bootstrapTable('refresh', {silent: true})
+                        }
+                        else{
+                            return response.msg;
+                        }
+                    },
+                    type: "select",              //编辑框的类型。支持text|textarea|select|date|checklist等
+                    source: [{ value: 0, text: "否" }, { value: 1, text: "是" }],
+                    title: "是否分级",           //编辑框的标题
+                    disabled: false,           //是否禁用编辑
+                    emptytext: "空文本",       //空值的默认文本
+                    mode: "popup",            //编辑框的模式：支持popup和inline两种模式，默认是popup
+                    validate: function (value) { //字段验证
+                        console.log(value);
+                        if (!$.trim(value)) {
+                            return '不能为空';
+                        }
+                    },
+                    error: function (response,newValue) {
+                        if (response.status != 200) {
+                            return '是否分级选择“是”后,不能修改为“否”！！';
+                        }
+                    }
+
+                });
+            }
         });
     });
 

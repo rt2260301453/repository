@@ -56,6 +56,7 @@
                 }
             }
             var url = window.location.href;
+            console.log("_url="+url)
             if (url.indexOf('#') > 0 && url.substr(url.indexOf('#') + 1).length > 0) {
                 var s = url.indexOf('#');
                 if (url.substr(s - 1, 1) === '/' || url.substr(s + 1, 1) === '/') {
@@ -63,6 +64,7 @@
                 } else {
                     url = url.replace('#', '/');
                 }
+                console.log("url="+url)
                 $('#content-wrapper').load(url, function () {
                     //重新加载组件
                     reloadComponent();
@@ -102,7 +104,7 @@
                                     if (/^@{(.*?)}$/g.test(obj.url)) {
                                         obj.url = CONTEXT_PATH + obj.url.substring(2, obj.url.indexOf("}"))
                                     }
-                                    $(obj.form).submit({url: obj.url},
+                                    $(obj.form).submit2({url: obj.url},
                                         function (data) {
                                             if (obj.after) {
                                                 eval(obj.after + '(obj,data)');
@@ -300,6 +302,7 @@
             _url = opts.url,
             _data = (opts.data || $form.serialize()),
             _dataType = (opts.dataType || 'json');
+
         if ($form.isFormValid($(this))) {
             $.ajax({
                 type: 'post',
@@ -374,7 +377,7 @@
     // 重置表单
     $.fn.clear = _clear;
     //提交
-    $.fn.submit = _submit;
+    $.fn.submit2 = _submit;
     //填充表单
     $.fn.fillForm = _fill_form;
     //admin核心api
@@ -455,6 +458,8 @@
         },
     });
 
+
+
     // 数据表格动态高度
     $(window).resize(function () {
         $('#table').bootstrapTable('resetView', {
@@ -462,8 +467,12 @@
         });
     });
 
+<<<<<<< HEAD
 
    /* //出错提示
+=======
+    //出错提示
+>>>>>>> a73359c91648809dcb907679ec8f7a34a32261a2
     $(document).ajaxError(function (event, request, settings) {
         debugger;
         var responseJSON = JSON.parse(request.responseText), msg;
@@ -474,8 +483,12 @@
             msg = request.status + '  (' + request.statusText + ')';
         }
         $.myNotify.danger(msg);
+<<<<<<< HEAD
     });*/
 
+=======
+    });
+>>>>>>> a73359c91648809dcb907679ec8f7a34a32261a2
     // To make Pace works on Ajax calls
     $(document).ajaxStart(function () {
         Pace.restart()

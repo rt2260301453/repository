@@ -25,8 +25,8 @@
                     <div id="toolbar">
                         <form class="form-inline" id="searchForm">
                             <div class="form-group">
-                                <label for="searchstaid"> 替工号</label>
-                                <input type="text" class="form-control input-sm" name="staid" id="searchstaid" placeholder="请输入员工编号">
+                                <label for="searchreplayid"> 替工号</label>
+                                <input type="text" class="form-control input-sm" name="replayid" id="searchreplayid" placeholder="请输入员工编号">
                             </div>
                             <div class="form-group">
                                 <label for="searchname"> 员工姓名</label>
@@ -80,7 +80,7 @@
 <!-- /.content -->
 
 <!-- add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
+<div class="modal fade" id="addModal" role="dialog" aria-labelledby="addModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -90,52 +90,91 @@
             </div>
             <div class="modal-body">
                 <form id="addForm" role="form" data-toggle="validator">
+
                     <div class="form-group">
-                        <label class="control-label" for="staid"><span class="asterisk">*</span>替工号:</label>
-                        <input id="staid" type="text" class="form-control" name="staid" placeholder="输入员工编号" pattern="^[A-Za-z0-9]+$"
-                               minlength="6" maxlength="15" data-match-error="员工编号只能是长度6到15的数字，下划线"
-                               data-remote="staff/check"   data-remote-error="该员工编号已存在！"
-                               required >
+                        <label class="control-label" for="replayid"><span class="asterisk">*</span>替工号:</label>
+                        <select name="replayid" id="replayid" style="width: 570px;height: 34px"  class="form-control select2"
+                                data-placeholder="请从列表选择一项" required>
+                            <option value="">
+                            </option>
+                            <option th:each="staff: ${staffList}" th:value="${staff.staid}" th:text="${staff.staid}">员工编号不存在</option>
+                        </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
-                        <input type="text" id="name" class="form-control" pattern=" ^[\u4E00-\u9FA5]$" data-match-error="员工姓名只能是长度为2到5的中文字符"
-                               name="name" placeholder="输入员工姓名"  required>
+                        <input type="text" id="name" class="form-control" readonly unselectable="on"
+                               name="name" >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="station"><span class="asterisk">*</span>所属单位:</label>
+                        <input type="text" class="form-control" id="station" name="station" unselectable="on" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="replayofid"><span class="asterisk">*</span>被替工号:</label>
+                        <select name="replayofid" id="replayofid" style="width: 570px;height: 34px"  class="form-control select2"
+                                data-datamatch="#replayid"    data-datamatch-error="不能自己替班自己"
+                                data-placeholder="请从列表选择一项" required>
+                            <option value="">
+                            </option>
+                            <option th:each="staff: ${staffList}" th:value="${staff.staid}" th:text="${staff.staid}">员工编号不存在</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nameof"><span class="asterisk">*</span>被替员工姓名:</label>
+                        <input type="text" id="nameof" class="form-control" readonly unselectable="on"
+                               name="nameof" >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="stationof"><span class="asterisk">*</span>被替员工所属单位:</label>
+                        <input type="text" class="form-control" id="stationof" name="stationof" unselectable="on" required>
                         <div class="help-block with-errors"></div>
                     </div>
 
 
+                    <div class="form-group">
+                        <label class="control-label" for="startDate"><span class="asterisk">*</span>开始时间:</label>
+                        <input type="datetime-local" id="startDate" class="form-control"
+                               name="starttime"
+                        >
+                        <div class="help-block with-errors"></div>
 
+                        <label class="control-label" for="endDate"><span class="asterisk">*</span>结束时间:</label>
+                        <input type="datetime-local" id="endDate" class="form-control" name="endtime"
+                               data-checktime="#startDate"    data-checktime-error="结束时间必须大于开始时间"
+                        >
+                        <div class="help-block with-errors"></div>
+                    </div>
 
                     <div class="form-group">
                         <label class="control-label" for="deltag"><span class="asterisk">*</span>作废标记:</label>
-                        <select name="deltag" id="deltag" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:value="是">
+                        <select name="deltag" id="deltag"  class="form-control select2" data-placeholder="请从列表选择一项"required>
+                            <option value="">
+
+                            </option>
+                            <option value="是">
                                 是
                             </option>
-                            <option th:value="否">
+                            <option value="否">
                                 否
                             </option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="station"><span class="asterisk">*</span>所属单位:</label>
-                        <input type="text" class="form-control" id="station" name="station" required>
-                        <div class="help-block with-errors"></div>
-                    </div>
 
 
-                    
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" form="addForm" class="btn btn-primary" id="saveBtn"
-                        data-action="{type:'submit',form:'#addForm',url:'@{/staff/create}',after:'$.myAction.refreshTable'}">
+                <button type="submit" form="addForm" class="btn btn-primary"
+                        data-action="{type:'submit',form:'#addForm',url:'@{/replay/create}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -144,110 +183,99 @@
 </div>
 
 <!-- edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+<div class="modal fade" id="editModal" role="dialog" aria-labelledby="editModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="editModalLabel">修改取派员</h4>
+                <h4 class="modal-title" id="editModalLabels">更新行</h4>
             </div>
             <div class="modal-body">
-                <form id="editForm">
+                <form id="editForm" role="form" data-toggle="validator">
                     <div class="form-group">
-                        <label class="control-label" for="staid"><span class="asterisk">*</span>员工编号:</label>
-                        <input id="editstaid" type="text" class="form-control" name="staid" placeholder="输入员工编号" pattern="^[A-Za-z0-9]+$"
-                               minlength="6" maxlength="15" data-match-error="员工编号只能是长度6到15的字母，数字，下划线"
-
-                               required >
-                        <div class="help-block with-errors"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
-                        <input type="text" id="editname" class="form-control" pattern=" ^[\u4E00-\u9FA5]$" data-match-error="员工姓名只能是长度为2到5的中文字符"
-                               name="name" placeholder="输入员工姓名"  required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label" for="telephone"><span class="asterisk">*</span>电话:</label>
-                        <input type="text" class="form-control" id="edittelephone" name="telephone"
-                               pattern="^1[34578]\d{9}$" data-match-error="电话号码必须为13位有效数字"required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="control-label" for="haspad"><span class="asterisk">*</span>移动设备:</label>
-                        <select name="haspad" id="edithaspad" multiple class="form-control select2"
+                        <label class="control-label" for="editreplayid"><span class="asterisk">*</span>替工号:</label>
+                        <select name="replayid" id="editreplayid" style="width: 570px;height: 34px"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:value="PDA">
-                                PDA
-                            </option>
-                            <option th:value="其他">
-                                其他
-                            </option>
+                            <option value=""></option>
+                            <option th:each="staff: ${staffList}" th:value="${staff.staid}" th:text="${staff.staid}">员工编号不存在</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
 
+
                     <div class="form-group">
-                        <label class="control-label" for="deltag"><span class="asterisk">*</span>作废标记:</label>
-                        <select name="deltag" id="editdeltag" multiple class="form-control select2"
+                        <label class="control-label" for="editname"><span class="asterisk">*</span>员工姓名:</label>
+                        <input type="text" id="editname" class="form-control" readonly unselectable="on"
+                               name="name" >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="editstation"><span class="asterisk">*</span>所属单位:</label>
+                        <input type="text" class="form-control" id="editstation" name="station" unselectable="on" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="editreplayofid"><span class="asterisk">*</span>被替工号:</label>
+                        <select name="replayofid" id="editreplayofid" style="width: 570px;height: 34px"  class="form-control select2"
+                                data-datamatch="#replayid"    data-datamatch-error="不能自己替班自己"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:value="是">
+                            <option value="">
+                            </option>
+                            <option th:each="staff: ${staffList}" th:value="${staff.staid}" th:text="${staff.staid}">员工编号不存在</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="editnameof"><span class="asterisk">*</span>被替员工姓名:</label>
+                        <input type="text" id="editnameof" class="form-control" readonly unselectable="on"
+                               name="nameof" >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="editstationof"><span class="asterisk">*</span>被替员工所属单位:</label>
+                        <input type="text" class="form-control" id="editstationof" name="stationof" unselectable="on" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="editstartDate"><span class="asterisk">*</span>开始时间:</label>
+                        <input type="datetime-local" id="editstartDate" class="form-control"
+                               name="starttime"
+                        >
+                        <div class="help-block with-errors"></div>
+
+                        <label class="control-label" for="editendDate"><span class="asterisk">*</span>结束时间:</label>
+                        <input type="datetime-local" id="editendDate" class="form-control" name="endtime"
+                               data-checktime="#editstartDate"    data-checktime-error="结束时间大于开始时间"
+                        >
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="editdeltag"><span class="asterisk">*</span>作废标记:</label>
+                        <select name="deltag" id="editdeltag"  class="form-control select2" data-placeholder="请从列表选择一项"required>
+                            <option value="">
+
+                            </option>
+                            <option value="是">
                                 是
                             </option>
-                            <option th:value="否">
+                            <option value="否">
                                 否
                             </option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="station"><span class="asterisk">*</span>所属单位:</label>
-                        <input type="text" class="form-control" id="editstation" name="station" required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="shuttleid"><span class="asterisk">*</span>班车:</label>
-                        <select name="shuttleid" id="editshuttleid" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:value="苏A.SBAE86">
-                                苏A.SBAE86
-                            </option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="standardid"><span class="asterisk">*</span>收取标准:</label>
-                        <select name="standardid" id="editstandardid" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:value="0-30公斤">
-                                0-30公斤
-                            </option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="basisid"><span class="asterisk">*</span>取派员类型:</label>
-                        <select name="basisid" id="editbasisid" multiple class="form-control select2"
-                                data-placeholder="请从列表选择一项" required>
-                            <option th:value="小件员">
-                                小件员
-                            </option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" form="addForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#editForm',url:'@{/staff/update}',after:'$.myAction.refreshTable'}"
-                >
+                <button type="submit" form="editForm" class="btn btn-primary"
+                        data-action="{type:'submit',form:'#editForm',url:'@{/replay/update}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -269,7 +297,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" form="deleteForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#deleteForm',url:'@{/staff/delete}',after:'$.myAction.refreshTable'}">
+                        data-action="{type:'submit',form:'#deleteForm',url:'@{/replay/delete}',after:'$.myAction.refreshTable'}">
                     确定
                 </button>
             </div>
@@ -294,19 +322,18 @@
         // bootstrap table初始化
         // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
         $table.bootstrapTable({
-            url: CONTEXT_PATH + '/staff/list',
+            url: CONTEXT_PATH + '/replay/list',
             idField: 'id',
             columns: [
                 {field: 'state', checkbox: true},
-                {field: 'staid', title: '员工编号', sortable: true, halign: 'left'},
+                {field: 'replayid', title: '替工号', sortable: true, halign: 'left'},
                 {field: 'name', title: '员工姓名', sortable: true, halign: 'left'},
-                {field: 'telephone', title: '电话', sortable: true, halign: 'left'},
-                {field: 'haspad', title: '移动设备', sortable: true, halign: 'left'},
+                {field: 'starttime', title: '开始时间', sortable: true, halign: 'left'},
+                {field: 'endtime', title: '结束时间', sortable: true, halign: 'left'},
                 {field: 'deltag', title: '作废标记', sortable: true, halign: 'left'},
                 {field: 'station', title: '单位', sortable: true, halign: 'left'},
-                {field: 'shuttleid', title: '班车', sortable: true, halign: 'left'},
-                {field: 'standardid', title: '收取标准', sortable: true, halign: 'left'},
-                {field: 'basisid', title: '取派员类型', sortable: true, halign: 'left'},
+                {field: 'upusername', title: '修改人', sortable: true, halign: 'left'},
+                {field: 'uptime', title: '修改时间', sortable: true, halign: 'left'},
                 {
                     field: 'action',
                     title: '操作',
@@ -321,6 +348,79 @@
     });
 
 
+    $('select[name=replayid]').change(function(){
+        // $(this).parent().parent().find('input[name=name]').val('tom')
+        console.log($('select[name=replayid]').val())
+
+
+
+            var select = $(this)
+            $.ajax({
+                url: "replay/ajax4input",
+                data:'replayid='+$('select[name=replayid]').val(),
+                cache:false,
+                success:function(replay){
+                    console.log('data='+replay);
+                    select.parent().parent().find('input[name=name]').val(replay.name)
+                    select.parent().parent().find('input[name=station]').val(replay.station)
+                    select.parent().parent().find('select[name=deltag]').select2().val(replay.deltag).trigger("change");
+                }
+            });
+    })
+    $('select[name=replayofid]').change(function(){
+        // $(this).parent().parent().find('input[name=name]').val('tom')
+        console.log($('select[name=replayofid]').val())
+        var select = $(this)
+        $.ajax({
+            url: "replay/ajax4input",
+            data:'replayid='+$('select[name=replayofid]').val(),
+            cache:false,
+            success:function(replay){
+                console.log('data='+replay.toString());
+                select.parent().parent().find('input[name=nameof]').val(replay.name)
+                select.parent().parent().find('input[name=stationof]').val(replay.station)
+                select.parent().parent().find('select[name=deltagof]').select2().val(replay.deltag).trigger("change");
+            }
+        });
+    })
+
+
+
+
+
+    $('form').validator({
+        'disable': false,
+        custom: {
+            datamatch: function($el) {
+                var otherElId = $el.data("datamatch");
+                var datematch_error = $el.data("datamatch-error");
+                if($el.val() == $(otherElId).val()){
+                    return datematch_error;
+                }
+            },
+            checktime: function($el) {
+                var otherElId = $el.data("checktime");
+                    var datetime_error = $el.data("checktime-error");
+                    if($el.val() <=$(otherElId).val()){
+                        return datetime_error;
+                    }
+                }
+            },
+
+            // startime: function($el) {
+            // var otherElId = $el.data("startime");
+            //     var startime_error = $el.data("startime-error");
+            //     var time = new Date()
+            //     var year = time.toLocaleDateString().replace('/','-').replace('/','-');
+            //     var hour = time.getHours()
+            //     var s1 = ""+hour+":"+time.getMinutes()
+            //     var ss = year+"T"+s1
+            //     if($el.val() <= ss){
+            //         return startime_error;
+            //     }
+            // }
+
+    });
 
 
     // 数据表格展开内容
@@ -333,16 +433,10 @@
     }
 
     function editAfter(obj, row) {
-        var roleIdList = row.roleIdList;
-        var groupIdList = row.groupIdList;
-        for (i in roleIdList) {
-            var roleId = roleIdList[i];
-            $('#editForm').find('[name=roleIds]').find('option[value=' + roleId + ']').prop('selected', true);
-        }
-        for(i in groupIdList) {
-            var groupId = groupIdList[i];
-            $('#editForm').find('[name=groupIds]').find('option[value=' + groupId + ']').prop('selected', true);
-        }
+
+            var name = row.name;
+        console.log(name)
+            $('#editForm').find('[name=replayid]').find('option[value=' + name + ']').prop('selected', true);
     }
 
     function actionFormatter(value, row, index) {
@@ -355,10 +449,19 @@
             console.log(value, row, index);
         },
         'click .edit': function (e, value, row, index) {
-            $('#editModal').modal('show')
+            console.log("row1"+value,row,index)
+           var  a = row.starttime
+            var  b = row.endtime
+            console.log("start="+a)
+            var a1 = a.replace(' ', 'T');
+            var b1 = b.replace(' ', 'T');
+            console.log("end="+a1)
+            row.starttime =a1;
+            row.endtime = b1;
+            $('#editModal').modal('show');
+            console.log("row2"+value,row,index)
             $('#editForm').fillForm(row);
-            staidno = $('#editstaid').val();
-            editAfter('', row);
+            // editAfter('', row);
             console.log(value, row, index);
         },
         'click .remove': function (e, value, row, index) {
@@ -372,17 +475,17 @@
         }
     };
 
-    $('#editstaid').blur(function(){
-        console.log(staidno)
-        console.log($('#editstaid').val())
-        if($('#editstaid').val()!=staidno){
-            $(this).attr("data-remote","staff/check");
-            $(this).attr("data-remote-error","该员工编号已存在！");
-        }if($('#editstaid').val()==staidno){
-            $(this).attr("data-remote","staff/getwo");
-            $(this).attr("data-remote-error","");
-        }
-    })
+    // $('#editstaid').blur(function(){
+    //     console.log(staidno)
+    //     console.log($('#editstaid').val())
+    //     if($('#editstaid').val()!=staidno){
+    //         $(this).attr("data-remote","staff/check");
+    //         $(this).attr("data-remote-error","该员工编号已存在！");
+    //     }if($('#editstaid').val()==staidno){
+    //         $(this).attr("data-remote","staff/getwo");
+    //         $(this).attr("data-remote-error","");
+    //     }
+    // })
     var setting = {
         view: {
             dblClickExpand: false
