@@ -33,10 +33,10 @@
                                 <input type="text" class="form-control input-sm" name="name" id="searchname" placeholder="请输入员工姓名">
                             </div>
 
-                            <div class="form-group">
-                                <label for="searchstation"> 所属单位</label>
-                                <input type="text" class="form-control input-sm" name="station" id="searchstation" placeholder="请输入所属单位">
-                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<label for="searchstation"> 所属单位</label>-->
+                                <!--<input type="text" class="form-control input-sm" name="station" id="searchstation" placeholder="请输入所属单位">-->
+                            <!--</div>-->
 
                             <div class="form-group">
                                 <label for="searchdeltag"> 作废标记</label>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
-                        <input type="text" id="name" class="form-control" pattern="^[\u4E00-\u9FA5]+$" data-match-error="员工姓名只能是长度为2到5的中文字符"
+                        <input type="text" id="name" class="form-control"
                                 name="name" placeholder="输入员工姓名"  required>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -232,6 +232,7 @@
             </div>
             <div class="modal-body">
                 <form id="editForm">
+                    <input type="hidden" name="id"/>
                     <div class="form-group">
                         <label class="control-label" for="staid"><span class="asterisk">*</span>员工编号:</label>
                         <input id="editstaid" type="text" class="form-control" name="staid" placeholder="输入员工编号" pattern="^[A-Za-z0-9]+$"
@@ -243,7 +244,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
-                        <input type="text" id="editname" class="form-control" pattern="^[\u4E00-\u9FA5]+$" data-match-error="员工姓名只能是长度为2到5的中文字符"
+                        <input type="text" id="editname" class="form-control"
                                name="name" placeholder="输入员工姓名"  required>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -325,9 +326,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="submit" form="editForm" class="btn btn-primary"
-                        data-action="{type:'submit',form:'#editForm',url:'@{/staff/update}',after:'$.myAction.refreshTable'}"
-                >
-                    确定
+                        data-action="{type:'submit',form:'#editForm',url:'@{/staff/update}',after:'$.myAction.refreshTable'}">
+                     确定
                 </button>
             </div>
         </div>
