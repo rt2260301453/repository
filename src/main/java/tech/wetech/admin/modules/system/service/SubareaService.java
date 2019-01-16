@@ -4,8 +4,10 @@ import tech.wetech.admin.core.exception.BizException;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.modules.system.dto.SubareaDto;
 import tech.wetech.admin.modules.system.po.Addr;
+import tech.wetech.admin.modules.system.po.QuYu;
 import tech.wetech.admin.modules.system.po.Subarea;
 import tech.wetech.admin.modules.system.po.User;
+import tech.wetech.admin.modules.system.query.QuYuQuery;
 import tech.wetech.admin.modules.system.query.SubareaQuery;
 
 import java.util.List;
@@ -28,20 +30,26 @@ public interface SubareaService {
 
     int selectOneno(Subarea subarea);
 
-    List<Subarea> excel();
 
     List<Subarea> findAll();
+
+    List<QuYu> findQuYuAll();
 
     List<Addr> findPro();
 
     List<Addr> findEdit();
 
-    List<Addr> findCity(SubareaQuery subareaQuery);
+    List<Addr> findQuYuCity(QuYuQuery quYuQuery);
 
     List<Addr> findCounty(SubareaQuery subareaQuery);
+
+    List<Addr> findCity(SubareaQuery subareaQuery);
+
+    List<Addr> findQuYuCounty(QuYuQuery quYuQuery);
 
     List<Addr> selectCity(Addr addr);
 
     List<Addr> selectCou(Addr addr);
+
 
 }

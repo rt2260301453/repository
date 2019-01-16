@@ -11,21 +11,17 @@ import tech.wetech.admin.core.annotation.SystemLog;
 import tech.wetech.admin.core.utils.BaseController;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.core.utils.Result;
-import tech.wetech.admin.core.utils.ResultCodeEnum;
 import tech.wetech.admin.modules.system.dto.SubareaDto;
 import tech.wetech.admin.modules.system.po.Addr;
 import tech.wetech.admin.modules.system.po.Subarea;
+import tech.wetech.admin.modules.system.query.QuYuQuery;
 import tech.wetech.admin.modules.system.query.SubareaQuery;
 import tech.wetech.admin.modules.system.service.*;
-import tech.wetech.admin.modules.system.service.excel.PoiExcelExport;
-import tech.wetech.admin.modules.system.service.excel.ServletUtil;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author cjbi
@@ -38,7 +34,8 @@ public class SubareaController extends BaseController {
     private SubareaService subareaService;
 
     @Autowired
-    private OrganizationService organizationService;
+    private QuYuService quYuService;
+
 
     @GetMapping
     @RequiresPermissions("subarea:view")
@@ -61,6 +58,21 @@ public class SubareaController extends BaseController {
         }
         return subareaService.findByPage(subareaQuery);
     }
+
+    @ResponseBody
+    @RequestMapping("/addCity")
+    public List findQuYuCity(QuYuQuery quYuQuery ) {
+        System.out.println("quYuQuery"+quYuQuery);
+        System.out.println("subareaService.findQuYuCity(quYuQuery)"+subareaService.findQuYuCity(quYuQuery));
+        return subareaService.findQuYuCity(quYuQuery);
+    }
+
+    @ResponseBody
+    @RequestMapping("/addcounty")
+    public List findQuYuCounty(QuYuQuery quYuQuery) {
+        return subareaService.findQuYuCounty(quYuQuery);
+    }
+
 
     @ResponseBody
     @RequestMapping("/city")
@@ -119,28 +131,6 @@ public class SubareaController extends BaseController {
     }
 
 
-    @RequestMapping("/exportexcel")//导出excel
-    public void exportExcel(HttpServletRequest request, HttpServletResponse response) {
-        // 获取数据
-        String fileName = "分区管理表.xls";
-        System.out.println("subareaMapper.selectAll()123121");
-        ServletUtil su = new ServletUtil(fileName, request, response);
-        su.poiExcelServlet();
-
-        //-----------------apache.POI插件----------------------------------
-
-        String[] heads = { "分拣编号", "定区编号", "省","市","区","属性","关键字","辅助关键字","起始号","终止号","单双号"};//excel表头
-        String[] cols = { "id", "fixedareaId", "pro","city","county","attribute","keyword","auxiliarykeywords","starnum","endnum", "single"};
-        int[] numerics = {};//数字列索引
-
-        List<Subarea> list = subareaService.excel();
-        System.out.println("subareaMapper.selectAll()123121:"+list);
-        //---------------------------------------------------
-        ServletUtil suresp = new ServletUtil(response);
-        PoiExcelExport<Subarea> pee = new PoiExcelExport<Subarea>(fileName, heads, cols, list, numerics, suresp.getOut());
-        pee.exportExcel();
-    }
-
 
 
 
@@ -149,38 +139,19 @@ public class SubareaController extends BaseController {
     private void setCommonData(Model model) {
         model.addAttribute("findAddr",subareaService.findPro());
         model.addAttribute("findEdit",subareaService.findEdit());
-        model.addAttribute("organizationList", organizationService.findAll());
-        System.out.println("-------------------------------------"+subareaService.findPro());
-        System.out.println("-------------------------------------"+subareaService.findEdit());
-        System.out.println("-------------------------------------");
-        System.out.println("-------------------------------------");
-        System.out.println("-------------------------------------");
-        System.out.println("-------------------------------------");
+        model.addAttribute("findQuYuAll",subareaService.findQuYuAll());
     }
 
     @ResponseBody
     @RequestMapping("/selectCity")
     public List<Addr> selectAllCountry(Addr addr) {
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println(subareaService.selectCity(addr));
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
+
         return subareaService.selectCity(addr);
     }
 
     @ResponseBody
     @RequestMapping("/selectCou")
     public List<Addr> selectAllCou(Addr addr) {
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println(subareaService.selectCou(addr));
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
         return subareaService.selectCou(addr);
     }
 

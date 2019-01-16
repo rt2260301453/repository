@@ -25,4 +25,5 @@ public interface SubareaMapper extends MyMapper<Subarea> {
     @Select(value = "select distinct county from subarea where city=#{city}")
     List<Addr> selectCou(Addr addr);
 
+
 }

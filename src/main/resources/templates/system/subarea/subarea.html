@@ -93,13 +93,6 @@
                                     data-toggle="modal"
                                     data-target="#addModal"><i class="glyphicon glyphicon-plus"></i> 新增
                             </button>
-                            <!-- Indicates caution should be taken with this action -->
-                            <button shiro:hasPermission="subarea:update" type="button" id="editBtn" class="btn btn-default"
-                                    data-toggle="modal"
-                                    data-target="#editModal"
-                                    data-action="{type:'editable',form:'#editForm',table:'#table',after:'editAfter'}"
-                                    disabled><i class="glyphicon glyphicon-edit"></i> 修改
-                            </button>
                             <!-- Indicates a dangerous or potentially negative action -->
                             <button shiro:hasPermission="subarea:delete" type="button" id="deleteBtn" class="btn btn-default" data-toggle="modal"
                                     data-target="#deleteModal"
@@ -148,7 +141,7 @@
                                 class="form-control select2">
                             <option></option>
                             <option data-placeholder="请从列表选择一项" required
-                                    th:each="findpro : ${findAddr}" th:value="${findpro.pro}" th:text="${findpro.pro}">
+                                    th:each="findpro : ${findQuYuAll}" th:value="${findpro.province}" th:text="${findpro.province}">
                             </option>
                         </select>
                         <label class="control-label" for="cityAddr"><span class="asterisk">*</span>城市:</label><br/>
@@ -382,64 +375,6 @@
         return $('#actionButtons').html();
     }
 
-    // $('#cityEdit').mouseover(function(){
-    //     var pro = $('#proEdit').select2()
-    //     console.log("pro="+pro.val())
-    //     if(pro.val() == ''){
-    //         $("#cityEdit").append("<option>请选择</option>");
-    //         return
-    //     }
-    //     console.log("city="+$('#cityEdit').val())
-    //     if(oldpro == pro.val() && $('#cityEdit').val() != '请选择'){
-    //         return
-    //     }
-    //     console.log("city2="+$('#cityEdit').val())
-    //     oldpro = $('#proEdit').select2().val()
-    //     $('#cityEdit').empty()
-    //     $.ajax({
-    //         url: CONTEXT_PATH + "/subarea/selectCity?pro="+
-    //             $('#proEdit').select2().val(),
-    //         dataType:'json',
-    //         cache:false,
-    //         async:false,
-    //         success:function(data){
-    //             console.log("data="+data)
-    //             $("#cityEdit").append("<option>请选择</option>");
-    //             $.each(data,function (i,e) {
-    //                 console.log("e.city="+e.city)
-    //                 $("#cityEdit").append("<option value='"+e.city+"'>"+e.city+"</option>");
-    //             })
-    //     }
-    //     });
-    // })
-    //
-    // $("#countyEdit").click(function(){
-    //     var city = $("#cityEdit")
-    //     console.log("pro="+city.val())
-    //     if(city.val() == ''){
-    //         $("#countyEdit").append("<option>请选择</option>");
-    //         return
-    //     }
-    //     if(oldcity == city.val() && $('#countyEdit').val() != '请选择'){
-    //         return
-    //     }
-    //     oldcity = city.val()
-    //     $('#countyEdit').empty()
-    //     $.ajax({
-    //         url: CONTEXT_PATH + "/subarea/selectCou?city="+
-    //             city.val(),
-    //         dataType:'json',
-    //         cache:false,
-    //         async:false,
-    //         success:function(data){
-    //             $("#countyEdit").append("<option>请选择</option>");
-    //             $.each(data,function (i,e) {
-    //                 $("#countyEdit").append("<option value='"+e.county+"'>"+e.county+"</option>");
-    //             })
-    //         }
-    //     });
-    // })
-
     var oldpro = ''
     var oldcity = ''
     window.actionEvents = {
@@ -648,7 +583,7 @@
         cityAddr.empty();
         countyAddr.empty();
         $.ajax({
-            url: CONTEXT_PATH + "/subarea/city?pro="+$('#proAddr').select2().val(),
+            url: CONTEXT_PATH + "/subarea/addCity?province="+$('#proAddr').select2().val(),
             dataType:'json',
             cache:false,
             success:function(data){
@@ -669,7 +604,7 @@
         var countyAddr=  $("#countyAddr").select2();
         countyAddr.empty();
         $.ajax({
-            url: CONTEXT_PATH + "/subarea/county?city="+$('#cityAddr').select2().val(),
+            url: CONTEXT_PATH + "/subarea/addcounty?city="+$('#cityAddr').select2().val(),
             dataType:'json',
             cache:false,
             success:function(data){
