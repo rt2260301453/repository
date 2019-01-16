@@ -49,6 +49,7 @@ public class FixedAreaController {
     @ResponseBody
     @RequiresPermissions("fixedarea:create")
     @RequestMapping("/create")
+    @SystemLog("定区管理新增定区")
     public Result insert(@Valid FixedArea fixedArea){
         fixedAreaService.insertOne(fixedArea);
         return  Result.success();
