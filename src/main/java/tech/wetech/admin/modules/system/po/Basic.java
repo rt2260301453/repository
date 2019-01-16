@@ -12,170 +12,170 @@ import java.util.Date;
 @Table(name="basic")
 public class Basic {
     /**
-     * »ù±¾µµ°¸±àºÅ
+     * åŸºæœ¬æ¡£æ¡ˆç¼–å·
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(message = "»ù±¾µµ°¸±àºÅ²»ÄÜÎª¿Õ")
-    @Pattern(regexp = "^d\\d{5}$",message = "µµ°¸±àºÅ¸ñÊ½²»ÕıÈ·")
+    @NotNull(message = "åŸºæœ¬æ¡£æ¡ˆç¼–å·ä¸èƒ½ä¸ºç©º")
+    @Pattern(regexp = "^d\\d{5}$",message = "æ¡£æ¡ˆç¼–å·æ ¼å¼ä¸æ­£ç¡®")
     private String basicno;
 
     /**
-     * »ù±¾µµ°¸Ãû³Æ
+     * åŸºæœ¬æ¡£æ¡ˆåç§°
      */
-    @NotNull(message = "»ù±¾µµ°¸Ãû³Æ²»ÄÜÎª¿Õ")
+    @NotNull(message = "åŸºæœ¬æ¡£æ¡ˆåç§°ä¸èƒ½ä¸ºç©º")
     private String basicname;
 
     /**
-     * µµ°¸ÊÇ·ñ·Ö¼¶1ÎªÊÇ0Îª·ñ
+     * æ¡£æ¡ˆæ˜¯å¦åˆ†çº§1ä¸ºæ˜¯0ä¸ºå¦
      */
     private Integer classifying;
 
     /**
-     * ±¸×¢
+     * å¤‡æ³¨
      */
-    @Length(max= 20,message = "±¸×¢ÄÚÈİ²»ÄÜ³¬¹ı20×Ö")
+    @Length(max= 20,message = "å¤‡æ³¨å†…å®¹ä¸èƒ½è¶…è¿‡20å­—")
     private String remark;
 
     /**
-     * ²Ù×÷ÈËÔ±
+     * æ“ä½œäººå‘˜
      */
     private String operator;
 
     /**
-     * ²Ù×÷µ¥Î»
+     * æ“ä½œå•ä½
      */
-    @NotNull(message = "²Ù×÷µ¥Î»²»ÄÜÎª¿Õ")
+    @NotNull(message = "æ“ä½œå•ä½ä¸èƒ½ä¸ºç©º")
     private String operationunit;
 
     /**
-     * ²Ù×÷Ê±¼ä
+     * æ“ä½œæ—¶é—´
      */
     @DateTimeFormat(pattern="yyyy-MM-dd' 'HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd' 'HH:mm:ss",timezone="GMT+8")
     private Date operationdate;
 
     /**
-     * »ñÈ¡»ù±¾µµ°¸±àºÅ
+     * è·å–åŸºæœ¬æ¡£æ¡ˆç¼–å·
      *
-     * @return basicno - »ù±¾µµ°¸±àºÅ
+     * @return basicno - åŸºæœ¬æ¡£æ¡ˆç¼–å·
      */
     public String getBasicno() {
         return basicno;
     }
 
     /**
-     * ÉèÖÃ»ù±¾µµ°¸±àºÅ
+     * è®¾ç½®åŸºæœ¬æ¡£æ¡ˆç¼–å·
      *
-     * @param basicno »ù±¾µµ°¸±àºÅ
+     * @param basicno åŸºæœ¬æ¡£æ¡ˆç¼–å·
      */
     public void setBasicno(String basicno) {
         this.basicno = basicno;
     }
 
     /**
-     * »ñÈ¡»ù±¾µµ°¸Ãû³Æ
+     * è·å–åŸºæœ¬æ¡£æ¡ˆåç§°
      *
-     * @return basicname - »ù±¾µµ°¸Ãû³Æ
+     * @return basicname - åŸºæœ¬æ¡£æ¡ˆåç§°
      */
     public String getBasicname() {
         return basicname;
     }
 
     /**
-     * ÉèÖÃ»ù±¾µµ°¸Ãû³Æ
+     * è®¾ç½®åŸºæœ¬æ¡£æ¡ˆåç§°
      *
-     * @param basicname »ù±¾µµ°¸Ãû³Æ
+     * @param basicname åŸºæœ¬æ¡£æ¡ˆåç§°
      */
     public void setBasicname(String basicname) {
         this.basicname = basicname;
     }
 
     /**
-     * »ñÈ¡µµ°¸ÊÇ·ñ·Ö¼¶1ÎªÊÇ0Îª·ñ
+     * è·å–æ¡£æ¡ˆæ˜¯å¦åˆ†çº§1ä¸ºæ˜¯0ä¸ºå¦
      *
-     * @return classifying - µµ°¸ÊÇ·ñ·Ö¼¶1ÎªÊÇ0Îª·ñ
+     * @return classifying - æ¡£æ¡ˆæ˜¯å¦åˆ†çº§1ä¸ºæ˜¯0ä¸ºå¦
      */
     public Integer getClassifying() {
         return classifying;
     }
 
     /**
-     * ÉèÖÃµµ°¸ÊÇ·ñ·Ö¼¶1ÎªÊÇ0Îª·ñ
+     * è®¾ç½®æ¡£æ¡ˆæ˜¯å¦åˆ†çº§1ä¸ºæ˜¯0ä¸ºå¦
      *
-     * @param classifying µµ°¸ÊÇ·ñ·Ö¼¶1ÎªÊÇ0Îª·ñ
+     * @param classifying æ¡£æ¡ˆæ˜¯å¦åˆ†çº§1ä¸ºæ˜¯0ä¸ºå¦
      */
     public void setClassifying(Integer classifying) {
         this.classifying = classifying;
     }
 
     /**
-     * »ñÈ¡±¸×¢
+     * è·å–å¤‡æ³¨
      *
-     * @return remark - ±¸×¢
+     * @return remark - å¤‡æ³¨
      */
     public String getRemark() {
         return remark;
     }
 
     /**
-     * ÉèÖÃ±¸×¢
+     * è®¾ç½®å¤‡æ³¨
      *
-     * @param remark ±¸×¢
+     * @param remark å¤‡æ³¨
      */
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
     /**
-     * »ñÈ¡²Ù×÷ÈËÔ±
+     * è·å–æ“ä½œäººå‘˜
      *
-     * @return operator - ²Ù×÷ÈËÔ±
+     * @return operator - æ“ä½œäººå‘˜
      */
     public String getOperator() {
         return operator;
     }
 
     /**
-     * ÉèÖÃ²Ù×÷ÈËÔ±
+     * è®¾ç½®æ“ä½œäººå‘˜
      *
-     * @param operator ²Ù×÷ÈËÔ±
+     * @param operator æ“ä½œäººå‘˜
      */
     public void setOperator(String operator) {
         this.operator = operator;
     }
 
     /**
-     * »ñÈ¡²Ù×÷µ¥Î»
+     * è·å–æ“ä½œå•ä½
      *
-     * @return operationunit - ²Ù×÷µ¥Î»
+     * @return operationunit - æ“ä½œå•ä½
      */
     public String getOperationunit() {
         return operationunit;
     }
 
     /**
-     * ÉèÖÃ²Ù×÷µ¥Î»
+     * è®¾ç½®æ“ä½œå•ä½
      *
-     * @param operationunit ²Ù×÷µ¥Î»
+     * @param operationunit æ“ä½œå•ä½
      */
     public void setOperationunit(String operationunit) {
         this.operationunit = operationunit;
     }
 
     /**
-     * »ñÈ¡²Ù×÷Ê±¼ä
+     * è·å–æ“ä½œæ—¶é—´
      *
-     * @return operationdate - ²Ù×÷Ê±¼ä
+     * @return operationdate - æ“ä½œæ—¶é—´
      */
     public Date getOperationdate() {
         return operationdate;
     }
 
     /**
-     * ÉèÖÃ²Ù×÷Ê±¼ä
+     * è®¾ç½®æ“ä½œæ—¶é—´
      *
-     * @param operationdate ²Ù×÷Ê±¼ä
+     * @param operationdate æ“ä½œæ—¶é—´
      */
     public void setOperationdate(Date operationdate) {
         this.operationdate = operationdate;
