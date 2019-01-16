@@ -20,7 +20,7 @@ public class Replay {
 
     private String name;
 
-    @Future(message= "¿ªÊ¼Ê±¼ä±ØĞëÊÇÒ»¸ö½«À´Ê±¼ä!")
+    @Future(message= "å¼€å§‹æ—¶é—´å¿…é¡»æ˜¯ä¸€ä¸ªå°†æ¥æ—¶é—´!")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+08:00")
     private Date starttime;
