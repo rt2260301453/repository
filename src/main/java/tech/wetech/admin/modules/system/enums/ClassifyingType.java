@@ -1,7 +1,7 @@
 package tech.wetech.admin.modules.system.enums;
 
 public enum ClassifyingType {
-    wq("·ñ"), qw("ÊÇ");
+    wq("å¦"), qw("æ˜¯");
 
     private final String info;
 
