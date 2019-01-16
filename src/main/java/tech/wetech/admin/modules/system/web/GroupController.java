@@ -39,7 +39,7 @@ public class GroupController {
 
     @ResponseBody
     @PostMapping("/create")
-    @SystemLog("ÓÃ»§¹ÜÀí´´½¨ÓÃ»§×é")
+    @SystemLog("ç”¨æˆ·ç®¡ç†åˆ›å»ºç”¨æˆ·ç»„")
     public Result create(@Valid Group group) {
         groupService.createGroup(group);
         return Result.success();
@@ -47,7 +47,7 @@ public class GroupController {
 
     @ResponseBody
     @PostMapping("/update")
-    @SystemLog("ÓÃ»§¹ÜÀí¸üÐÂÓÃ»§×é")
+    @SystemLog("ç”¨æˆ·ç®¡ç†æ›´æ–°ç”¨æˆ·ç»„")
     public Result update(@Valid Group group) {
         groupService.updateGroup(group);
         return Result.success();
@@ -55,7 +55,7 @@ public class GroupController {
 
     @ResponseBody
     @PostMapping("/delete")
-    @SystemLog("ÓÃ»§¹ÜÀíÉ¾³ýÓÃ»§×é")
+    @SystemLog("ç”¨æˆ·ç®¡ç†åˆ é™¤ç”¨æˆ·ç»„")
     public Result delete(@RequestParam("id") Long[] ids) {
         Arrays.asList(ids).forEach(id -> groupService.deleteGroup(id));
         return Result.success();
