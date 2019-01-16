@@ -11,217 +11,217 @@ import java.util.Date;
 @Table(name="subbasic")
 public class SubBasic {
     /**
-     * ×Ó¼¶µµ°¸±àºÅ
+     * å­çº§æ¡£æ¡ˆç¼–å·
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(message = "µµ°¸±àºÅ²»ÄÜÎª¿Õ")
-    @Pattern(regexp = "^zd\\d{5}$",message = "µµ°¸±àºÅ¸ñÊ½²»ÕıÈ·")
+    @NotNull(message = "æ¡£æ¡ˆç¼–å·ä¸èƒ½ä¸ºç©º")
+    @Pattern(regexp = "^zd\\d{5}$",message = "æ¡£æ¡ˆç¼–å·æ ¼å¼ä¸æ­£ç¡®")
     private String subbasicno;
 
     /**
-     * ×Ó¼¶µµ°¸Ãû³Æ
+     * å­çº§æ¡£æ¡ˆåç§°
      */
-    @NotNull(message = "µµ°¸Ãû³Æ²»ÄÜÎª¿Õ")
+    @NotNull(message = "æ¡£æ¡ˆåç§°ä¸èƒ½ä¸ºç©º")
     private String subbasicname;
 
     /**
-     * ÉÏ¼¶±àÂë
+     * ä¸Šçº§ç¼–ç 
      */
-    @Pattern(regexp = "^d\\d{5}$",message = "ÉÏ¼¶±àºÅ¸ñÊ½²»ÕıÈ·")
+    @Pattern(regexp = "^d\\d{5}$",message = "ä¸Šçº§ç¼–å·æ ¼å¼ä¸æ­£ç¡®")
     private String mainbasicno;
 
     /**
-     * Öú¼ÇÂë
+     * åŠ©è®°ç 
      */
     private String mnemoniccode;
 
     /**
-     * ·â´æ±ê¼Ç
+     * å°å­˜æ ‡è®°
      */
     private Integer archivemark;
 
     /**
-     * ×Ó¼¶±¸×¢
+     * å­çº§å¤‡æ³¨
      */
-    @Length(max= 20,message = "±¸×¢ÄÚÈİ²»ÄÜ³¬¹ı20×Ö")
+    @Length(max= 20,message = "å¤‡æ³¨å†…å®¹ä¸èƒ½è¶…è¿‡20å­—")
     private String subremark;
 
     /**
-     * ×Ó¼¶²Ù×÷ÈËÔ±
+     * å­çº§æ“ä½œäººå‘˜
      */
     private String suboperator;
 
     /**
-     * ×Ó¼¶²Ù×÷µ¥Î»
+     * å­çº§æ“ä½œå•ä½
      */
-    @NotNull(message = "²Ù×÷ÈËÔ±µ¥Î»²»ÄÜÎª¿Õ")
+    @NotNull(message = "æ“ä½œäººå‘˜å•ä½ä¸èƒ½ä¸ºç©º")
     private String suboperationunit;
 
     /**
-     * ×Ó¼¶²Ù×÷Ê±¼ä
+     * å­çº§æ“ä½œæ—¶é—´
      */
     @DateTimeFormat(pattern="yyyy-MM-dd' 'HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd' 'HH:mm:ss",timezone="GMT+8")
     private Date suboperationdate;
 
     /**
-     * »ñÈ¡×Ó¼¶µµ°¸±àºÅ
+     * è·å–å­çº§æ¡£æ¡ˆç¼–å·
      *
-     * @return subbasicno - ×Ó¼¶µµ°¸±àºÅ
+     * @return subbasicno - å­çº§æ¡£æ¡ˆç¼–å·
      */
     public String getSubbasicno() {
         return subbasicno;
     }
 
     /**
-     * ÉèÖÃ×Ó¼¶µµ°¸±àºÅ
+     * è®¾ç½®å­çº§æ¡£æ¡ˆç¼–å·
      *
-     * @param subbasicno ×Ó¼¶µµ°¸±àºÅ
+     * @param subbasicno å­çº§æ¡£æ¡ˆç¼–å·
      */
     public void setSubbasicno(String subbasicno) {
         this.subbasicno = subbasicno;
     }
 
     /**
-     * »ñÈ¡×Ó¼¶µµ°¸Ãû³Æ
+     * è·å–å­çº§æ¡£æ¡ˆåç§°
      *
-     * @return subbasicname - ×Ó¼¶µµ°¸Ãû³Æ
+     * @return subbasicname - å­çº§æ¡£æ¡ˆåç§°
      */
     public String getSubbasicname() {
         return subbasicname;
     }
 
     /**
-     * ÉèÖÃ×Ó¼¶µµ°¸Ãû³Æ
+     * è®¾ç½®å­çº§æ¡£æ¡ˆåç§°
      *
-     * @param subbasicname ×Ó¼¶µµ°¸Ãû³Æ
+     * @param subbasicname å­çº§æ¡£æ¡ˆåç§°
      */
     public void setSubbasicname(String subbasicname) {
         this.subbasicname = subbasicname;
     }
 
     /**
-     * »ñÈ¡ÉÏ¼¶±àÂë
+     * è·å–ä¸Šçº§ç¼–ç 
      *
-     * @return mainbasicno - ÉÏ¼¶±àÂë
+     * @return mainbasicno - ä¸Šçº§ç¼–ç 
      */
     public String getMainbasicno() {
         return mainbasicno;
     }
 
     /**
-     * ÉèÖÃÉÏ¼¶±àÂë
+     * è®¾ç½®ä¸Šçº§ç¼–ç 
      *
-     * @param mainbasicno ÉÏ¼¶±àÂë
+     * @param mainbasicno ä¸Šçº§ç¼–ç 
      */
     public void setMainbasicno(String mainbasicno) {
         this.mainbasicno = mainbasicno;
     }
 
     /**
-     * »ñÈ¡Öú¼ÇÂë
+     * è·å–åŠ©è®°ç 
      *
-     * @return mnemoniccode - Öú¼ÇÂë
+     * @return mnemoniccode - åŠ©è®°ç 
      */
     public String getMnemoniccode() {
         return mnemoniccode;
     }
 
     /**
-     * ÉèÖÃÖú¼ÇÂë
+     * è®¾ç½®åŠ©è®°ç 
      *
-     * @param mnemoniccode Öú¼ÇÂë
+     * @param mnemoniccode åŠ©è®°ç 
      */
     public void setMnemoniccode(String mnemoniccode) {
         this.mnemoniccode = mnemoniccode;
     }
 
     /**
-     * »ñÈ¡·â´æ±ê¼Ç
+     * è·å–å°å­˜æ ‡è®°
      *
-     * @return archivemark - ·â´æ±ê¼Ç
+     * @return archivemark - å°å­˜æ ‡è®°
      */
     public Integer getArchivemark() {
         return archivemark;
     }
 
     /**
-     * ÉèÖÃ·â´æ±ê¼Ç
+     * è®¾ç½®å°å­˜æ ‡è®°
      *
-     * @param archivemark ·â´æ±ê¼Ç
+     * @param archivemark å°å­˜æ ‡è®°
      */
     public void setArchivemark(Integer archivemark) {
         this.archivemark = archivemark;
     }
 
     /**
-     * »ñÈ¡×Ó¼¶±¸×¢
+     * è·å–å­çº§å¤‡æ³¨
      *
-     * @return subremark - ×Ó¼¶±¸×¢
+     * @return subremark - å­çº§å¤‡æ³¨
      */
     public String getSubremark() {
         return subremark;
     }
 
     /**
-     * ÉèÖÃ×Ó¼¶±¸×¢
+     * è®¾ç½®å­çº§å¤‡æ³¨
      *
-     * @param subremark ×Ó¼¶±¸×¢
+     * @param subremark å­çº§å¤‡æ³¨
      */
     public void setSubremark(String subremark) {
         this.subremark = subremark;
     }
 
     /**
-     * »ñÈ¡×Ó¼¶²Ù×÷ÈËÔ±
+     * è·å–å­çº§æ“ä½œäººå‘˜
      *
-     * @return suboperator - ×Ó¼¶²Ù×÷ÈËÔ±
+     * @return suboperator - å­çº§æ“ä½œäººå‘˜
      */
     public String getSuboperator() {
         return suboperator;
     }
 
     /**
-     * ÉèÖÃ×Ó¼¶²Ù×÷ÈËÔ±
+     * è®¾ç½®å­çº§æ“ä½œäººå‘˜
      *
-     * @param suboperator ×Ó¼¶²Ù×÷ÈËÔ±
+     * @param suboperator å­çº§æ“ä½œäººå‘˜
      */
     public void setSuboperator(String suboperator) {
         this.suboperator = suboperator;
     }
 
     /**
-     * »ñÈ¡×Ó¼¶²Ù×÷µ¥Î»
+     * è·å–å­çº§æ“ä½œå•ä½
      *
-     * @return suboperationunit - ×Ó¼¶²Ù×÷µ¥Î»
+     * @return suboperationunit - å­çº§æ“ä½œå•ä½
      */
     public String getSuboperationunit() {
         return suboperationunit;
     }
 
     /**
-     * ÉèÖÃ×Ó¼¶²Ù×÷µ¥Î»
+     * è®¾ç½®å­çº§æ“ä½œå•ä½
      *
-     * @param suboperationunit ×Ó¼¶²Ù×÷µ¥Î»
+     * @param suboperationunit å­çº§æ“ä½œå•ä½
      */
     public void setSuboperationunit(String suboperationunit) {
         this.suboperationunit = suboperationunit;
     }
 
     /**
-     * »ñÈ¡×Ó¼¶²Ù×÷Ê±¼ä
+     * è·å–å­çº§æ“ä½œæ—¶é—´
      *
-     * @return suboperationdate - ×Ó¼¶²Ù×÷Ê±¼ä
+     * @return suboperationdate - å­çº§æ“ä½œæ—¶é—´
      */
     public Date getSuboperationdate() {
         return suboperationdate;
     }
 
     /**
-     * ÉèÖÃ×Ó¼¶²Ù×÷Ê±¼ä
+     * è®¾ç½®å­çº§æ“ä½œæ—¶é—´
      *
-     * @param suboperationdate ×Ó¼¶²Ù×÷Ê±¼ä
+     * @param suboperationdate å­çº§æ“ä½œæ—¶é—´
      */
     public void setSuboperationdate(Date suboperationdate) {
         this.suboperationdate = suboperationdate;
