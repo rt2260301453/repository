@@ -50,12 +50,12 @@ public class SubareaController extends BaseController {
     @ResponseBody
     @RequestMapping("/list")
     @RequiresPermissions("subarea:view")
-    @SystemLog("·ÖÇø¹ÜÀí²éÑ¯·ÖÇø")
+    @SystemLog("åˆ†åŒºç®¡ç†æŸ¥è¯¢åˆ†åŒº")
     public PageResultSet<SubareaDto> list(SubareaQuery subareaQuery) {
-        System.out.println("subareaQuery£º"+subareaQuery);
-        System.out.println("subareaQuery£º"+StringUtils.isEmpty(subareaQuery.getCity()));
+        System.out.println("subareaQueryï¼š"+subareaQuery);
+        System.out.println("subareaQueryï¼š"+StringUtils.isEmpty(subareaQuery.getCity()));
         if (!StringUtils.isEmpty(subareaQuery.getCity())&&!StringUtils.isEmpty(subareaQuery.getCity())){
-            if(subareaQuery.getCity().equals("ÇëÑ¡Ôñ") || subareaQuery.getCounty().equals("ÇëÑ¡Ôñ")){
+            if(subareaQuery.getCity().equals("è¯·é€‰æ‹©") || subareaQuery.getCounty().equals("è¯·é€‰æ‹©")){
             subareaQuery = new SubareaQuery();
             }
         }
@@ -77,11 +77,11 @@ public class SubareaController extends BaseController {
     @ResponseBody
     @PostMapping("/create")
     @RequiresPermissions("subarea:create")
-    @SystemLog("·ÖÇø¹ÜÀíĞÂÔö·ÖÇø")
+    @SystemLog("åˆ†åŒºç®¡ç†æ–°å¢åˆ†åŒº")
     public Result create(@Valid Subarea subarea) {
-        System.out.println("Ìí¼Ó·ÖÇøÊı¾İ:"+subarea);
+        System.out.println("æ·»åŠ åˆ†åŒºæ•°æ®:"+subarea);
         subareaService.createUser(subarea);
-        System.out.println("Ìí¼Ó·ÖÇøÊı¾İResult.success():"+Result.success());
+        System.out.println("æ·»åŠ åˆ†åŒºæ•°æ®Result.success():"+Result.success());
         return Result.success();
     }
 
@@ -89,7 +89,7 @@ public class SubareaController extends BaseController {
     @ResponseBody
     @PostMapping("/update")
     @RequiresPermissions("subarea:update")
-    @SystemLog("ÓÃ»§¹ÜÀí¸üĞÂÓÃ»§")
+    @SystemLog("ç”¨æˆ·ç®¡ç†æ›´æ–°ç”¨æˆ·")
     public Result update(Subarea subarea) {
         subareaService.updateUser(subarea);
         return Result.success();
@@ -98,9 +98,9 @@ public class SubareaController extends BaseController {
     @ResponseBody
     @PostMapping("/delete")
     @RequiresPermissions("subarea:delete")
-    @SystemLog("·ÖÇø¹ÜÀíÉ¾³ı·ÖÇø")
+    @SystemLog("åˆ†åŒºç®¡ç†åˆ é™¤åˆ†åŒº")
     public Result delete(@RequestParam("id") String[] ids, HttpServletRequest request) {
-        // »ñÈ¡·ÖÇøid£¨Êı×é£©
+        // è·å–åˆ†åŒºidï¼ˆæ•°ç»„ï¼‰
         Arrays.asList(ids).forEach(id ->subareaService.deleteId(id));
         System.out.println("Result.success:"+Result.success());
         return Result.success();
@@ -119,19 +119,19 @@ public class SubareaController extends BaseController {
     }
 
 
-    @RequestMapping("/exportexcel")//µ¼³öexcel
+    @RequestMapping("/exportexcel")//å¯¼å‡ºexcel
     public void exportExcel(HttpServletRequest request, HttpServletResponse response) {
-        // »ñÈ¡Êı¾İ
-        String fileName = "·ÖÇø¹ÜÀí±í.xls";
+        // è·å–æ•°æ®
+        String fileName = "åˆ†åŒºç®¡ç†è¡¨.xls";
         System.out.println("subareaMapper.selectAll()123121");
         ServletUtil su = new ServletUtil(fileName, request, response);
         su.poiExcelServlet();
 
-        //-----------------apache.POI²å¼ş----------------------------------
+        //-----------------apache.POIæ’ä»¶----------------------------------
 
-        String[] heads = { "·Ö¼ğ±àºÅ", "¶¨Çø±àºÅ", "Ê¡","ÊĞ","Çø","ÊôĞÔ","¹Ø¼ü×Ö","¸¨Öú¹Ø¼ü×Ö","ÆğÊ¼ºÅ","ÖÕÖ¹ºÅ","µ¥Ë«ºÅ"};//excel±íÍ·
+        String[] heads = { "åˆ†æ‹£ç¼–å·", "å®šåŒºç¼–å·", "çœ","å¸‚","åŒº","å±æ€§","å…³é”®å­—","è¾…åŠ©å…³é”®å­—","èµ·å§‹å·","ç»ˆæ­¢å·","å•åŒå·"};//excelè¡¨å¤´
         String[] cols = { "id", "fixedareaId", "pro","city","county","attribute","keyword","auxiliarykeywords","starnum","endnum", "single"};
-        int[] numerics = {};//Êı×ÖÁĞË÷Òı
+        int[] numerics = {};//æ•°å­—åˆ—ç´¢å¼•
 
         List<Subarea> list = subareaService.excel();
         System.out.println("subareaMapper.selectAll()123121:"+list);
