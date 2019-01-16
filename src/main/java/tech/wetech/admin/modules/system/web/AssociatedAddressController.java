@@ -59,7 +59,7 @@ public class AssociatedAddressController extends BaseController {
     @ResponseBody
     @RequestMapping("/create")
     @RequiresPermissions("assAddress:create")
-    @SystemLog("创建地址关联")
+    @SystemLog("定区管理创建地址关联")
     public Result create(@Valid AssociatedAddress associatedAddress) {
         associatedAddressService.insertOne(associatedAddress);
         return Result.success();
@@ -68,7 +68,7 @@ public class AssociatedAddressController extends BaseController {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("assAddress:update")
-    @SystemLog("更新地址关联")
+    @SystemLog("定区管理更新地址关联")
     public Result update(@Valid  AssociatedAddress associatedAddress) {
         associatedAddressService.updateOne(associatedAddress);
         return Result.success();
@@ -77,7 +77,7 @@ public class AssociatedAddressController extends BaseController {
     @ResponseBody
     @RequestMapping("/delete")
     @RequiresPermissions("assAddress:delete")
-    @SystemLog("删除地址关联")
+    @SystemLog("定区管理删除地址关联")
     public Result delete(@RequestParam("id") Long[] ids) {
         Arrays.asList(ids).forEach(id -> associatedAddressService.deleteOne(id));
         return Result.success();
