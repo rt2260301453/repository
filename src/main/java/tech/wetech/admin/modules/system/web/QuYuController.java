@@ -75,7 +75,7 @@ public class QuYuController extends BaseController {
    @ResponseBody
     @PostMapping("/create")
     @RequiresPermissions("quyu:create")
-    /*@SystemLog("用户管理创建用户")*/
+    @SystemLog("区域管理创建区域")
     public Result create( QuYu quyu) {
         System.out.println("到达添加区域页面++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         quyuService.createQuYu(quyu);
@@ -85,7 +85,7 @@ public class QuYuController extends BaseController {
         @ResponseBody
         @PostMapping("/update")
         @RequiresPermissions("quyu:update")
-        @SystemLog("用户管理更新用户")
+        @SystemLog("区域管理更新区域")
         public Result update(QuYu quyu) {
             quyuService.updateQuYu(quyu);
             return Result.success();
@@ -94,7 +94,7 @@ public class QuYuController extends BaseController {
     @ResponseBody
        @PostMapping("/delete")
        @RequiresPermissions("quyu:delete")
-       @SystemLog("用户管理删除用户")
+       @SystemLog("区域管理删除区域")
        public Result delete(@RequestParam("id") Integer[] ids, HttpServletRequest request) {
            // 当前用户
          String username = (String) SecurityUtils.getSubject().getPrincipal();

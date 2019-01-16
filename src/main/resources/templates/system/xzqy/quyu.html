@@ -1066,4 +1066,32 @@ ops[i].style.display = "";     // show
 
 
 </script>
+<script type="text/javascript">
+    function editAfter(obj, row) {
+        var tsqyList = row.tsqy;
+        var kfwqyList=row.kfwqy;
+        var bkfwqyList=row.bkfwqy;
+        var tsqy1List=tsqyList.split(',');
+        var kfwqy1List=kfwqyList.split(',');
+        var bkfwqy1List=bkfwqyList.split(',');
+        console.log("tsqyList"+tsqyList)
+        console.log("tsqy1List"+tsqy1List)
+
+        for (i in tsqy1List) {
+            var tsqy1 = tsqy1List[i];
+
+            $('#editForm').find('[name=tsqy]').find('option[value=' +tsqy1 + ']').prop('selected', true);
+        }
+        for (i in kfwqy1List) {
+            var kfwqy1 = kfwqy1List[i];
+
+            $('#editForm').find('[name=kfwqy]').find('option[value=' +kfwqy1 + ']').prop('selected', true);
+        }
+        for (i in bkfwqy1List) {
+            var bkfwqy1 =bkfwqy1List[i];
+            $('#editForm').find('[name=bkfwqy]').find('option[value=' +bkfwqy1 + ']').prop('selected', true);
+        }
+
+    }
+</script>
 </html>

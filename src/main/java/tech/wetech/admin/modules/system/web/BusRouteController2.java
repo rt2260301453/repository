@@ -72,6 +72,7 @@ public class BusRouteController2 {
     @ResponseBody
     @PostMapping("/create")
     @RequiresPermissions("bus:view")
+    @SystemLog("新增班车路线信息")
     public Result create(Busroute busroute) {
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         busroute.setOperator(username);
@@ -112,7 +113,7 @@ public class BusRouteController2 {
     @ResponseBody
     @PostMapping("/update")
     @RequiresPermissions("bus:view")
-    @SystemLog("用户管理更新班车")
+    @SystemLog("跟新班车路线信息")
     public Result update(Busroute busroute) {
         System.out.println("这里是update的busroute内容");
         System.out.println(busroute.toString());
@@ -157,15 +158,9 @@ public class BusRouteController2 {
     @ResponseBody
     @PostMapping("/delete")
     @RequiresPermissions("bus:view")
-    @SystemLog("用户管理删除用户")
+    @SystemLog("删除班车路线信息")
     public Result delete(@RequestParam("routeid") Long[] ids, HttpServletRequest request) {
         System.out.println("删除环节");
-
-//        int a =ids.length;
-//        Long[] ids1 = new Long[a];
-//        for(int i = 0;i<a;i++){
-//            ids1[i] = busService.selectByBusid(ids[i]);
-//        }
         Arrays.asList(ids).forEach(id -> routeService.deletebusroute(id));
         return Result.success();
     }
@@ -190,10 +185,9 @@ public class BusRouteController2 {
     @ResponseBody
     @RequestMapping("/checkNo1")
     @RequiresPermissions("bus:view")
-    @SystemLog("用户管理用户电话的")
     public String DriverPhone(String driver, HttpServletResponse response, Model model) {
         System.out.println(driver);
-        System.out.println("进入到这里了");
+        System.out.println("进入到由司机自动填充电话的");
         if(driver.equals("")){
             return "";
         }
@@ -205,13 +199,6 @@ public class BusRouteController2 {
         } else {
             return "";
         }
-        //model.addAttribute("DriverPhone", number);
-
-//        try {
-//            response.getWriter().print(number);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @RequestMapping("/checknamefromto")
