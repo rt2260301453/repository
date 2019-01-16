@@ -2,6 +2,7 @@ package tech.wetech.admin.modules.system.service;
 
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.modules.system.dto.StaffDto;
+import tech.wetech.admin.modules.system.po.Bus;
 import tech.wetech.admin.modules.system.po.Staff;
 import tech.wetech.admin.modules.system.po.SubBasic;
 import tech.wetech.admin.modules.system.query.StaffQuery;
@@ -24,4 +25,7 @@ public interface StaffService {
     int checkstaffid(Staff id);
 
     List<SubBasic> findbasic();
+
+
+    List<Bus> findbusRoute();
 }

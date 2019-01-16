@@ -9,4 +9,8 @@ public class ReplayQuery extends BaseQuery<Replay> {
     private String replayid;
 
     private String name;
+
+    private String replayofid;
+
+    private String nameof;
 }

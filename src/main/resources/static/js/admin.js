@@ -80,6 +80,7 @@
             var reloadComponent = function () {
                 //自定义事件
                 $('[data-action]').on('click', function (e) {
+                    var thisBtn = $(this);
                     var str = $(this).attr('data-action');
                     try {
                         var obj = eval('(' + str + ')');
@@ -104,7 +105,7 @@
                                     if (/^@{(.*?)}$/g.test(obj.url)) {
                                         obj.url = CONTEXT_PATH + obj.url.substring(2, obj.url.indexOf("}"))
                                     }
-                                    $(obj.form).submit2({url: obj.url},
+                                    $(obj.form).submit2({url: obj.url},thisBtn,
                                         function (data) {
                                             if (obj.after) {
                                                 eval(obj.after + '(obj,data)');
@@ -297,13 +298,14 @@
     }
 
     // url 链接地址
-    var _submit = function (opts, callback) {
+    var _submit = function (opts,btn, callback) {
         var $form = $(this),
             _url = opts.url,
             _data = (opts.data || $form.serialize()),
             _dataType = (opts.dataType || 'json');
 
         if ($form.isFormValid($(this))) {
+            btn.attr('disabled',true);
             $.ajax({
                 type: 'post',
                 url: _url,
@@ -315,10 +317,11 @@
                     } else {
                         $.myNotify.warning(data.msg);
                     }
-
+                    btn.attr('disabled',false);
                     callback && callback(data);
                 },
                 error: function (data) {
+                    btn.attr('disabled',false);
                     callback && callback(data);
                 }
             });

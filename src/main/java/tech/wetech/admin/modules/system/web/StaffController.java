@@ -102,6 +102,7 @@ public class StaffController{
         }
         model.addAttribute("stafflist", staffService.findAll());
         model.addAttribute("subbasicList", staffService.findbasic());
+        model.addAttribute("busRouteList", staffService.findbusRoute());
     }
 
 

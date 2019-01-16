@@ -62,7 +62,7 @@ public class AssociatedWidgetsController extends BaseController {
     @ResponseBody
     @RequestMapping("/create")
     @RequiresPermissions("assWidgets:create")
-    @SystemLog("创建关联取派人员")
+    @SystemLog("定区管理创建关联取派人员")
     public Result create(@Valid AssociatedWidgets associatedWidgets) {
         associatedWidgetsService.insertOne(associatedWidgets);
         return Result.success();
@@ -80,7 +80,7 @@ public class AssociatedWidgetsController extends BaseController {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("assWidgets:update")
-    @SystemLog("更新地址关联")
+    @SystemLog("定区管理更新地址关联")
     public Result update(@Valid  AssociatedWidgets associatedWidgets) {
         associatedWidgetsService.updateOne(associatedWidgets);
         return Result.success();
@@ -89,7 +89,7 @@ public class AssociatedWidgetsController extends BaseController {
     @ResponseBody
     @RequestMapping("/delete")
     @RequiresPermissions("assWidgets:delete")
-    @SystemLog("删除地址关联")
+    @SystemLog("定区管理删除地址关联")
     public Result delete(@RequestParam("id") Long[] ids) {
         Arrays.asList(ids).forEach(id -> associatedWidgetsService.deleteOne(id));
         return Result.success();

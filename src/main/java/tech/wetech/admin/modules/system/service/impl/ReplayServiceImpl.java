@@ -46,6 +46,13 @@ public class ReplayServiceImpl implements ReplayService {
         if (!StringUtils.isEmpty(replayQuery.getName())) {
             criteria.andLike(Replay::getName, "%" + replayQuery.getName() + "%");
         }
+        if (!StringUtils.isEmpty(replayQuery.getReplayofid())) {
+            criteria.andLike(Replay::getReplayofid, "%" + replayQuery.getReplayofid() + "%");
+        }
+
+        if (!StringUtils.isEmpty(replayQuery.getNameof())) {
+            criteria.andLike(Replay::getNameof, "%" + replayQuery.getNameof() + "%");
+        }
 
         List<ReplayDto> dtoList = new ArrayList<>();
 

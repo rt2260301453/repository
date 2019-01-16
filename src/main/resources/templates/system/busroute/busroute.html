@@ -47,7 +47,7 @@
                                                    <option value="市内">市内</option>
                                                </select>
                                                <br><br>
-                                               <label class="control-label" style="font-size:15px">span class="asterisk">*</span>始发地：</label>
+                                               <label class="control-label" style="font-size:15px">始发地：</label>
                                                <input list="namefrom1" name="namefrom" placeholder="请输入要查询的始发地" required/>
                                                <datalist id="namefrom1" >
                                                    <option  name="namefrom" th:each="namefromto : ${namefromList}" th:value="${namefromto.namefrom}" th:text="${namefromto.namefrom}">角色不存在</option>
