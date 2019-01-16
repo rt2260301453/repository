@@ -141,13 +141,13 @@
                     <div class="form-group">
                         <label class="control-label" for="startDate"><span class="asterisk">*</span>开始时间:</label>
                         <input type="datetime-local" id="startDate" class="form-control"
-                               name="starttime"
+                               name="starttime" required
                         >
                         <div class="help-block with-errors"></div>
 
                         <label class="control-label" for="endDate"><span class="asterisk">*</span>结束时间:</label>
                         <input type="datetime-local" id="endDate" class="form-control" name="endtime"
-                               data-checktime="#startDate"    data-checktime-error="结束时间必须大于开始时间"
+                               data-checktime="#startDate"    data-checktime-error="结束时间必须大于开始时间" required
                         >
                         <div class="help-block with-errors"></div>
                     </div>
@@ -244,14 +244,14 @@
 
                     <div class="form-group">
                         <label class="control-label" for="editstartDate"><span class="asterisk">*</span>开始时间:</label>
-                        <input type="datetime-local" id="editstartDate" class="form-control"
+                        <input type="datetime-local" id="editstartDate" class="form-control" required
                                name="starttime"
                         >
                         <div class="help-block with-errors"></div>
 
                         <label class="control-label" for="editendDate"><span class="asterisk">*</span>结束时间:</label>
                         <input type="datetime-local" id="editendDate" class="form-control" name="endtime"
-                               data-checktime="#editstartDate"    data-checktime-error="结束时间大于开始时间"
+                               data-checktime="#editstartDate"    data-checktime-error="结束时间大于开始时间" required
                         >
                         <div class="help-block with-errors"></div>
                     </div>

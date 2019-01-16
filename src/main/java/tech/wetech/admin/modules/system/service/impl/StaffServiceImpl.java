@@ -6,8 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import tech.wetech.admin.core.utils.PageResultSet;
 import tech.wetech.admin.modules.system.dto.StaffDto;
+import tech.wetech.admin.modules.system.mapper.BusRouteMapper2;
 import tech.wetech.admin.modules.system.mapper.StaffMapper;
 import tech.wetech.admin.modules.system.mapper.SubBasicMapper;
+import tech.wetech.admin.modules.system.po.Bus;
 import tech.wetech.admin.modules.system.po.Staff;
 import tech.wetech.admin.modules.system.po.SubBasic;
 import tech.wetech.admin.modules.system.query.StaffQuery;
@@ -26,6 +28,9 @@ public class StaffServiceImpl implements StaffService {
 
     @Resource
     private SubBasicMapper subBasicMapper;
+
+    @Resource
+    private BusRouteMapper2 busRouteMapper2;
 
     @Override
     public PageResultSet<StaffDto> findByPage(StaffQuery staffQuery) {
@@ -107,6 +112,12 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public List<SubBasic> findbasic() {
         List<SubBasic> subBasic = subBasicMapper.selectAll();
+        return subBasic;
+    }
+
+    @Override
+    public List<Bus> findbusRoute() {
+        List<Bus> subBasic = busRouteMapper2.selectAll();
         return subBasic;
     }
 }

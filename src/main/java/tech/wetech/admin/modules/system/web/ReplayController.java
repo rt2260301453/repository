@@ -52,7 +52,7 @@ public class ReplayController {
     @ResponseBody
     @PostMapping("/create")
     @RequiresPermissions("replay:create")
-//    @SystemLog("取派管理创建")
+    @SystemLog("替班管理创建替班信息")
     public Result create(@Valid Replay replay, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
@@ -61,7 +61,7 @@ public class ReplayController {
             int count = replayService.checktime(replay);
             System.out.println(count);
             if (count==1){
-                return Result.failure("200","该员工在这段时间内已分配工作");
+                return Result.failure("400","该员工在这段时间内已分配工作");
 
             }else{
                 String username =  (String) SecurityUtils.getSubject().getPrincipal();
@@ -80,7 +80,7 @@ public class ReplayController {
 
     @ResponseBody
     @RequestMapping("/ajax4input")
-//    @SystemLog("取派管理创建替班信息")
+//    @SystemLog("替班管理创建替班信息")
     public Staff queryname(String replayid) {
         System.out.println(replayid);
         Staff replay = replayService.queryAllForFormSelect(replayid);
@@ -93,7 +93,7 @@ public class ReplayController {
     @ResponseBody
     @PostMapping("/update")
     @RequiresPermissions("replay:update")
-    @SystemLog("取派管理更新替班信息")
+    @SystemLog("替班管理更新替班信息")
     public Result update(@Valid Replay replay,BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
@@ -102,7 +102,7 @@ public class ReplayController {
             int count = replayService.checktime(replay);
             System.out.println(count);
             if (count==1){
-                return Result.failure("UTF-8","该员工在这段时间没已分配工作");
+                return Result.failure("400","该员工在这段时间没已分配工作");
             }else{
                 String username =  (String) SecurityUtils.getSubject().getPrincipal();
                 replay.setUpusername(username);
@@ -118,7 +118,7 @@ public class ReplayController {
     @ResponseBody
     @PostMapping("/delete")
     @RequiresPermissions("replay:delete")
-//    @SystemLog("取派管理删除取派员")
+    @SystemLog("替班管理删除替班信息")
     public Result delete(@RequestParam("id") Long[] ids) {
         // 当前用户
         Arrays.asList(ids).forEach(id -> replayService.deletereplay(id));

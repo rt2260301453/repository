@@ -113,7 +113,7 @@
                 <form id="addForm" role="form" data-toggle="validator">
                     <div class="form-group">
                         <label class="control-label" for="staid"><span class="asterisk">*</span>员工编号:</label>
-                        <input id="staid" type="text" class="form-control" name="staid" placeholder="输入员工编号" pattern="^[A-Za-z0-9]+$"
+                        <input id="staid" type="text" class="form-control" name="staid" placeholder="输入员工编号，例s00001" pattern="^[A-Za-z0-9]+$"
                                minlength="6" maxlength="15" data-match-error="员工编号只能是长度6到15的数字，下划线"
                                data-remote="staff/check"   data-remote-error="该员工编号已存在！"
                                required >
@@ -122,7 +122,7 @@
                     <div class="form-group">
                         <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
                         <input type="text" id="name" class="form-control"
-                                name="name" placeholder="输入员工姓名"  required>
+                                name="name" placeholder="输入员工姓名，例Tom"  required>
                         <div class="help-block with-errors"></div>
                     </div>
 
@@ -178,9 +178,7 @@
                             <option value="">
 
                             </option>
-                            <option value="苏A.SBAE86">
-                                苏A.SBAE86
-                            </option>
+                            <option th:each="bus: ${busRouteList}" th:value="${bus.license}" th:text="${bus.license}">车牌不存在</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -235,7 +233,7 @@
                     <input type="hidden" name="id"/>
                     <div class="form-group">
                         <label class="control-label" for="staid"><span class="asterisk">*</span>员工编号:</label>
-                        <input id="editstaid" type="text" class="form-control" name="staid" placeholder="输入员工编号" pattern="^[A-Za-z0-9]+$"
+                        <input id="editstaid" type="text" class="form-control" name="staid" placeholder="输入员工编号，例s00001" pattern="^[A-Za-z0-9]+$"
                                minlength="6" maxlength="15" data-match-error="员工编号只能是长度6到15的字母，数字，下划线"
 
                                required >
@@ -245,7 +243,7 @@
                     <div class="form-group">
                         <label class="control-label" for="name"><span class="asterisk">*</span>员工姓名:</label>
                         <input type="text" id="editname" class="form-control"
-                               name="name" placeholder="输入员工姓名"  required>
+                               name="name" placeholder="输入员工姓名,例：Tom"  required>
                         <div class="help-block with-errors"></div>
                     </div>
 
@@ -294,9 +292,10 @@
                         <label class="control-label" for="shuttleid"><span class="asterisk">*</span>班车:</label>
                         <select name="shuttleid" id="editshuttleid"  class="form-control select2"
                                 data-placeholder="请从列表选择一项" required>
-                            <option th:value="苏A.SBAE86">
-                                苏A.SBAE86
+                            <option value="">
+
                             </option>
+                            <option th:each="bus: ${busRouteList}" th:value="${bus.license}" th:text="${bus.license}">车牌不存在</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
