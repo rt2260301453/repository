@@ -11,6 +11,7 @@ public interface QuYuMapper extends MyMapper<QuYu> {
     List<QuYu> selectAllCity();
 
     @Select(value = "select distinct(province) from xzqyinfo")
+
     List<QuYu> selectAllProvince();
     @Select(value = "select distinct(qu) from xzqyinfo")
     List<QuYu> selectAllQu();

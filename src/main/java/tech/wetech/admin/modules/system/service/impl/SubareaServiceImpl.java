@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tech.wetech.admin.core.exception.BizException;
 import tech.wetech.admin.core.utils.PageResultSet;
+import tech.wetech.admin.modules.system.dto.QuYuDto;
 import tech.wetech.admin.modules.system.dto.SubareaDto;
+import tech.wetech.admin.modules.system.mapper.QuYuMapper;
 import tech.wetech.admin.modules.system.mapper.SubareaMapper;
 import tech.wetech.admin.modules.system.po.Addr;
+import tech.wetech.admin.modules.system.po.QuYu;
 import tech.wetech.admin.modules.system.po.Subarea;
 import tech.wetech.admin.modules.system.po.User;
+import tech.wetech.admin.modules.system.query.QuYuQuery;
 import tech.wetech.admin.modules.system.query.SubareaQuery;
 import tech.wetech.admin.modules.system.service.*;
 import tk.mybatis.mapper.weekend.Weekend;
@@ -23,6 +27,9 @@ import java.util.*;
 public class SubareaServiceImpl implements SubareaService {
     @Autowired
     private SubareaMapper subareaMapper;
+
+    @Autowired
+    private QuYuMapper quYuMapper;
 
     @Override
     public void createUser(Subarea subarea) throws BizException {
@@ -46,24 +53,14 @@ public class SubareaServiceImpl implements SubareaService {
     }
 
     @Override
-    public List<Subarea> excel(){
-        System.out.println("subareaMapper.selectAll()"+subareaMapper.selectAll());
-        return subareaMapper.selectAll();
-    };
-
-    @Override
     public List<Addr> findPro() {
         List<Addr> pro = subareaMapper.selectByPro();
-        System.out.println("subareaMapper.selectByPro()"+subareaMapper.selectByPro());
-        System.out.println("pro.size()"+pro.size());
-        for (int i = 0; i < pro.size(); i++) {
-            for (int j = 0; j < i ; j++) {
-                System.out.println("i="+i);
-                System.out.println("j="+j);
-                System.out.println("pro.get(i).getPro()"+pro.get(i).getPro());
-                System.out.println("pro.get(j).getPro()"+pro.get(j).getPro());
-            }
-        }
+        return pro;
+    }
+
+    @Override
+    public List<QuYu> findQuYuAll() {
+        List<QuYu> pro = quYuMapper. selectAllProvince();
         return pro;
     }
 
@@ -107,9 +104,52 @@ public class SubareaServiceImpl implements SubareaService {
         List listNew=new ArrayList<>();
         set.addAll(pro);
         listNew.addAll(set);
-        listNew.add(0,"��ѡ��");
+        listNew.add(0,"请选择");
         return listNew;
     };
+
+    @Override
+    public List<Addr> findQuYuCity(QuYuQuery quYuQuery){
+        Weekend<QuYu> example = Weekend.of(QuYu.class);
+        WeekendCriteria<QuYu, Object> criteria = example.weekendCriteria();
+        if (!StringUtils.isEmpty(quYuQuery.getProvince())) {
+            criteria.andLike(QuYu::getProvince, "%" + quYuQuery.getProvince() + "%");
+        }
+        List pro = new ArrayList<> ();
+       quYuMapper.selectByExample(example).forEach(u -> {
+            Addr addr = new Addr();
+            QuYuDto dto = new QuYuDto(u);
+            addr.setCity(dto.getCity());
+            pro.add(addr.getCity());
+        });
+        Set set = new HashSet();
+        List listNew=new ArrayList<>();
+        set.addAll(pro);
+        listNew.addAll(set);
+        listNew.add(0,"请选择");
+        return listNew;
+    };
+
+    @Override
+    public List<Addr> findQuYuCounty(QuYuQuery quYuQuery){
+        Weekend<QuYu> example = Weekend.of(QuYu.class);
+        WeekendCriteria<QuYu, Object> criteria = example.weekendCriteria();
+        if (!StringUtils.isEmpty(quYuQuery.getCity())) {
+            criteria.andLike(QuYu::getCity, "%" + quYuQuery.getCity() + "%");
+        }
+        List pro = new ArrayList<> ();
+        quYuMapper.selectByExample(example).forEach(u -> {
+            QuYuDto dto = new QuYuDto(u);
+            pro.add(dto.getQu());
+        });
+        Set set = new HashSet();
+        List listNew=new ArrayList<>();
+        set.addAll(pro);
+        listNew.addAll(set);
+        listNew.add(0,"请选择");
+        return listNew;
+    };
+
 
     @Override
     public List<Addr> findCounty(SubareaQuery subareaQuery){
@@ -129,9 +169,8 @@ public class SubareaServiceImpl implements SubareaService {
         Set set = new HashSet();
         List listNew=new ArrayList<>();
         set.addAll(pro);
-        System.out.println("��ѯ��������SubareaServiceset��"+set);
         listNew.addAll(set);
-        listNew.add(0,"��ѡ��");
+        listNew.add(0,"请选择");
         return listNew;
     };
 
@@ -139,7 +178,6 @@ public class SubareaServiceImpl implements SubareaService {
 
     @Override
     public PageResultSet<SubareaDto> findByPage(SubareaQuery subareaQuery) {
-        System.out.println("��ѯ��������SubareaServiceImpl");
         if(!StringUtils.isEmpty(subareaQuery.getOrderBy())) {
             PageHelper.orderBy(subareaQuery.getOrderBy());
         }
@@ -168,11 +206,8 @@ public class SubareaServiceImpl implements SubareaService {
         subareaMapper.selectByExample(example).forEach(u -> {
             SubareaDto dto = new SubareaDto(u);
             dtoList.add(dto);
-            System.out.println("SubareaServiceImpl+++dto��"+dto);
         });
         long total = subareaMapper.selectCountByExample(example);
-        System.out.println("SubareaServiceImpl+++total��"+total);
-        System.out.println("SubareaServiceImpl+++dtoList��"+dtoList);
         PageResultSet<SubareaDto> resultSet = new PageResultSet<>();
         resultSet.setRows(dtoList);
         resultSet.setTotal(total);
