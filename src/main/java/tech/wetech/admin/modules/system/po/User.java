@@ -18,35 +18,35 @@ import java.util.List;
 public class User {
 
     /**
-     * ±àºÅ
+     * ç¼–å·
      */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
-     * ËùÊô¹«Ë¾
+     * æ‰€å±å…¬å¸
      */
-    @NotNull(message = "ËùÊô×éÖ¯²»ÄÜÎª¿Õ")
+    @NotNull(message = "æ‰€å±ç»„ç»‡ä¸èƒ½ä¸ºç©º")
     private Long organizationId;
     /**
-     * ÓÃ»§Ãû
+     * ç”¨æˆ·å
      */
-    @NotBlank(message = "ÓÃ»§Ãû²»ÄÜÎª¿Õ")
-    @Length(min= 3,message = "ÓÃ»§Ãû²»ÄÜµÍÓÚ3Î»")
+    @NotBlank(message = "ç”¨æˆ·åä¸èƒ½ä¸ºç©º")
+    @Length(min= 3,message = "ç”¨æˆ·åä¸èƒ½ä½äº3ä½")
     private String username;
     /**
-     * ÃÜÂë
+     * å¯†ç 
      */
-    @NotBlank(message = "ÃÜÂë²»ÄÜÎª¿Õ")
-    @Length(min= 6,message = "ÓÃ»§Ãû²»ÄÜµÍÓÚ6Î»")
+    @NotBlank(message = "å¯†ç ä¸èƒ½ä¸ºç©º")
+    @Length(min= 6,message = "ç”¨æˆ·åä¸èƒ½ä½äº6ä½")
     private String password;
     /**
-     * ¼ÓÃÜÃÜÂëµÄÑÎ
+     * åŠ å¯†å¯†ç çš„ç›
      */
     private String salt;
     /**
-     * ÓµÓĞµÄ½ÇÉ«ÁĞ±í
+     * æ‹¥æœ‰çš„è§’è‰²åˆ—è¡¨
      */
     private String roleIds;
 
