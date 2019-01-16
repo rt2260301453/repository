@@ -42,7 +42,7 @@ public class SpDateController {
 
     @ResponseBody
     @PostMapping("/create")
-    @SystemLog("用户管理创建用户组")
+    @SystemLog("送派时间管理新增角色")
     public Result create(@Valid SpDate spDate) {
         Date sj = new Date();
         spDate.setUpdatedate(sj);
@@ -53,7 +53,6 @@ public class SpDateController {
 
     @ResponseBody
     @RequestMapping("/check")
-    @SystemLog("用户管理创建用户组")
     public void check(SpDate spDate, HttpServletResponse response) {
         System.out.println("********************************************************************************");
         int count = spDateService.selectOnename(spDate);
@@ -68,7 +67,7 @@ public class SpDateController {
     }
     @ResponseBody
     @PostMapping("/update")
-    @SystemLog("用户管理更新用户组")
+    @SystemLog("送派时间管理更新角色")
     public Result update(@Valid SpDate spDate) {
         Date sj = new Date();
         spDate.setUpdatedate(sj);
@@ -79,7 +78,7 @@ public class SpDateController {
 
     @ResponseBody
     @PostMapping("/delete")
-    @SystemLog("用户管理删除用户组")
+    @SystemLog("送派时间管理删除角色")
     public Result delete(@RequestParam("id") Long[] ids) {
 
         Arrays.asList(ids).forEach(id -> spDateService.deleteSpDate(id));
